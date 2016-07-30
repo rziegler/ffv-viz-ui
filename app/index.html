@@ -39,7 +39,6 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
 
-
     <div class="navbar-fixed">
         <nav class="brown darken-3" role="navigation">
             <div class="nav-wrapper container">
@@ -61,75 +60,14 @@
             </div>
         </nav>
     </div>
-    <div class="section no-pad-bot" id="index-banner">
-        <div class="container">
-            <br>
-            <br>
-            <h1 class="header center orange-text">Starter Template</h1>
-            <div class="row center">
-                <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
-            </div>
-            <div class="row center">
-                <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light orange">Get Started</a>
-            </div>
-            <br>
-            <br>
 
-        </div>
-    </div>
-
-
-    <article class="container">
-        <section class="section">
-
-            <!--   Icon Section   -->
-            <div class="row">
-                <div class="col s12 m4">
-                    <div class="icon-block">
-                        <h2 class="center light-blue-text"><i class="material-icons">flash_on</i></h2>
-                        <h5 class="center">Speeds up development</h5>
-
-                        <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
-                    </div>
-                </div>
-
-                <div class="col s12 m4">
-                    <div class="icon-block">
-                        <h2 class="center light-blue-text"><i class="material-icons">group</i></h2>
-                        <h5 class="center">User Experience Focused</h5>
-
-                        <p class="light">By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.</p>
-                    </div>
-                </div>
-
-                <div class="col s12 m4">
-                    <div class="icon-block">
-                        <h2 class="center light-blue-text"><i class="material-icons">settings</i></h2>
-                        <h5 class="center">Easy to work with</h5>
-
-                        <p class="light">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>
-                    </div>
-                </div>
-            </div>
-
-        </section>
-        <br>
-        <br>
-
-        <div class="section">
-
-        </div>
-
-        <div ng-view></div>
-
-        <div>Angular seed app: v<span app-version></span></div>
-    </article>
+    <div ng-view></div>
 
     <footer class="page-footer brown lighten-5">
         <article class="container">
-            <div class="row">
+            <div class="row no-mar-bot">
                 <div class="col s12">
-                    <p class="grey-text text-darken-4 light">Based on flight fares collected via the <a href="http://en.business.skyscanner.net/en-gb/products/travel-apis/">Travel APIs from Skyscanner Business</a> between May and August 2016. Only complete time series are visualized, whereas a complete series is defined as a set of prices requested at least on n days prior to departure.</p>
+                    <small class="grey-text text-darken-4 light">Based on flight fares collected via the <a href="http://en.business.skyscanner.net/en-gb/products/travel-apis/">Travel APIs from Skyscanner Business</a> between May and August 2016. Only complete time series are visualized, whereas a complete series is defined as a set of prices requested every day from 49 days prior to one day before departure.</small>
                 </div>
             </div>
             <div class="divider"></div>
@@ -138,7 +76,7 @@
             <div class="container grey-text text-darken-2">
                 <div class="row">
                     <small class="col s6">&copy; Ruth Ziegler 2016, CAS Data Visualization</small>
-                    <small class="col s6 right-align">Version ffv v0.1</small>
+                    <small class="col s6 right-align">ffv v<span app-version></span></small>
                     <!--        <p class="u-pull-right">Prices until 06.07.2016 with 28 days intervals.</p>-->
                 </div>
             </div>
@@ -154,6 +92,7 @@
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/materialize/dist/js/materialize.min.js"></script>
 
+    <script src="bower_components/d3/d3.min.js"></script>
   -->
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
@@ -162,6 +101,11 @@
     <!--    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>-->
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/materialize/dist/js/materialize.js"></script>
+    <!-- D3 -->
+    <script src="bower_components/d3/d3.js"></script>
+    <!-- datamaps -->
+    <script src="bower_components/topojson/topojson.min.js"></script>
+    <script src="bower_components/datamaps/dist/datamaps.world.min.js"></script>
 
     <!-- application specific -->
     <script src="app.js"></script>
