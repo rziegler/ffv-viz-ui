@@ -89,9 +89,15 @@
     </footer>
 
 
-    <!-- libraries -->
+    <!-- libraries 
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <!-- In production use:
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-route/angular-route.min.js"></script>
+<script src="bower_components/angular-resource/angular-resource.min.js"></script>
+    <script src="bower_components/angular-environment/dist/angular-environment.min.js"></script>
 
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/materialize/dist/js/materialize.min.js"></script>
@@ -100,9 +106,10 @@
   -->
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-environment/dist/angular-environment.js"></script>
 
-    <!--Import jQuery before materialize.js-->
-    <!--    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>-->
+    <!--important: import jQuery before materialize.js-->
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/materialize/dist/js/materialize.js"></script>
     <!-- D3 -->
@@ -111,10 +118,14 @@
     <script src="bower_components/topojson/topojson.min.js"></script>
     <script src="bower_components/datamaps/dist/datamaps.world.min.js"></script>
 
-    <!-- application specific -->
+    <!-- application specific 
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <script src="app.js"></script>
+    <script src="services/config-service.js"></script>
+
     <script src="view1/view1.js"></script>
     <script src="view2/view2.js"></script>
+
     <script src="components/version/version.js"></script>
     <script src="components/version/version-directive.js"></script>
     <script src="components/version/interpolate-filter.js"></script>
