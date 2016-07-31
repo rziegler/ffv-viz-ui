@@ -9,6 +9,9 @@ angular.module('myApp.view2', ['ngRoute'])
     });
 }])
 
-.controller('View2Ctrl', ['Config', function (configService) {
-    console.log(configService.getCurrentDestination());
+.controller('View2Ctrl', ['$scope', 'Config', function ($scope, configService) {
+    var current = configService.getCurrentDestination();
+    console.log(current);
+    $scope.destinationName = current.destinationName;
+    $scope.destination = current.destination;
 }]);
