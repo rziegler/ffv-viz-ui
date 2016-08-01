@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if lt IE 7]>      <html lang="en" ng-app="ffvApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="ffvApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="ffvApp" class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
-<html lang="en" ng-app="myApp" class="no-js">
+<html lang="en" ng-app="ffvApp" class="no-js">
 <!--<![endif]-->
 
 <head>
@@ -23,6 +23,11 @@
 
     <!--Import Google Icon Font-->
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Vizuly specific style sheets -->
+    <!--    <link rel="stylesheet" href="lib/vizuly/vizuly.css">-->
+    <!-- insights + reset (via import) -->
+    <!--    <link rel="stylesheet" media="all" href="lib/insights/insights-1.0.css" />-->
 
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="bower_components/materialize/dist/css/materialize.min.css" media="screen,projection" />
@@ -44,16 +49,16 @@
   <![endif]-->
 
     <div class="navbar-fixed">
-        <nav class="brown darken-3" role="navigation">
+        <nav class="white" role="navigation">
             <div class="nav-wrapper container">
-                <a id="logo-container" href="#" class="brand-logo">
+                <a id="logo-container" href="#" class="brand-logo brown-text darken-3">
                     <!--                <i class="material-icons rotate-45">bubble_chart</i>-->
                     <!--                <i class="material-icons">bubble_chart</i>-->
                     <i class="material-icons rotate-45">flight</i> Flight Fare Visualization
                 </a>
                 <ul class="right hide-on-med-and-down">
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="#" class="brown-text">About</a></li>
+                    <li><a href="#" class="brown-text">Contact</a></li>
                 </ul>
 
                 <ul id="nav-mobile" class="side-nav">
@@ -117,9 +122,18 @@
     <!-- datamaps -->
     <script src="bower_components/topojson/topojson.min.js"></script>
     <script src="bower_components/datamaps/dist/datamaps.world.min.js"></script>
+    <!-- insights -->
+    <script src="lib/insights/insights.js"></script>
+    <!-- vizuly scripts -->
+    <script src="lib/vizuly/vizuly_core.min.js"></script>
+    <script src="lib/vizuly/vizuly_radialprogress.min.js"></script>
+    <script src="lib/vizuly/radialprogress-ffv.js"></script>
+    <!-- colorbrewer -->
+    <script src="bower_components/colorbrewer/colorbrewer.js"></script>
 
     <!-- application specific 
     –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <script src="view2/viz.js"></script>
     <script src="app.js"></script>
     <script src="services/config-service.js"></script>
 

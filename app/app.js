@@ -1,13 +1,13 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-angular.module('myApp', [
+angular.module('ffvApp', [
   'ngRoute',
   'environment',
   'configService',
-  'myApp.view1',
-  'myApp.view2',
-  'myApp.version'
+  'ffvApp.view1',
+  'ffvApp.view2',
+  'ffvApp.version'
 ]).
 
 config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {

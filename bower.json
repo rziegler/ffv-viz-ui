@@ -16,6 +16,7 @@
         "materialize": "^0.97.7",
         "d3": "^3.5.17",
         "datamaps": "^0.5.0",
-        "topojson": "^1.6.26"
+        "topojson": "^1.6.26",
+        "colorbrewer": "1.0.0"
     }
 }

@@ -1,6 +1,7 @@
 'use strict';
 
-angular.module('myApp.view2', ['ngRoute'])
+
+angular.module('ffvApp.view2', ['ngRoute'])
 
 .config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/view2', {
@@ -14,4 +15,7 @@ angular.module('myApp.view2', ['ngRoute'])
     console.log(current);
     $scope.destinationName = current.destinationName;
     $scope.destination = current.destination;
+
+
+    //    doViz();
 }]);

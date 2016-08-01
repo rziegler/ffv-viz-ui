@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.view1', ['ngRoute'])
+angular.module('ffvApp.view1', ['ngRoute'])
 
 .config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/view1', {
@@ -16,7 +16,7 @@ angular.module('myApp.view1', ['ngRoute'])
         element: document.getElementById('map-container'),
         responsive: false, // If true, call `resize()` on the map object when it should adjust it's size
         fills: {
-            defaultFill: "#999",
+            defaultFill: "#e0e0e0",
             destinationCountryFill: '#ff5722'
         },
         data: {
@@ -42,13 +42,14 @@ angular.module('myApp.view1', ['ngRoute'])
             'CAN': destinationData.get("CAN")
         },
         geographyConfig: {
+            borderColor: '#fff',
             highlightBorderColor: '#fff',
             highlightBorderWidth: 1,
             highlightFillColor: function (data) {
                 if (data.countryCode !== undefined) {
                     return '#ff7043';
                 }
-                return '#999';
+                return '#e0e0e0';
             },
             popupTemplate: function (geo, data) {
                 if (destinationData.has(data.countryCode)) {

@@ -1,1 +1,101 @@
 <h1>{{destinationName}} ({{destination}})</h1>
+
+<div id="container">
+
+    <div id="header">
+        <div id="title">
+            <h1>Flight Fare Visualization</h1>
+            <p id="subtitle">Plan to fly to Madrid? Cheapest prices are generally on Tuesdays.</p>
+        </div>
+
+        <div id="legend" class="orrd">
+            <ul>
+                <li class="q1-7"></li>
+                <li class="q2-7"></li>
+                <li class="q3-7"></li>
+                <li class="q4-7"></li>
+                <li class="q5-7"></li>
+                <li class="q6-7"></li>
+                <li class="q7-7"></li>
+            </ul>
+            <p class="more">higher price</p>
+            <p class="less">lower price</p>
+        </div>
+    </div>
+    <div id="old_browser_msg">We're sorry but your browser is really old and can't handle the full interactive experience. We recommend you upgrade to the latest version as soon as possible.</div>
+
+
+    <div id="navigation">
+        <div class="controls">
+            <fieldset id="destination">
+                <!-- filled dynamically with destinations -->
+            </fieldset>
+            <fieldset id="carrier">
+                <!-- filled dynamically with carriers -->
+            </fieldset>
+
+            <fieldset id="weekday">
+                <input type="radio" id="wday_all" name="weekday" value="all" checked="checked" />
+                <label for="wday_all" class="sel"><span class="all">All Weekdays</span></label>
+
+                <input type="radio" id="wday_wd0" name="weekday" value="wd0" />
+                <label for="wday_wd0"><span class="monday">Monday</span></label>
+
+                <input type="radio" id="wday_wd1" name="weekday" value="wd1" />
+                <label for="wday_wd1"><span class="tuesday">Tuesday</span></label>
+                <input type="radio" id="wday_wd2" name="weekday" value="wd2" />
+                <label for="wday_wd2"><span class="wednesday">Wednesday</span></label>
+                <input type="radio" id="wday_wd3" name="weekday" value="wd3" />
+                <label for="wday_wd3"><span class="thursday">Thursday</span></label>
+                <input type="radio" id="wday_wd4" name="weekday" value="wd4" />
+                <label for="wday_wd4"><span class="friday">Friday</span></label>
+                <input type="radio" id="wday_wd5" name="weekday" value="wd5" />
+                <label for="wday_wd5"><span class="saturday">Saturday</span></label>
+                <input type="radio" id="wday_wd6" name="weekday" value="wd6" />
+                <label for="wday_wd6"><span class="sunday">Sunday</span></label>
+            </fieldset>
+        </div>
+        <div id="map"></div>
+    </div>
+
+    <div id="vis"></div>
+
+    <div id="wtf">
+        <!--            <h2>All States</h2>-->
+        <!--
+            <div id="pc2mob">
+    <div class="svg"></div>
+    <ul>
+        <li class="pc"><span>82%</span> Computer</li>
+        <li class="mob"><span>18%</span> Mobile</li>
+    </ul>
+</div>
+-->
+        <div id="hourly_values">
+            <p class="subtitle">Daily price development</p>
+            <p class="price"></p>
+            <div class="svg"></div>
+        </div>
+        <div id="minmax">
+            <p class="subtitle">Percentual savings</p>
+            <div id="viz1" class="radial_container">
+                <div></div>
+            </div>
+            <!--
+                <div id="viz2" class="radial_container">
+    <div></div>
+</div>
+-->
+            <p class="subtitle min"></p>
+            <p class="subtitle max"></p>
+            <p class="subtitle cur"></p>
+        </div>
+
+        <div id="buckets">
+            <p class="subtitle">Price niveaus for each category</p>
+        </div>
+
+    </div>
+
+
+    <div id="footer">Based on flight fares collected via the <a href="http://en.business.skyscanner.net/en-gb/products/travel-apis/">Travel APIs from Skyscanner Business</a> between May and August 2016. Only complete time series are visualized, whereas a complete series is defined as a set of prices requested at least on n days prior to departure.</div>
