@@ -1,4 +1,4 @@
-function doViz() {
+function doViz(destination) {
     // Fix map for IE
     if (!('map' in Array.prototype)) {
         Array.prototype.map = function (mapper, that /*opt*/ ) {
@@ -198,8 +198,8 @@ function doViz() {
     addDestinationButtons();
 
     d3.select('#vis').classed(colorScheme, true);
-
-    d3.csv("data/data-dest-mad-small.csv", function (d) {
+    console.log("data/data-dest-" + destination + ".csv".toLowerCase());
+    d3.csv("data/data-dest-" + destination + ".csv".toLowerCase(), function (d) {
         return {
             destination: d.destination,
             origin: d.origin,

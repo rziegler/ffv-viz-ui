@@ -16,6 +16,10 @@ angular.module('ffvApp.view2', ['ngRoute'])
     $scope.destinationName = current.destinationName;
     $scope.destination = current.destination;
 
+    if ($scope.destination == undefined) {
+        $scope.destinationName = 'Amsterdam';
+        $scope.destination = 'AMS';
+    }
 
-    doViz();
+    doViz($scope.destination);
 }]);

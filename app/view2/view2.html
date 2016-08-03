@@ -1,10 +1,9 @@
 <h1>{{destinationName}} ({{destination}})</h1>
 
-<div id="container">
+<div id="container" class="viz">
 
-    <div id="header">
-        <div id="title">
-            <h1>Flight Fare Visualization</h1>
+    <div id="header" class="row">
+        <div id="title" class="col s12">
             <p id="subtitle">Plan to fly to Madrid? Cheapest prices are generally on Tuesdays.</p>
         </div>
 
@@ -26,15 +25,15 @@
 
 
     <div id="navigation">
-        <div class="controls">
-            <fieldset id="destination">
+        <div class="controls row">
+            <fieldset id="destination" class="col s4">
                 <!-- filled dynamically with destinations -->
             </fieldset>
-            <fieldset id="carrier">
+            <fieldset id="carrier" class="col s4">
                 <!-- filled dynamically with carriers -->
             </fieldset>
 
-            <fieldset id="weekday">
+            <fieldset id="weekday" class="col s4">
                 <input type="radio" id="wday_all" name="weekday" value="all" checked="checked" />
                 <label for="wday_all" class="sel"><span class="all">All Weekdays</span></label>
 
@@ -58,11 +57,13 @@
         <div id="map"></div>
     </div>
 
-    <div id="vis"></div>
 
-    <div id="wtf">
-        <!--            <h2>All States</h2>-->
-        <!--
+    <div class="row">
+        <div id="vis" class="col s8"></div>
+
+        <div id="wtf" class="col s4">
+            <!--            <h2>All States</h2>-->
+            <!--
             <div id="pc2mob">
     <div class="svg"></div>
     <ul>
@@ -71,31 +72,29 @@
     </ul>
 </div>
 -->
-        <div id="hourly_values">
-            <p class="subtitle">Daily price development</p>
-            <p class="price"></p>
-            <div class="svg"></div>
-        </div>
-        <div id="minmax">
-            <p class="subtitle">Percentual savings</p>
-            <div id="viz1" class="radial_container">
-                <div></div>
+            <div id="hourly_values">
+                <p class="subtitle">Daily price development</p>
+                <p class="price"></p>
+                <div class="svg"></div>
             </div>
-            <!--
+            <div id="minmax">
+                <p class="subtitle">Percentual savings</p>
+                <div id="viz1" class="radial_container">
+                    <div></div>
+                </div>
+                <!--
                 <div id="viz2" class="radial_container">
     <div></div>
 </div>
 -->
-            <p class="subtitle min"></p>
-            <p class="subtitle max"></p>
-            <p class="subtitle cur"></p>
-        </div>
+                <p class="subtitle min"></p>
+                <p class="subtitle max"></p>
+                <p class="subtitle cur"></p>
+            </div>
 
-        <div id="buckets">
-            <p class="subtitle">Price niveaus for each category</p>
+            <div id="buckets">
+                <p class="subtitle">Price niveaus for each category</p>
+            </div>
         </div>
 
     </div>
-
-
-    <div id="footer">Based on flight fares collected via the <a href="http://en.business.skyscanner.net/en-gb/products/travel-apis/">Travel APIs from Skyscanner Business</a> between May and August 2016. Only complete time series are visualized, whereas a complete series is defined as a set of prices requested at least on n days prior to departure.</div>
