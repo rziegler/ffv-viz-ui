@@ -1,3 +1,8 @@
+.no-margin-bottom {
+    margin-bottom: 0px;
+}
+
+
 /* app css stylesheet */
 
 .menu {
@@ -576,6 +581,8 @@ th.h48 {
     cursor: default;
 }
 
+
+/*
 h2 {
     margin-top: -2px;
     font-size: 28px;
@@ -586,6 +593,7 @@ h2 {
     z-index: -1337;
     text-align: center;
 }
+*/
 
 p.price {
     font-size: 20px;

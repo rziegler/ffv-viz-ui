@@ -17,5 +17,5 @@ angular.module('ffvApp.view2', ['ngRoute'])
     $scope.destination = current.destination;
 
 
-    //    doViz();
+    doViz();
 }]);

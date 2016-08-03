@@ -18,19 +18,20 @@
 
     <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
     <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
-    <link rel="stylesheet" href="app.css">
     <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 
     <!--Import Google Icon Font-->
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Vizuly specific style sheets -->
-    <!--    <link rel="stylesheet" href="lib/vizuly/vizuly.css">-->
+    <link rel="stylesheet" href="lib/vizuly/vizuly.css">
     <!-- insights + reset (via import) -->
     <!--    <link rel="stylesheet" media="all" href="lib/insights/insights-1.0.css" />-->
 
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="bower_components/materialize/dist/css/materialize.min.css" media="screen,projection" />
+
+    <link rel="stylesheet" href="app.css">
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -51,14 +52,14 @@
     <div class="navbar-fixed">
         <nav class="white" role="navigation">
             <div class="nav-wrapper container">
-                <a id="logo-container" href="#" class="brand-logo brown-text darken-3">
+                <a id="logo-container" href="#" class="brand-logo blue-grey-text darken-4">
                     <!--                <i class="material-icons rotate-45">bubble_chart</i>-->
                     <!--                <i class="material-icons">bubble_chart</i>-->
                     <i class="material-icons rotate-45">flight</i> Flight Fare Visualization
                 </a>
                 <ul class="right hide-on-med-and-down">
-                    <li><a href="#" class="brown-text">About</a></li>
-                    <li><a href="#" class="brown-text">Contact</a></li>
+                    <li><a href="#" class="blue-grey-text">About</a></li>
+                    <li><a href="#" class="blue-grey-text">Contact</a></li>
                 </ul>
 
                 <ul id="nav-mobile" class="side-nav">
@@ -72,16 +73,14 @@
 
     <div ng-view></div>
 
-    <footer class="page-footer brown lighten-5">
+    <footer class="page-footer blue-grey lighten-5">
         <article class="container">
-            <div class="row no-mar-bot">
-                <div class="col s12">
-                    <small class="grey-text text-darken-4 light">Based on flight fares collected via the <a href="http://en.business.skyscanner.net/en-gb/products/travel-apis/">Travel APIs from Skyscanner Business</a> between May and August 2016. Only complete time series are visualized, whereas a complete series is defined as a set of prices requested every day from 49 days prior to one day before departure.</small>
-                </div>
+            <div class="row">
+                <small class="col grey-text text-darken-2 light">Based on flight fares collected via the <a href="http://en.business.skyscanner.net/en-gb/products/travel-apis/">Travel APIs from Skyscanner Business</a> between May and August 2016. Only complete time series are visualized, whereas a complete series is defined as a set of prices requested every day from 49 days prior to one day before departure.</small>
             </div>
             <div class="divider"></div>
         </article>
-        <article class="footer-copyright brown lighten-5">
+        <article class="footer-copyright blue-grey lighten-5">
             <div class="container grey-text text-darken-2">
                 <div class="row">
                     <small class="col s6">&copy; Ruth Ziegler 2016, CAS Data Visualization</small>
