@@ -188,6 +188,14 @@ function doViz(destination) {
         return d3.ascending(a, b);
     };
 
+    var ascendingDateTimeStringsFromObj = function (a, b) {
+        aDateTimeStr = a.departureDate + " " + a.departureTime;
+        bDateTimeStr = b.departureDate + " " + b.departureTime;
+        a = dateTimeParser.parse(aDateTimeStr);
+        b = dateTimeParser.parse(bDateTimeStr);
+        return d3.ascending(a, b);
+    };
+
     var ascendingTimeStrings = function (a, b) {
         a = timeParser.parse(a);
         b = timeParser.parse(b);
@@ -1036,7 +1044,7 @@ function doViz(destination) {
             top: 50,
             right: 0,
             bottom: 100,
-            left: 30
+            left: 60
         };
         var width = 960 - margin.left - margin.right;
         var height = 430 - margin.top - margin.bottom;
@@ -1056,7 +1064,23 @@ function doViz(destination) {
 
         console.log("###");
 
-        // header row (with delta times)
+        // prepare data for chart
+        //        console.log(allData);
+        var filteredCarrierData = allData.filter(function (d) {
+            return d.carrier === carrier;
+        });
+
+        var filteredDepartureDateData = d3.map(filteredCarrierData, function (d) {
+            return d.departureDate + " " + d.departureTime;
+        }).values().sort(ascendingDateTimeStringsFromObj);
+        //        console.log(filteredDepartureDateData);
+
+        var filteredTilesData = d3.map(filteredCarrierData, function (d) {
+            return d.departureDate + " " + d.departureTime + " " + d.deltaTime;
+        }).values().sort(ascendingDateTimeStringsFromObj);
+        //        console.log(filteredTilesData);
+
+        // header text row (with delta times) on x-axis
         var deltaTimeLabel = svg.selectAll(".deltaTimeLabel")
             .data(deltaTimes)
             .enter().append("text")
@@ -1073,24 +1097,15 @@ function doViz(destination) {
                 return ((i >= 7 && i <= 16) ? "deltaTimeLabel mono axis axis-worktime" : "deltaTimeLabel mono axis");
             });
 
-        console.log(allData);
-
-        var filteredCarrierData = allData.filter(function (d) {
-            return d.carrier === carrier;
-        });
-
-        var filteredDepartureDateData = d3.map(filteredCarrierData, function (d) {
-            return d.departureDate + " " + d.departureTime;
-        }).keys()
-
-        //        console.log(filteredDepartureDateData);
+        // header text column (departure dates) on y-axis
         var departureDayLabel = svg.selectAll(".departureDayLabel")
-            .data(filteredDepartureDateData)
-            .sort(ascendingDateTimeStrings); // TODO SORTING!!!
+            .data(filteredDepartureDateData);
 
         departureDayLabel.enter().append("text")
             .text(function (d) {
-                return d;
+                var ddSplitted = d.departureDate.split("-");
+                var ddShort = ddSplitted[2] + "." + ddSplitted[1];
+                return days.get(d.departureWeekday).abbr + " " + ddShort;
             })
             .attr("x", 0)
             .attr("y", function (d, i) {
@@ -1099,16 +1114,14 @@ function doViz(destination) {
             .style("text-anchor", "end")
             .attr("transform", "translate(-6," + gridSize / 1.5 + ")")
             .attr("class", function (d, i) {
-                return ((i >= 0 && i <= 4) ? "departureDayLabel mono axis axis-workweek" : "departureDayLabel mono axis");
+                return "departureDayLabel mono axis";
             });
 
         // draw the tiles
-        var cards = svg.selectAll(".hour")
-            .data(filteredCarrierData, function (d) {
+        var cards = svg.selectAll(".price")
+            .data(filteredTilesData, function (d) {
                 return d.departureDate + ":" + d.departureTime + ":" + d.deltaTime;
             });
-
-        cards.append("title");
 
         cards.enter().append("rect")
             .attr("x", function (d) {
@@ -1119,20 +1132,20 @@ function doViz(destination) {
             })
             .attr("rx", 4)
             .attr("ry", 4)
-            .attr("class", "hour bordered")
+            .attr("class", "price bordered")
             .attr("width", gridSize)
             .attr("height", gridSize)
-            .style("fill", "#eee")
-            .style("stroke", "#fff");
+            .style("fill", "#eee");
 
         cards.transition().duration(1000)
             .style("fill", function (d) {
                 return colors[colorsOffset + d.bin - 1];
             });
 
+        cards.append("title");
         cards.select("title").text(function (d) {
-            console.log(d.price);
-            return d.price;
+            return d.departureDate + " " + d.departureTime;
+            //            return d.price;
         });
 
         cards.exit().remove();
