@@ -158,7 +158,7 @@ function doViz(destination) {
         return d.abbrGerman;
     });
 
-    var data;
+    var allData;
     var ffvData;
 
     var deltaTimes;
@@ -198,8 +198,8 @@ function doViz(destination) {
     addDestinationButtons();
 
     d3.select('#vis').classed(colorScheme, true);
-    console.log("data/data-dest-" + destination + ".csv".toLowerCase());
-    d3.csv("data/data-dest-" + destination + ".csv".toLowerCase(), function (d) {
+    //    d3.csv("data/data-dest-" + destination + ".csv".toLowerCase(), function (d) {
+    d3.csv("data/data-dest-mad-small.csv".toLowerCase(), function (d) {
         return {
             destination: d.destination,
             origin: d.origin,
@@ -217,7 +217,7 @@ function doViz(destination) {
         if (error) throw error;
 
         /* ************************** */
-
+        allData = data;
         // FFV data (rearrange nested data so that the first level is an object and not an array)
         var nestedData = d3.nest()
             .key(function (d) {
@@ -315,6 +315,7 @@ function doViz(destination) {
         // start the action
         createTiles();
         reColorTiles(carriers[0], 'AB');
+        createTilesSvg(carriers[0], 'all');
 
         /* ************************** */
 
@@ -396,7 +397,7 @@ function doViz(destination) {
                     drawHourlyChart(carrier, dataIdx);
                     selectHourlyChartBar(deltaTime);
                     drawMinMaxPriceChart(carrier, dataIdx, deltaTime);
-                    drawBucketChart(carrier, dataIdx);
+                    //                    drawBucketChart(carrier, dataIdx);
                 }
 
                 var selFlight = ffvData[carrier][dataIdx];
@@ -422,7 +423,7 @@ function doViz(destination) {
                 if (isOldBrowser() === false) {
                     drawHourlyChart(carrier, 0);
                     drawMinMaxPriceChart(carrier, 0, 0);
-                    drawBucketChart(carrier, 0);
+                    //                    drawBucketChart(carrier, 0);
                 }
                 d3.select('#wtf .subtitle').html('Daily price development');
                 d3.select('#wtf .price').html('&nbsp;');
@@ -554,12 +555,10 @@ function doViz(destination) {
         }
 
         flipTiles();
-        console.log("Zeichne weitere1");
         if (isOldBrowser() === false) {
-            console.log("Zeichne weitere");
             drawHourlyChart(carrier, 0);
             drawMinMaxPriceChart(carrier, 0, 0);
-            drawBucketChart(carrier, 0);
+            //            drawBucketChart(carrier, 0);
         }
     }
 
@@ -1017,6 +1016,157 @@ function doViz(destination) {
 
         html += '</table>';
         d3.select('#vis').html(html);
+    }
+
+    function createTilesSvg(carrier, weekday) {
+        var width = 850,
+            height = 850;
+
+        //        var svg = d3.select("#tiles-vis").append("div")
+        //            .classed("svg-container", true) //container class to make it responsive
+        //            .classed("twelve columns", true)
+        //            .append("svg")
+        //            //responsive SVG needs these 2 attributes and no width and height attr
+        //            .attr("preserveAspectRatio", "xMinYMin meet")
+        //            .attr("viewBox", "0 0 " + width + " " + height)
+        //            //class to make it responsive
+        //            .classed("svg-content-responsive", true);
+
+        var margin = {
+            top: 50,
+            right: 0,
+            bottom: 100,
+            left: 30
+        };
+        var width = 960 - margin.left - margin.right;
+        var height = 430 - margin.top - margin.bottom;
+        var gridSize = Math.floor(width / deltaTimes.length);
+        var legendElementWidth = gridSize * 2;
+        var maxDeltaTime = d3.max(deltaTimes);
+
+        // use 2 buckets more from colorbrewer but then drop the 2 lightest colors) */
+        var colorsOffset = 2;
+        var colors = colorbrewer.OrRd[buckets + colorsOffset];
+
+        var svg = d3.select("#tiles-chart").append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        console.log("###");
+
+        // header row (with delta times)
+        var deltaTimeLabel = svg.selectAll(".deltaTimeLabel")
+            .data(deltaTimes)
+            .enter().append("text")
+            .text(function (d) {
+                return d;
+            })
+            .attr("x", function (d, i) {
+                return i * gridSize;
+            })
+            .attr("y", 0)
+            .style("text-anchor", "middle")
+            .attr("transform", "translate(" + gridSize / 2 + ", -6)")
+            .attr("class", function (d, i) {
+                return ((i >= 7 && i <= 16) ? "deltaTimeLabel mono axis axis-worktime" : "deltaTimeLabel mono axis");
+            });
+
+        console.log(allData);
+
+        var filteredCarrierData = allData.filter(function (d) {
+            return d.carrier === carrier;
+        });
+
+        var filteredDepartureDateData = d3.map(filteredCarrierData, function (d) {
+            return d.departureDate + " " + d.departureTime;
+        }).keys()
+
+        //        console.log(filteredDepartureDateData);
+        var departureDayLabel = svg.selectAll(".departureDayLabel")
+            .data(filteredDepartureDateData)
+            .sort(ascendingDateTimeStrings); // TODO SORTING!!!
+
+        departureDayLabel.enter().append("text")
+            .text(function (d) {
+                return d;
+            })
+            .attr("x", 0)
+            .attr("y", function (d, i) {
+                return i * gridSize;
+            })
+            .style("text-anchor", "end")
+            .attr("transform", "translate(-6," + gridSize / 1.5 + ")")
+            .attr("class", function (d, i) {
+                return ((i >= 0 && i <= 4) ? "departureDayLabel mono axis axis-workweek" : "departureDayLabel mono axis");
+            });
+
+        // draw the tiles
+        var cards = svg.selectAll(".hour")
+            .data(filteredCarrierData, function (d) {
+                return d.departureDate + ":" + d.departureTime + ":" + d.deltaTime;
+            });
+
+        cards.append("title");
+
+        cards.enter().append("rect")
+            .attr("x", function (d) {
+                return (maxDeltaTime - d.deltaTime) * gridSize;
+            })
+            .attr("y", function (d, i) {
+                return Math.floor((i) / maxDeltaTime) * gridSize;
+            })
+            .attr("rx", 4)
+            .attr("ry", 4)
+            .attr("class", "hour bordered")
+            .attr("width", gridSize)
+            .attr("height", gridSize)
+            .style("fill", "#eee")
+            .style("stroke", "#fff");
+
+        cards.transition().duration(1000)
+            .style("fill", function (d) {
+                return colors[colorsOffset + d.bin - 1];
+            });
+
+        cards.select("title").text(function (d) {
+            console.log(d.price);
+            return d.price;
+        });
+
+        cards.exit().remove();
+
+        //        var legend = svg.selectAll(".legend")
+        //            .data([0].concat(colorScale.quantiles()), function (d) {
+        //                return d;
+        //            });
+        //
+        //        legend.enter().append("g")
+        //            .attr("class", "legend");
+        //
+        //        legend.append("rect")
+        //            .attr("x", function (d, i) {
+        //                return legendElementWidth * i;
+        //            })
+        //            .attr("y", height)
+        //            .attr("width", legendElementWidth)
+        //            .attr("height", gridSize / 2)
+        //            .style("fill", function (d, i) {
+        //                return colors[i];
+        //            });
+        //
+        //        legend.append("text")
+        //            .attr("class", "mono")
+        //            .text(function (d) {
+        //                return "≥ " + Math.round(d);
+        //            })
+        //            .attr("x", function (d, i) {
+        //                return legendElementWidth * i;
+        //            })
+        //            .attr("y", height + gridSize);
+        //
+        //        legend.exit().remove();
     }
 
     /* ************************** */

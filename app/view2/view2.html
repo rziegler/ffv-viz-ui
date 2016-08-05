@@ -1,45 +1,19 @@
-<h1>{{destinationName}} ({{destination}})</h1>
-
-<div id="container" class="viz">
-
-    <div id="header" class="row">
-        <div id="title" class="col s12">
-            <p id="subtitle">Plan to fly to Madrid? Cheapest prices are generally on Tuesdays.</p>
-        </div>
-
-        <div id="legend" class="orrd">
-            <ul>
-                <li class="q1-7"></li>
-                <li class="q2-7"></li>
-                <li class="q3-7"></li>
-                <li class="q4-7"></li>
-                <li class="q5-7"></li>
-                <li class="q6-7"></li>
-                <li class="q7-7"></li>
-            </ul>
-            <p class="more">higher price</p>
-            <p class="less">lower price</p>
-        </div>
-    </div>
-    <div id="old_browser_msg">We're sorry but your browser is really old and can't handle the full interactive experience. We recommend you upgrade to the latest version as soon as possible.</div>
-
-
+<div id="slide-out" class="side-nav">
     <div id="navigation">
         <div class="controls row">
-            <fieldset id="destination" class="col s4">
+            <fieldset id="destination" class="col s12">
                 <!-- filled dynamically with destinations -->
             </fieldset>
-            <fieldset id="carrier" class="col s4">
+
+            <fieldset id="carrier" class="col s12">
                 <!-- filled dynamically with carriers -->
             </fieldset>
 
-            <fieldset id="weekday" class="col s4">
+            <fieldset id="weekday" class="col s12">
                 <input type="radio" id="wday_all" name="weekday" value="all" checked="checked" />
                 <label for="wday_all" class="sel"><span class="all">All Weekdays</span></label>
-
                 <input type="radio" id="wday_wd0" name="weekday" value="wd0" />
                 <label for="wday_wd0"><span class="monday">Monday</span></label>
-
                 <input type="radio" id="wday_wd1" name="weekday" value="wd1" />
                 <label for="wday_wd1"><span class="tuesday">Tuesday</span></label>
                 <input type="radio" id="wday_wd2" name="weekday" value="wd2" />
@@ -54,12 +28,52 @@
                 <label for="wday_wd6"><span class="sunday">Sunday</span></label>
             </fieldset>
         </div>
-        <div id="map"></div>
     </div>
+</div>
 
+
+<!--<a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>-->
+
+
+
+<div id="header" class="row">
+    <p class="col s12">
+        <a href="index.html#!/view2" data-activates="slide-out" class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
+    </p>
+    <h5 class="col s12">{{destinationName}} ({{destination}})</h5>
+    <p id="subtitle" class="col s12">Plan to fly to Madrid? Cheapest prices are generally on Tuesdays.</p>
+
+    <div id="legend" class="col s12 orrd">
+        <ul>
+            <li class="q1-7"></li>
+            <li class="q2-7"></li>
+            <li class="q3-7"></li>
+            <li class="q4-7"></li>
+            <li class="q5-7"></li>
+            <li class="q6-7"></li>
+            <li class="q7-7"></li>
+        </ul>
+        <p class="more">higher price</p>
+        <p class="less">lower price</p>
+    </div>
+</div>
+
+
+<div id="container" class="viz">
+
+    <div id="header" class="row">
+        <div id="title" class="col s12">
+
+        </div>
+
+
+    </div>
+    <div id="old_browser_msg">We're sorry but your browser is really old and can't handle the full interactive experience. We recommend you upgrade to the latest version as soon as possible.</div>
 
     <div class="row">
         <div id="vis" class="col s8"></div>
+
+        <div id="tiles-chart"></div>
 
         <div id="wtf" class="col s4">
             <!--            <h2>All States</h2>-->
