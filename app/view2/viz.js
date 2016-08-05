@@ -697,6 +697,27 @@ function doViz(destination) {
 
     /* ************************** */
 
+    function drawHourlyText(carrier, row, deltaTime) {
+        var selFlight = ffvData[carrier][row];
+        var selFlightNumber = selFlight.values[deltaTime].values[0].flightNumber;
+        var selDepartureDate = selFlight.values[deltaTime].values[0].departureDate;
+        var selDepartureTime = selFlight.values[deltaTime].values[0].departureTime;
+
+        d3.select('#wtf .subtitle').html('Price development for ' + selFlightNumber + ' on ' + selDepartureDate + ' at ' + selDepartureTime);
+
+        var selPrice = selFlight.values[deltaTime].values[0].price;
+        d3.select('#wtf .price').html('CHF ' + selPrice);
+    }
+
+    /* ************************** */
+
+    function clearHourlyText() {
+        d3.select('#wtf .subtitle').html('Daily price development');
+        d3.select('#wtf .price').html('&nbsp;');
+    }
+
+    /* ************************** */
+
     function drawMinMaxPriceChart(carrier, row, deltaTime) {
 
         drawMinMaxPriceChartById(carrier, row, deltaTime, 'minmax', 'viz1');
@@ -1158,11 +1179,13 @@ function doViz(destination) {
                 // TODO: refactor drawHourlyChart so that the 2nd param is the object or the key (date + time) of the object...
                 var dtInverted = (maxDeltaTime - d.deltaTime);
                 drawHourlyChart(d.carrier, dataIdx);
+                drawHourlyText(carrier, dataIdx, dtInverted);
                 selectHourlyChartBar(dtInverted);
                 drawMinMaxPriceChart(d.carrier, dataIdx, dtInverted);
             })
             .on("mouseout", function (d) {
                 drawHourlyChart(d.carrier, 0);
+                clearHourlyText();
                 drawMinMaxPriceChart(d.carrier, 0, 0);
             });
 
@@ -1173,7 +1196,7 @@ function doViz(destination) {
 
         cards.append("title");
         cards.select("title").text(function (d) {
-            return d.departureDate + " " + d.departureTime;
+            return d.departureDate + " " + d.departureTime + " " + d.price;
             //            return d.price;
         });
 
@@ -1210,6 +1233,7 @@ function doViz(destination) {
         //
         //        legend.exit().remove();
 
+        // initially draw charts
         if (isOldBrowser() === false) {
             drawHourlyChart(carrier, 0);
             drawMinMaxPriceChart(carrier, 0, 0);

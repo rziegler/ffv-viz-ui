@@ -19,13 +19,14 @@ rect.bordered {
     stroke-width: 1px;
 }
 
-rect {
-    opacity: 1.0;
+#tiles-chart > div {
+    width: 100%;
+    height: 400px;
+    overflow-y: scroll;
 }
 
-rect:hover {
-    opacity: 0.7;
-    /*    stroke: #000;*/
+#tiles-chart rect:hover {
+    opacity: 0.5;
 }
 
 text.mono {
@@ -40,12 +41,6 @@ text.axis-workweek {
 
 text.axis-worktime {
     fill: #000;
-}
-
-#tiles-chart>div {
-    width: 100%;
-    height: 400px;
-    overflow-y: scroll;
 }
 
 
