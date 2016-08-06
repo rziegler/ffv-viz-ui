@@ -344,25 +344,26 @@ function doViz(destination) {
         // weekdays event listener
         $('input[name="weekday"]').change(function () {
             var weekday = $(this).val();
+            createTilesSvg(carriers[0], weekday);
 
-            d3.selectAll('fieldset#weekday label').classed('sel', false);
-            d3.select('label[for="wday_' + weekday + '"]').classed('sel', true);
-
-            //        console.log(weekday);
-            d3.selectAll('tr.wd-hidden').classed('wd-hidden', false);
-            if (weekday !== 'all') {
-                d3.selectAll('tr.wd-hidden').classed('wd-hidden', false);
-                var element = d3.select("tbody").selectAll('tr:not(.' + weekday + ')');
-                console.log(element);
-                element.each(function (d, i) {
-                    var element = d3.select(this);
-                    var cls = element.attr('class');
-
-                    if (cls != null) {
-                        element.classed('wd-hidden', true);
-                    }
-                });
-            }
+            //            d3.selectAll('fieldset#weekday label').classed('sel', false);
+            //            d3.select('label[for="wday_' + weekday + '"]').classed('sel', true);
+            //
+            //            //        console.log(weekday);
+            //            d3.selectAll('tr.wd-hidden').classed('wd-hidden', false);
+            //            if (weekday !== 'all') {
+            //                d3.selectAll('tr.wd-hidden').classed('wd-hidden', false);
+            //                var element = d3.select("tbody").selectAll('tr:not(.' + weekday + ')');
+            //                console.log(element);
+            //                element.each(function (d, i) {
+            //                    var element = d3.select(this);
+            //                    var cls = element.attr('class');
+            //
+            //                    if (cls != null) {
+            //                        element.classed('wd-hidden', true);
+            //                    }
+            //                });
+            //            }
         });
 
         /* ************************** */
@@ -1052,9 +1053,17 @@ function doViz(destination) {
 
         // prepare data for chart
         //        console.log(allData);
-        var filteredCarrierData = allData.filter(function (d) {
-            return d.carrier === carrier;
-        });
+        if (weekday === "all") {
+            // filter by carrier only
+            var filteredCarrierData = allData.filter(function (d) {
+                return d.carrier === carrier;
+            });
+        } else {
+            // additionally filter by weekday
+            var filteredCarrierData = allData.filter(function (d) {
+                return d.carrier === carrier && d.departureWeekday === weekday;
+            });
+        }
 
         var filteredDepartureDateData = d3.map(filteredCarrierData, function (d) {
             return d.departureDate + " " + d.departureTime;
