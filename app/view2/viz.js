@@ -206,8 +206,8 @@ function doViz(destination) {
     addDestinationButtons();
 
     d3.select('#vis').classed(colorScheme, true);
-    //    d3.csv("data/data-dest-" + destination + ".csv".toLowerCase(), function (d) {
-    d3.csv("data/data-dest-lhr.csv".toLowerCase(), function (d) {
+    d3.csv("data/data-dest-" + destination + ".csv".toLowerCase(), function (d) {
+        //    d3.csv("data/data-dest-mad-small.csv".toLowerCase(), function (d) {
         return {
             destination: d.destination,
             origin: d.origin,
