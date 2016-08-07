@@ -10,18 +10,6 @@ function doViz(destination) {
         };
     };
 
-    var browser = BrowserDetect;
-
-    if (isOldBrowser()) {
-        console.log("oldie");
-        $('#old_browser_msg').show();
-        $('#wtf').hide();
-        $('fieldset#carrier').addClass('ff3');
-        $('#ie8_percents').addClass('ff3');
-        $('#share2').addClass('ff3');
-        $('#poweredby.old_browsers').show();
-    }
-
     var buckets = 7; // was 11
     var colorScheme = 'orrd'; // 'grn' 'ylrd'
 
@@ -403,12 +391,10 @@ function doViz(destination) {
                     var carrier = $sel.attr('class');
                 }
 
-                if (isOldBrowser() === false) {
-                    drawHourlyChart(carrier, dataIdx);
-                    selectHourlyChartBar(deltaTime);
-                    drawMinMaxPriceChart(carrier, dataIdx, deltaTime);
-                    //                    drawBucketChart(carrier, dataIdx);
-                }
+                drawHourlyChart(carrier, dataIdx);
+                selectHourlyChartBar(deltaTime);
+                drawMinMaxPriceChart(carrier, dataIdx, deltaTime);
+                //                    drawBucketChart(carrier, dataIdx);
 
                 var selFlight = ffvData[carrier][dataIdx];
                 var selFlightNumber = selFlight.values[deltaTimeIndex].values[0].flightNumber;
@@ -430,28 +416,13 @@ function doViz(destination) {
                 } else {
                     var carrier = $sel.attr('class');
                 }
-                if (isOldBrowser() === false) {
-                    drawHourlyChart(carrier, 0);
-                    drawMinMaxPriceChart(carrier, 0, 0);
-                    //                    drawBucketChart(carrier, 0);
-                }
+                drawHourlyChart(carrier, 0);
+                drawMinMaxPriceChart(carrier, 0, 0);
+                //                    drawBucketChart(carrier, 0);
                 d3.select('#wtf .subtitle').html('Daily price development');
                 d3.select('#wtf .price').html('&nbsp;');
             });
     });
-
-
-    /* ************************** */
-
-    function isOldBrowser() {
-        var result = false;
-        if (browser.browser === 'Explorer' && browser.version < 9) {
-            result = true;
-        } else if (browser.browser === 'Firefox' && browser.version < 4) {
-            result = true;
-        }
-        return result;
-    }
 
     /* ************************** */
 
@@ -565,11 +536,9 @@ function doViz(destination) {
         }
 
         flipTiles();
-        if (isOldBrowser() === false) {
-            drawHourlyChart(carrier, 0);
-            drawMinMaxPriceChart(carrier, 0, 0);
-            //            drawBucketChart(carrier, 0);
-        }
+        drawHourlyChart(carrier, 0);
+        drawMinMaxPriceChart(carrier, 0, 0);
+        //            drawBucketChart(carrier, 0);
     }
 
     function removeCurrentDataIndexClasses(element) {
@@ -1243,11 +1212,9 @@ function doViz(destination) {
         //        legend.exit().remove();
 
         // initially draw charts
-        if (isOldBrowser() === false) {
-            drawHourlyChart(carrier, 0);
-            drawMinMaxPriceChart(carrier, 0, 0);
-            //            drawBucketChart(carrier, 0);
-        }
+        drawHourlyChart(carrier, 0);
+        drawMinMaxPriceChart(carrier, 0, 0);
+        //            drawBucketChart(carrier, 0);
     }
 
     /* ************************** */

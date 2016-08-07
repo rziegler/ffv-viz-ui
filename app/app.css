@@ -1,3 +1,16 @@
+/*#filter-col,*/
+
+
+/*#viz-col,*/
+
+#xx-col {
+    background-color: #eee;
+    /*    height: 20px;*/
+}
+
+
+/**/
+
 .no-margin-bottom {
     margin-bottom: 0px;
 }

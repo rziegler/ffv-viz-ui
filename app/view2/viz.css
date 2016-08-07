@@ -102,20 +102,6 @@ text.axis-worktime {
     margin-right: 24px;
 }
 
-#controls fieldset {
-    width: 250px;
-}
-
-#controls span {
-    float: left;
-    width: 120px;
-    clear: left;
-}
-
-#controls button {
-    float: left;
-}
-
 fieldset#carrier label,
 fieldset#carrier input {
     /*    display: none;*/
@@ -334,6 +320,39 @@ th.h48 {
     float: left;
 }
 
+
+/* 7 buckets YlOrRd (from colorbrewer 9-class YlOrRd without the 2 lightest colors) */
+
+.orrd .q1-7 {
+    background: #fdd49e;
+}
+
+.orrd .q2-7 {
+    background: #fdbb84;
+}
+
+.orrd .q3-7 {
+    background: #fc8d59;
+}
+
+.orrd .q4-7 {
+    background: #ef6548;
+}
+
+.orrd .q5-7 {
+    background: #d7301f;
+}
+
+.orrd .q6-7 {
+    background: #b30000;
+}
+
+.orrd .q7-7 {
+    background: #7f0000;
+}
+
+
+/*
 #navigation {
     clear: left;
     width: 1200px;
@@ -350,6 +369,7 @@ th.h48 {
 #navigation fieldset {
     margin-bottom: 8px;
 }
+*/
 
 #wtf {
     /*        float: right;*/
@@ -367,94 +387,6 @@ th.h48 {
     position: absolute;
     top: 463px;
     right: 24px;
-}
-
-#wtf .title {
-    background: #fdf;
-}
-
-#pc2mob {
-    float: left;
-}
-
-#pc2mob path {
-    stroke: white;
-    stroke-width: 2px;
-}
-
-#pc2mob.all path.pc {
-    fill: #ddd;
-}
-
-#pc2mob.all path.mob {
-    fill: #ccc;
-}
-
-#pc2mob.pc path.pc {
-    fill: #444;
-}
-
-#pc2mob.pc path.mob {
-    fill: #ddd;
-}
-
-#pc2mob.mob path.pc {
-    fill: #ddd;
-}
-
-#pc2mob.mob path.mob {
-    fill: #444;
-}
-
-#pc2mob ul,
-#ie8_percents {
-    list-style-type: none;
-    margin-top: 20px 0 0 45px;
-    width: 150px;
-}
-
-#pc2mob li,
-#ie8_percents li {
-    float: left;
-    width: 75px;
-    text-align: center;
-}
-
-#pc2mob li span,
-#ie8_percents li span {
-    display: block;
-    font-size: 24px;
-    line-height: 24px;
-}
-
-#pc2mob.all li.pc,
-#ie8_percents li.pc {
-    color: #ccc;
-}
-
-#pc2mob.all li.mob,
-#ie8_percents li.mob {
-    color: #aaa;
-}
-
-#pc2mob.pc li.pc {
-    color: #444;
-}
-
-#pc2mob.pc li.mob {
-    color: #999;
-}
-
-#pc2mob.mob li.pc {
-    color: #999;
-}
-
-#pc2mob.mob li.mob {
-    color: #444;
-}
-
-#pc2mob svg {
-    margin: 0 70px 0 0;
 }
 
 #hourly_values {
@@ -488,20 +420,16 @@ th.h48 {
     /*    margin-left: 10px;*/
 }
 
-#viz1 {
-    float: left;
-}
-
-#viz2 {
-    float: right;
-}
-
 #minmax .vz-background {
     fill: #FFF;
 }
 
 #minmax .vz-radial_progress-back-circle {
     fill: #FFF;
+}
+
+#viz1 {
+    float: left;
 }
 
 #buckets {
@@ -521,11 +449,6 @@ th.h48 {
 
 #buckets text {
     fill: #444;
-}
-
-#footer {
-    clear: both;
-    margin: 25px !important;
 }
 
 .controls {
@@ -595,293 +518,10 @@ th.h48 {
     cursor: default;
 }
 
-
-/*
-h2 {
-    margin-top: -2px;
-    font-size: 28px;
-    line-height: 28px;
-    margin-bottom: 30px;
-    width: 250px;
-    margin-left: -50px;
-    z-index: -1337;
-    text-align: center;
-}
-*/
-
 p.price {
     font-size: 20px;
     line-height: 20px;
     padding-top: 2px;
     margin-bottom: 12px;
     color: #444;
-}
-
-p.subtitle {
-    font-size: 16px;
-    line-height: 20px;
-    padding-top: 2px;
-    color: #444;
-}
-
-#sharestatic3 {
-    margin-right: 22px;
-    margin-bottom: 0;
-}
-
-#truliaBar a {
-    width: 895px !important;
-}
-
-html.ie8 #vis,
-html.ie9 #vis {
-    height: 285px !important;
-}
-
-html.ie8 #tiles td.sel .face {
-    border-color: white !important;
-}
-
-#ie8_percents {
-    display: none;
-}
-
-#ie8_percents.ff3 {
-    display: block;
-}
-
-html.ie8 #ie8_percents,
-#ie8_percents.ff3 {
-    display: block !important;
-    position: absolute;
-    left: 20px;
-    top: 510px;
-}
-
-
-/* 7 buckets */
-
-.grn .q1-7 {
-    background: #edf8fb;
-}
-
-.grn .q2-7 {
-    background: #ccece6;
-}
-
-.grn .q3-7 {
-    background: #99d8c9;
-}
-
-.grn .q4-7 {
-    background: #66c2a4;
-}
-
-.grn .q5-7 {
-    background: #41ae76;
-}
-
-.grn .q6-7 {
-    background: #238b45;
-}
-
-.grn .q7-7 {
-    background: #005824;
-}
-
-
-/* 7 buckets YlOrRd (from colorbrewer 9-class YlOrRd without the 2 lightest colors) */
-
-.ylrd .q1-7 {
-    background: #fed976;
-}
-
-.ylrd .q2-7 {
-    background: #feb24c;
-}
-
-.ylrd .q3-7 {
-    background: #fd8d3c;
-}
-
-.ylrd .q4-7 {
-    background: #fc4e2a;
-}
-
-.ylrd .q5-7 {
-    background: #e31a1c;
-}
-
-.ylrd .q6-7 {
-    background: #bd0026;
-}
-
-.ylrd .q7-7 {
-    background: #800026;
-}
-
-
-/* 7 buckets YlOrRd (from colorbrewer 9-class YlOrRd without the 2 lightest colors) */
-
-.orrd .q1-7 {
-    background: #fdd49e;
-}
-
-.orrd .q2-7 {
-    background: #fdbb84;
-}
-
-.orrd .q3-7 {
-    background: #fc8d59;
-}
-
-.orrd .q4-7 {
-    background: #ef6548;
-}
-
-.orrd .q5-7 {
-    background: #d7301f;
-}
-
-.orrd .q6-7 {
-    background: #b30000;
-}
-
-.orrd .q7-7 {
-    background: #7f0000;
-}
-
-
-/* 11 buckets purple to red */
-
-.rbow2 .q1-11 {
-    background: #5E4FA2;
-    /*
-	border-left-color: #5b40b3;
-	border-top-color: #5b40b3;
-	border-right-color: #3e2b7a;
-	border-bottom-color: #3e2b7a;
-	*/
-}
-
-.rbow2 .q2-11 {
-    background: #3288BD;
-}
-
-.rbow2 .q3-11 {
-    background: #66C2A5;
-}
-
-.rbow2 .q4-11 {
-    background: #ABDDA4;
-}
-
-.rbow2 .q5-11 {
-    background: #E6F598;
-}
-
-.rbow2 .q6-11 {
-    background: #FFFFBF;
-    background: #f6faaa;
-    /*border-color: #f6faaa;*/
-}
-
-.rbow2 .q7-11 {
-    background: #FEE08B;
-}
-
-.rbow2 .q8-11 {
-    background: #FDAE61;
-}
-
-.rbow2 .q9-11 {
-    background: #F46D43;
-}
-
-.rbow2 .q10-11 {
-    background: #D53E4F;
-}
-
-.rbow2 .q11-11 {
-    background: #9E0142;
-}
-
-.dealloc .q1-10 {
-    background: #702f9d;
-    border-top-color: #670c9f;
-    border-right-color: #540982;
-    border-bottom-color: #540982;
-    border-left-color: #670c9f;
-}
-
-.dealloc .q2-10 {
-    background: #352f9e;
-    border-top-color: #702f9d;
-    border-right-color: #702f9d;
-    border-bottom-color: #702f9d;
-    border-left-color: #702f9d;
-}
-
-.dealloc .q3-10 {
-    background: #2f659e;
-    border-top-color: #702f9d;
-    border-right-color: #702f9d;
-    border-bottom-color: #702f9d;
-    border-left-color: #702f9d;
-}
-
-.dealloc .q4-10 {
-    background: #2fa09c;
-    border-top-color: #702f9d;
-    border-right-color: #702f9d;
-    border-bottom-color: #702f9d;
-    border-left-color: #702f9d;
-}
-
-.dealloc .q5-10 {
-    background: #3fa42c;
-    border-top-color: #702f9d;
-    border-right-color: #702f9d;
-    border-bottom-color: #702f9d;
-    border-left-color: #702f9d;
-}
-
-.dealloc .q6-10 {
-    background: #9ab12d;
-    border-top-color: #702f9d;
-    border-right-color: #702f9d;
-    border-bottom-color: #702f9d;
-    border-left-color: #702f9d;
-}
-
-.dealloc .q7-10 {
-    background: #bdb82c;
-    border-top-color: #702f9d;
-    border-right-color: #702f9d;
-    border-bottom-color: #702f9d;
-    border-left-color: #702f9d;
-}
-
-.dealloc .q8-10 {
-    background: #bd9b2c;
-    border-top-color: #702f9d;
-    border-right-color: #702f9d;
-    border-bottom-color: #702f9d;
-    border-left-color: #702f9d;
-}
-
-.dealloc .q9-10 {
-    background: #bd7f2c;
-    border-top-color: #702f9d;
-    border-right-color: #702f9d;
-    border-bottom-color: #702f9d;
-    border-left-color: #702f9d;
-}
-
-.dealloc .q10-10 {
-    background: #bd5c2b;
-    border-top-color: #702f9d;
-    border-right-color: #702f9d;
-    border-bottom-color: #702f9d;
-    border-left-color: #702f9d;
 }

@@ -23,10 +23,11 @@
     <!--Import Google Icon Font-->
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+    <!-- colorbrewer -->
+    <link rel="stylesheet" href="bower_components/colorbrewer/colorbrewer.css">
+
     <!-- Vizuly specific style sheets -->
     <link rel="stylesheet" href="lib/vizuly/vizuly.css">
-    <!-- insights + reset (via import) -->
-    <!--    <link rel="stylesheet" media="all" href="lib/insights/insights-1.0.css" />-->
 
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="bower_components/materialize/dist/css/materialize.min.css" media="screen,projection" />
@@ -72,27 +73,7 @@
         </nav>
     </div>
 
-    <div ng-view class="container"></div>
-
-    <footer class="page-footer blue-grey lighten-5">
-        <article class="container">
-            <div class="row">
-                <small class="col grey-text text-darken-2 light">Based on flight fares collected via the <a href="http://en.business.skyscanner.net/en-gb/products/travel-apis/">Travel APIs from Skyscanner Business</a> between May and August 2016. Only complete time series are visualized, whereas a complete series is defined as a set of prices requested every day from 49 days prior to one day before departure.</small>
-            </div>
-            <div class="divider"></div>
-        </article>
-        <article class="footer-copyright blue-grey lighten-5">
-            <div class="container grey-text text-darken-2">
-                <div class="row">
-                    <small class="col s6">&copy; Ruth Ziegler 2016, CAS Data Visualization</small>
-                    <small class="col s6 right-align">ffv v<span app-version></span></small>
-                    <!--        <p class="u-pull-right">Prices until 06.07.2016 with 28 days intervals.</p>-->
-                </div>
-            </div>
-
-        </article>
-    </footer>
-
+    <div ng-view></div>
 
     <!-- libraries 
     –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -122,8 +103,6 @@
     <!-- datamaps -->
     <script src="bower_components/topojson/topojson.min.js"></script>
     <script src="bower_components/datamaps/dist/datamaps.world.min.js"></script>
-    <!-- insights -->
-    <script src="lib/insights/insights.js"></script>
     <!-- vizuly scripts -->
     <script src="lib/vizuly/vizuly_core.min.js"></script>
     <script src="lib/vizuly/vizuly_radialprogress.min.js"></script>
