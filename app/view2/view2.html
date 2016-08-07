@@ -1,147 +1,129 @@
-<div id="slide-out" class="side-nav">
-
+<div class="row">
+    <article id="header" class="twelve columns">
+        <p id="subtitle" class="col s12">Cheapest prices to {{destinationName}} ({{destination}}) are generally on Tuesdays.</p>
+    </article>
 </div>
 
-
-<!--<a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>-->
-
-
-
-<!-- Page Layout here -->
 <div class="row">
 
-    <div id="filter-col" class="navigation col s12 m3 l2">
-        <!-- Grey navigation panel
-
-              This content will be:
-          3-columns-wide on large screens,
-          4-columns-wide on medium screens,
-          12-columns-wide on small screens  -->
-
+    <div id="filter-col" class="navigation two columns">
         <article class="controls row">
-            <fieldset id="destination" class="col s12">
-                <!-- filled dynamically with destinations -->
-            </fieldset>
+    <fieldset id="destination">
+        <!-- filled dynamically with destinations -->
+    </fieldset>
 
-            <fieldset id="carrier" class="col s12">
-                <!-- filled dynamically with carriers -->
-            </fieldset>
+    <fieldset id="carrier">
+        <!-- filled dynamically with carriers -->
+    </fieldset>
 
-            <fieldset id="weekday" class="col s12">
-                <input type="radio" id="wday_all" name="weekday" value="all" checked="checked" />
-                <label for="wday_all" class="sel"><span class="all">All Weekdays</span></label>
-                <input type="radio" id="wday_wd0" name="weekday" value="Mo" />
-                <label for="wday_wd0"><span class="monday">Monday</span></label>
-                <input type="radio" id="wday_wd1" name="weekday" value="Di" />
-                <label for="wday_wd1"><span class="tuesday">Tuesday</span></label>
-                <input type="radio" id="wday_wd2" name="weekday" value="Mi" />
-                <label for="wday_wd2"><span class="wednesday">Wednesday</span></label>
-                <input type="radio" id="wday_wd3" name="weekday" value="Do" />
-                <label for="wday_wd3"><span class="thursday">Thursday</span></label>
-                <input type="radio" id="wday_wd4" name="weekday" value="Fr" />
-                <label for="wday_wd4"><span class="friday">Friday</span></label>
-                <input type="radio" id="wday_wd5" name="weekday" value="Sa" />
-                <label for="wday_wd5"><span class="saturday">Saturday</span></label>
-                <input type="radio" id="wday_wd6" name="weekday" value="So" />
-                <label for="wday_wd6"><span class="sunday">Sunday</span></label>
-            </fieldset>
-        </article>
+    <fieldset id="weekday">
+        <input type="radio" id="wday_all" name="weekday" value="all" checked="checked" />
+        <label for="wday_all" class="sel"><span class="all">All Weekdays</span></label>
+        <input type="radio" id="wday_wd0" name="weekday" value="Mo" />
+        <label for="wday_wd0"><span class="monday">Monday</span></label>
+        <input type="radio" id="wday_wd1" name="weekday" value="Di" />
+        <label for="wday_wd1"><span class="tuesday">Tuesday</span></label>
+        <input type="radio" id="wday_wd2" name="weekday" value="Mi" />
+        <label for="wday_wd2"><span class="wednesday">Wednesday</span></label>
+        <input type="radio" id="wday_wd3" name="weekday" value="Do" />
+        <label for="wday_wd3"><span class="thursday">Thursday</span></label>
+        <input type="radio" id="wday_wd4" name="weekday" value="Fr" />
+        <label for="wday_wd4"><span class="friday">Friday</span></label>
+        <input type="radio" id="wday_wd5" name="weekday" value="Sa" />
+        <label for="wday_wd5"><span class="saturday">Saturday</span></label>
+        <input type="radio" id="wday_wd6" name="weekday" value="So" />
+        <label for="wday_wd6"><span class="sunday">Sunday</span></label>
+    </fieldset>
+</article>
         <article class="row">
 
-            <section id="legend" class="col s12 orrd">
+            <section id="legend">
                 <ul>
-                    <li class="q1-7"></li>
-                    <li class="q2-7"></li>
-                    <li class="q3-7"></li>
-                    <li class="q4-7"></li>
-                    <li class="q5-7"></li>
-                    <li class="q6-7"></li>
-                    <li class="q7-7"></li>
+                    <li class="orrd q1-7"></li>
+                    <li class="orrd q2-7"></li>
+                    <li class="orrd q3-7"></li>
+                    <li class="orrd q4-7"></li>
+                    <li class="orrd q5-7"></li>
+                    <li class="orrd q6-7"></li>
+                    <li class="orrd q7-7"></li>
 
                 </ul>
                 <p class="more">higher price</p>
                 <p class="less">lower price</p>
             </section>
 
-            <div class="divider col s12"></div>
-            <section id="disclaimer" class="row">
-                <small class="col grey-text text-darken-2 light"><br/>Based on flight fares collected via the <a href="http://en.business.skyscanner.net/en-gb/products/travel-apis/">Travel APIs from Skyscanner Business</a> between May and August 2016. Only complete time series are visualized, whereas a complete series is defined as a set of prices requested every day from 49 days prior to one day before departure.</small>
+            <section id="disclaimer">
+                <small><br/>Based on flight fares collected via the <a href="http://en.business.skyscanner.net/en-gb/products/travel-apis/">Travel APIs from Skyscanner Business</a> between May and August 2016. Only complete time series are visualized, whereas a complete series is defined as a set of prices requested every day from 49 days prior to one day before departure.</small>
             </section>
-            <section class="row grey-text text-darken-2">
-                <small class="col s12">&copy; Ruth Ziegler 2016, ffv v<span app-version></span></small>
-                <small class="col s12"><a href="https://www.hkb.bfh.ch/de/weiterbildung/design/cas-data-visualization">CAS Data Visualization, HKB Bern</a></small>
+            <section id="footer">
+                <small>&copy; Ruth Ziegler 2016, ffv v<span app-version></span></small>
+                <small><a href="https://www.hkb.bfh.ch/de/weiterbildung/design/cas-data-visualization">CAS Data Visualization, HKB Bern</a></small>
             </section>
 
         </article>
 
     </div>
 
-    <div id="viz-col" class="col s12 m8 l9">
-        <!-- Teal page content
-
-              This content will be:
-          9-columns-wide on large screens,
-          8-columns-wide on medium screens,
-          12-columns-wide on small screens  -->
-
-        <article id="header" class="row">
-            <p id="subtitle" class="col s12">Cheapest prices to {{destinationName}} ({{destination}}) are generally on Tuesdays.</p>
-        </article>
+    <div id="viz-col" class="col nine columns">
 
         <article id="container" class="viz">
 
             <div class="row">
-                <div id="tiles-chart" class="s12"></div>
+                <div id="tiles-chart" class="twelve columns"></div>
             </div>
             <div id="wtf" class="row">
-                <!--            <h2>All States</h2>-->
-                <!--
-            <div id="pc2mob">
-    <div class="svg"></div>
-    <ul>
-        <li class="pc"><span>82%</span> Computer</li>
-        <li class="mob"><span>18%</span> Mobile</li>
-    </ul>
-</div>
--->
-                <div id="hourly_values" class="col s7">
+                <div id="hourly_values" class="seven columns">
                     <p class="subtitle">Daily price development</p>
                     <p class="price"></p>
                     <div class="svg"></div>
                 </div>
-                <div id="minmax" class="col s5">
+                <div id="minmax" class="five columns">
                     <p class="subtitle">Percentual savings</p>
                     <div id="viz1" class="radial_container">
                         <div></div>
                     </div>
-                    <!--
-                <div id="viz2" class="radial_container">
+                    <!--<div id="viz2" class="radial_container">
     <div></div>
-</div>
--->
+</div>-->
                     <p class="subtitle min"></p>
                     <p class="subtitle max"></p>
                     <p class="subtitle cur"></p>
                 </div>
 
-<!--
-                <div id="buckets">
+                <!--<div id="buckets">
     <p class="subtitle">Price niveaus for each category</p>
-</div>
--->
+</div>-->
             </div>
 
         </article>
     </div>
 
 
-    <div id="xx-col" class="col s12 m1 l1">
-        <!-- Teal page content
-
-              This content will be:
-          9-columns-wide on large screens,
-          8-columns-wide on medium screens,
-          12-columns-wide on small screens  -->
+    <div id="xx-col" class="col one column">
+        <!--
+<div id="control-carriers" class="fixed-action-btn click-to-toggle">
+    <a class="btn-floating btn-large red">
+        <i class="large material-icons">mode_edit</i>
+    </a>
+    <ul>
+        <li><a class="btn-floating grey" onclick="carrierChange()">AB</a></li>
+        <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
+        <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
+        <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
+    </ul>
+</div>
+<div id="control-weekdays" class="fixed-action-btn click-to-toggle">
+    <a class="btn-floating btn-large red">
+        <i class="large material-icons">mode_edit</i>
+    </a>
+    <ul>
+        <li><a class="btn-floating grey">Mo</a></li>
+        <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
+        <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
+        <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
+    </ul>
+</div>
+-->
 
     </div>
 

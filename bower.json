@@ -13,10 +13,10 @@
         "angular-resource": "~1.5.0",
         "angular-environment": "~1.0.3",
         "html5-boilerplate": "^5.3.0",
-        "materialize": "^0.97.7",
         "d3": "^3.5.17",
         "datamaps": "^0.5.0",
         "topojson": "^1.6.26",
-        "colorbrewer": "1.0.0"
+        "colorbrewer": "1.0.0",
+        "skeleton": "2.0.4"
     }
 }

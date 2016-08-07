@@ -90,21 +90,11 @@ text.axis-worktime {
     margin-bottom: 15px !important;
 }
 
-#old_browser_msg {
-    display: none;
-    float: right;
-    clear: right;
-    width: 500px;
-    color: white;
-    background: #D53E4F;
-    border: 1px solid #9E0142;
-    padding: 5px;
-    margin-right: 24px;
-}
 
+/*
 fieldset#carrier label,
 fieldset#carrier input {
-    /*    display: none;*/
+    display: none;
     display: inline !important;
 }
 
@@ -120,6 +110,7 @@ fieldset#type {
     margin-right: 49px;
     float: left;
 }
+*/
 
 #carrier_all_label {
     display: inline !important;
@@ -278,9 +269,7 @@ th.h48 {
 }
 
 #legend {
-    /*    clear: left;*/
-    margin-left: 12px;
-    width: 130px;
+    width: 80%;
     color: #777;
     margin-top: 10px;
     background: #f3f3f3;
@@ -289,13 +278,13 @@ th.h48 {
     padding: 5px 7px;
     -moz-border-radius: 3px;
     border-radius: 3px;
-    font-size: 11px;
-    line-height: 11px;
     margin-bottom: 25px;
-    margin-right: 24px;
 }
 
 #legend ul {
+    margin: 0;
+    margin-top: 8px;
+    margin-left: 8px;
     list-style-type: none;
     overflow: hidden;
     clear: both;
@@ -310,6 +299,9 @@ th.h48 {
 
 #legend p {
     margin-top: 3px;
+    margin-bottom: 0;
+    font-size: 80%;
+    line-height: 1.0;
 }
 
 #legend p.more {
@@ -323,31 +315,31 @@ th.h48 {
 
 /* 7 buckets YlOrRd (from colorbrewer 9-class YlOrRd without the 2 lightest colors) */
 
-.orrd .q1-7 {
+.orrd.q1-7 {
     background: #fdd49e;
 }
 
-.orrd .q2-7 {
+.orrd.q2-7 {
     background: #fdbb84;
 }
 
-.orrd .q3-7 {
+.orrd.q3-7 {
     background: #fc8d59;
 }
 
-.orrd .q4-7 {
+.orrd.q4-7 {
     background: #ef6548;
 }
 
-.orrd .q5-7 {
+.orrd.q5-7 {
     background: #d7301f;
 }
 
-.orrd .q6-7 {
+.orrd.q6-7 {
     background: #b30000;
 }
 
-.orrd .q7-7 {
+.orrd.q7-7 {
     background: #7f0000;
 }
 
@@ -375,18 +367,6 @@ th.h48 {
     /*        float: right;*/
     /*        width: 550px;*/
     margin-left: 32px;
-}
-
-#poweredby {
-    float: right !important;
-    margin-top: -11px !important;
-}
-
-#poweredby.old_browsers {
-    display: none;
-    position: absolute;
-    top: 463px;
-    right: 24px;
 }
 
 #hourly_values {
@@ -451,11 +431,33 @@ th.h48 {
     fill: #444;
 }
 
+
+/*
+.controls label {
+    display: inline-block;
+    font-weight: 100;
+    width: 100%;
+    font-size: 80%;
+}
+*/
+
+.controls input[type="radio"] {
+    display: none;
+}
+
+.controls input[type="radio"]:checked + label {
+    font-weight: 600;
+}
+
 .controls {
-    width: 300px;
-    margin: 0 0 20px 7px;
+    width: 100%;
+    margin: 0 0 20px 0px;
     font-size: 12px;
     line-height: 12px;
+}
+
+.constrols fieldset {
+    margin: 0;
 }
 
 .controls input {
@@ -468,6 +470,7 @@ th.h48 {
 }
 
 .controls label {
+    width: 35%;
     float: left;
     display: block;
     cursor: pointer;
@@ -478,6 +481,9 @@ th.h48 {
     border-radius: 2px;
     margin: 0 3px 2px 0;
     color: #888;
+    font-weight: 100;
+    font-size: 80%;
+    text-align: center;
 }
 
 .controls label:hover {
@@ -493,6 +499,22 @@ th.h48 {
     cursor: default;
 }
 
+#filter-col {
+    margin-left: 20px;
+}
+
+#footer,
+#disclaimer {
+    line-height: 1.0;
+}
+
+#footer small,
+#disclaimer small {
+    font-size: 70%;
+}
+
+
+/*
 .controls button {
     padding: 2px 6px 3px 6px;
     background: #ddd;
@@ -517,6 +539,7 @@ th.h48 {
     border: 1px solid #333;
     cursor: default;
 }
+*/
 
 p.price {
     font-size: 20px;

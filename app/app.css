@@ -1,11 +1,6 @@
-/*#filter-col,*/
-
-
-/*#viz-col,*/
-
-#xx-col {
-    background-color: #eee;
-    /*    height: 20px;*/
+body {
+    font-family: 'Catamaran', sans-serif;
+    font-weight: 300;
 }
 
 
