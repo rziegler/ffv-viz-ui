@@ -19,6 +19,11 @@ rect.bordered {
     stroke-width: 1px;
 }
 
+#tiles-chart {
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
 #tiles-chart > div {
     width: 100%;
     height: 400px;
@@ -30,8 +35,8 @@ rect.bordered {
 }
 
 text.mono {
-    font-size: 9pt;
-    font-family: Consolas, courier;
+    font-size: 8pt;
+    /*    font-family: Consolas, courier;*/
     fill: #aaa;
 }
 
@@ -293,8 +298,8 @@ th.h48 {
 #legend li {
     float: left;
     margin-right: 1px;
-    width: 14px;
-    height: 14px;
+    width: 8px;
+    height: 8px;
 }
 
 #legend p {
@@ -362,12 +367,6 @@ th.h48 {
     margin-bottom: 8px;
 }
 */
-
-#wtf {
-    /*        float: right;*/
-    /*        width: 550px;*/
-    margin-left: 32px;
-}
 
 #hourly_values {
     /*    float: right;*/
@@ -511,6 +510,12 @@ th.h48 {
 #footer small,
 #disclaimer small {
     font-size: 70%;
+}
+
+#disclaimer-icon {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
 }
 
 

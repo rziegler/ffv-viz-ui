@@ -3,6 +3,27 @@ body {
     font-weight: 300;
 }
 
+p {
+    margin-bottom: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Oswald', sans-serif;
+}
+
+nav {
+    margin-left: 20px;
+}
+
+.u-upper {
+    text-transform: capitalize;
+}
+
 
 /**/
 

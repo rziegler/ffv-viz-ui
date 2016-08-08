@@ -1045,9 +1045,9 @@ function doViz(destination) {
         //        console.log(filteredTilesData);
 
         var margin = {
-            top: 50,
+            top: 16,
             right: 0,
-            bottom: 100,
+            bottom: 0,
             left: 60
         };
         //        var width = 960 - margin.left - margin.right;
@@ -1055,8 +1055,10 @@ function doViz(destination) {
 
         var width = 960 + margin.left + margin.right;
         var gridSize = Math.floor(width / deltaTimes.length);
+        var gridSizeDivider = 2;
+        var gridSizeY = gridSize / gridSizeDivider;
         // dynamically calc height based on number of flights
-        var height = filteredDepartureDateData.length * gridSize + margin.top + margin.bottom;
+        var height = filteredDepartureDateData.length * gridSizeY + margin.top + margin.bottom;
         //        console.log(width + ":" + height);
 
         var legendElementWidth = gridSize * 2;
@@ -1101,7 +1103,7 @@ function doViz(destination) {
             })
             .attr("y", 0)
             .style("text-anchor", "middle")
-            .attr("transform", "translate(" + gridSize / 2 + ", -6)")
+            .attr("transform", "translate(" + gridSizeY + ", -6)")
             .attr("class", function (d, i) {
                 return ((i >= 7 && i <= 16) ? "deltaTimeLabel mono axis axis-worktime" : "deltaTimeLabel mono axis");
             });
@@ -1111,17 +1113,21 @@ function doViz(destination) {
             .data(filteredDepartureDateData);
 
         departureDayLabel.enter().append("text")
-            .text(function (d) {
-                var ddSplitted = d.departureDate.split("-");
-                var ddShort = ddSplitted[2] + "." + ddSplitted[1];
-                return days.get(d.departureWeekday).abbr + " " + ddShort;
+            .text(function (d, i) {
+                if (i == 0 || (i > 0 && d.departureDate != filteredDepartureDateData[i - 1].departureDate)) {
+                    var ddSplitted = d.departureDate.split("-");
+                    var ddShort = ddSplitted[2] + "." + ddSplitted[1];
+                    return days.get(d.departureWeekday).abbr + " " + ddShort;
+                } else {
+                    return "";
+                }
             })
             .attr("x", 0)
             .attr("y", function (d, i) {
-                return i * gridSize;
+                return i * gridSizeY;
             })
             .style("text-anchor", "end")
-            .attr("transform", "translate(-6," + gridSize / 1.5 + ")")
+            .attr("transform", "translate(-6," + gridSizeY / 1.2 + ")")
             .attr("class", function (d, i) {
                 return "departureDayLabel mono axis";
             });
@@ -1137,13 +1143,13 @@ function doViz(destination) {
                 return (maxDeltaTime - d.deltaTime) * gridSize + 0.5;
             })
             .attr("y", function (d, i) {
-                return Math.floor((i) / maxDeltaTime) * gridSize + 0.5;
+                return Math.floor((i) / maxDeltaTime) * gridSizeY + 0.5;
             })
-            .attr("rx", 4)
-            .attr("ry", 4)
+            .attr("rx", 2)
+            .attr("ry", 2)
             .attr("class", "price bordered")
             .attr("width", gridSize - 1)
-            .attr("height", gridSize - 1)
+            .attr("height", gridSizeY - 1)
             .style("fill", "#eee")
             .on("mouseover", function (d) {
                 var dataIdx = -1;
@@ -1174,8 +1180,8 @@ function doViz(destination) {
 
         cards.append("title");
         cards.select("title").text(function (d) {
-            return d.departureDate + " " + d.departureTime + " " + d.price;
-            //            return d.price;
+            //            return d.departureDate + " " + d.departureTime + " " + d.price;
+            return "";
         });
 
         cards.exit().remove();

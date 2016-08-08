@@ -1,5 +1,5 @@
 <div class="row">
-    <article id="header" class="twelve columns">
+    <article id="header" class="ten columns u-pull-right">
         <p id="subtitle" class="col s12">Cheapest prices to {{destinationName}} ({{destination}}) are generally on Tuesdays.</p>
     </article>
 </div>
@@ -8,33 +8,33 @@
 
     <div id="filter-col" class="navigation two columns">
         <article class="controls row">
-    <fieldset id="destination">
-        <!-- filled dynamically with destinations -->
-    </fieldset>
+            <fieldset id="destination">
+                <!-- filled dynamically with destinations -->
+            </fieldset>
 
-    <fieldset id="carrier">
-        <!-- filled dynamically with carriers -->
-    </fieldset>
+            <fieldset id="carrier">
+                <!-- filled dynamically with carriers -->
+            </fieldset>
 
-    <fieldset id="weekday">
-        <input type="radio" id="wday_all" name="weekday" value="all" checked="checked" />
-        <label for="wday_all" class="sel"><span class="all">All Weekdays</span></label>
-        <input type="radio" id="wday_wd0" name="weekday" value="Mo" />
-        <label for="wday_wd0"><span class="monday">Monday</span></label>
-        <input type="radio" id="wday_wd1" name="weekday" value="Di" />
-        <label for="wday_wd1"><span class="tuesday">Tuesday</span></label>
-        <input type="radio" id="wday_wd2" name="weekday" value="Mi" />
-        <label for="wday_wd2"><span class="wednesday">Wednesday</span></label>
-        <input type="radio" id="wday_wd3" name="weekday" value="Do" />
-        <label for="wday_wd3"><span class="thursday">Thursday</span></label>
-        <input type="radio" id="wday_wd4" name="weekday" value="Fr" />
-        <label for="wday_wd4"><span class="friday">Friday</span></label>
-        <input type="radio" id="wday_wd5" name="weekday" value="Sa" />
-        <label for="wday_wd5"><span class="saturday">Saturday</span></label>
-        <input type="radio" id="wday_wd6" name="weekday" value="So" />
-        <label for="wday_wd6"><span class="sunday">Sunday</span></label>
-    </fieldset>
-</article>
+            <fieldset id="weekday">
+                <input type="radio" id="wday_all" name="weekday" value="all" checked="checked" />
+                <label for="wday_all" class="sel"><span class="all">All Weekdays</span></label>
+                <input type="radio" id="wday_wd0" name="weekday" value="Mo" />
+                <label for="wday_wd0"><span class="monday">Monday</span></label>
+                <input type="radio" id="wday_wd1" name="weekday" value="Di" />
+                <label for="wday_wd1"><span class="tuesday">Tuesday</span></label>
+                <input type="radio" id="wday_wd2" name="weekday" value="Mi" />
+                <label for="wday_wd2"><span class="wednesday">Wednesday</span></label>
+                <input type="radio" id="wday_wd3" name="weekday" value="Do" />
+                <label for="wday_wd3"><span class="thursday">Thursday</span></label>
+                <input type="radio" id="wday_wd4" name="weekday" value="Fr" />
+                <label for="wday_wd4"><span class="friday">Friday</span></label>
+                <input type="radio" id="wday_wd5" name="weekday" value="Sa" />
+                <label for="wday_wd5"><span class="saturday">Saturday</span></label>
+                <input type="radio" id="wday_wd6" name="weekday" value="So" />
+                <label for="wday_wd6"><span class="sunday">Sunday</span></label>
+            </fieldset>
+        </article>
         <article class="row">
 
             <section id="legend">
@@ -100,6 +100,24 @@
 
 
     <div id="xx-col" class="col one column">
+        <i id="disclaimer-icon" class="material-icons">info_outline</i>
+        <!-- This is an anchor toggling the modal -->
+        <!--        <a href="view2#disclaimer" data-uk-modal><i id="disclaimer-icon" class="material-icons">info_outline</i></a>-->
+
+        <!--        <button class="uk-button" data-uk-modal="{target:'#disclaimer2'}">...</button>-->
+
+        <!-- This is the modal -->
+        <!--
+       <div id="disclaimer2" class="uk-modal">
+    <div class="uk-modal-dialog">
+        <a class="uk-modal-close uk-close"></a>
+        <small><br/>Based on flight fares collected via the <a href="http://en.business.skyscanner.net/en-gb/products/travel-apis/">Travel APIs from Skyscanner Business</a> between May and August 2016. Only complete time series are visualized, whereas a complete series is defined as a set of prices requested every day from 49 days prior to one day before departure.</small>
+    </div>
+</div>
+-->
+
+
+
         <!--
 <div id="control-carriers" class="fixed-action-btn click-to-toggle">
     <a class="btn-floating btn-large red">

@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
     <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 
-    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,400,600" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,400,600|Oswald:300,400,700" rel="stylesheet">
 
     <!--Import Google Icon Font-->
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -34,6 +34,9 @@
     <!--Import skeleton.css-->
     <link rel="stylesheet" href="bower_components/skeleton/css/normalize.css">
     <link rel="stylesheet" href="bower_components/skeleton/css/skeleton.css">
+
+    <!-- uikit -->
+    <link rel="stylesheet" href="uikit.css" />
 
     <link rel="stylesheet" href="app.css">
     <link rel="stylesheet" href="view2/viz.css">
@@ -54,17 +57,15 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
 
-    <div class="navbar-fixed">
-        <nav class="white" role="navigation">
-            <div class="nav-wrapper container">
-                <a id="logo-container" href="#" class="brand-logo blue-grey-text darken-4">
-                    <!--                <i class="material-icons rotate-45">bubble_chart</i>-->
-                    <!--                <i class="material-icons">bubble_chart</i>-->
-                    <i class="material-icons rotate-45">flight</i> Flight Fare Visualization
-                </a>
-            </div>
-        </nav>
-    </div>
+    <nav class="row">
+        <h4 class="twelve columns u-upper">Flight Fare Visualization</h4>
+        <!--                <i class="material-icons" ng-click="#">bubble_chart</i>-->
+        <!--
+       <a id="logo-container" href="#">
+    <i class="material-icons">home</i>
+</a>
+-->
+    </nav>
 
     <div ng-view></div>
 
@@ -89,6 +90,9 @@
     <script src="bower_components/angular-environment/dist/angular-environment.js"></script>
 
     <script src="bower_components/jquery/dist/jquery.js"></script>
+    <!-- uikit -->
+    <script src="uikit.min.js"></script>
+
     <!-- D3 -->
     <script src="bower_components/d3/d3.js"></script>
     <!-- datamaps -->
