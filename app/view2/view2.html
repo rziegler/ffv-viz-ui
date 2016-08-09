@@ -8,12 +8,21 @@
 
     <div id="filter-col" class="navigation two columns">
         <article class="controls row">
-            <fieldset id="destination">
+            <fieldset id="destination" >
+                <div ng-repeat="d in destinations.values()">
+                  <input type="radio" id="dest_{{d.abbr}}" name="destination" value="{{d.abbr}}"  ng-model="cd" ng-change="changeDestination(cd)"/>
+
+                    <label for="dest_{{d.abbr}}"><span class="{{d.abbr}}">{{d.name}}</span></label>
+                </div>
                 <!-- filled dynamically with destinations -->
             </fieldset>
 
             <fieldset id="carrier">
-                <!-- filled dynamically with carriers -->
+                <div ng-repeat="c in carriers">
+                    <input type="radio" id="carrier_{{c}}" name="carrier" value="{{c}}"/>
+                    <label for="carrier_{{c}}"><span class="{{c}}">{{c}}</span></label>
+                </div>
+
             </fieldset>
 
             <fieldset id="weekday">
@@ -142,6 +151,16 @@
     </ul>
 </div>
 -->
+        <!-- This is a button toggling the modal -->
+        <button class="uk-button" data-uk-modal="{target:'#my-id'}"><i class="large material-icons">mode_edit</i></button>
+
+        <!-- This is the modal -->
+        <div id="my-id" class="uk-modal">
+            <div class="uk-modal-dialog">
+                <a class="uk-modal-close uk-close"></a>
+                ...
+            </div>
+        </div>
 
     </div>
 

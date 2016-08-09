@@ -60,8 +60,8 @@ angular.module('ffvApp.view1', ['ngRoute'])
         done: function (datamap) {
             datamap.svg.selectAll('.datamaps-subunit').on('click', function (geo) {
                 if (destinationData.has(geo.id)) {
-                    configService.setCurrentDestination(geo.id);
-                    $location.path('/view2');
+                    configService.setCurrentDestinationByCountry(geo.id);
+                    $location.path('/view2/'+configService.getCurrentDestination().destination);
                     $scope.$apply();
                 }
             });
