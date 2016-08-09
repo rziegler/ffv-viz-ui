@@ -121,7 +121,7 @@ configService.factory('Config', ['$resource', 'envService',
         },
             {
                 "countryCode": "ARE",
-                "destination": "DBX",
+                "destination": "DXB",
                 "destinationName": "Dubai",
                 "latitude": "",
                 "longitude": "",
@@ -202,150 +202,150 @@ configService.factory('Config', ['$resource', 'envService',
             currentDestination = destinationData.get(id);
         }
 
-        var setCurrentDestination = function(destCode){
-            destinationData.values().forEach(function(entry){
-               if(entry.destination == destCode){
-                   currentDestination =  entry;
-               }
+        var setCurrentDestination = function (destCode) {
+            destinationData.values().forEach(function (entry) {
+                if (entry.destination == destCode) {
+                    currentDestination = entry;
+                }
             });
         }
 
-      function getDestinations() {
-          return d3.map([
-              {
-                  abbr: 'AMS',
-                  name: 'Amsterdam'
+        function getDestinations() {
+            return d3.map([
+                {
+                    abbr: 'AMS',
+                    name: 'Amsterdam'
               },
-              {
-                  abbr: 'BEG',
-                  name: 'Belgrade'
+                {
+                    abbr: 'BEG',
+                    name: 'Belgrade'
               },
-              {
-                  abbr: 'BKK',
-                  name: 'Bangkok'
+                {
+                    abbr: 'BKK',
+                    name: 'Bangkok'
               },
-              {
-                  abbr: 'BOM',
-                  name: 'Bombay'
+                {
+                    abbr: 'BOM',
+                    name: 'Bombay'
               },
-              {
-                  abbr: 'DXB',
-                  name: 'Dubai'
+                {
+                    abbr: 'DXB',
+                    name: 'Dubai'
               },
-              {
-                  abbr: 'GRU',
-                  name: 'Sao Paolo'
+                {
+                    abbr: 'GRU',
+                    name: 'Sao Paolo'
               },
-              {
-                  abbr: 'ICN',
-                  name: 'Seoul'
+                {
+                    abbr: 'ICN',
+                    name: 'Seoul'
               },
-              {
-                  abbr: 'IST',
-                  name: 'Istanbul'
+                {
+                    abbr: 'IST',
+                    name: 'Istanbul'
               },
-              {
-                  abbr: 'JFK',
-                  name: 'New York'
+                {
+                    abbr: 'JFK',
+                    name: 'New York'
               },
-              {
-                  abbr: 'KEF',
-                  name: 'Reykjavik'
+                {
+                    abbr: 'KEF',
+                    name: 'Reykjavik'
               },
-              {
-                  abbr: 'LHR',
-                  name: 'London'
+                {
+                    abbr: 'LHR',
+                    name: 'London'
               },
-              {
-                  abbr: 'MAD',
-                  name: 'Madrid'
+                {
+                    abbr: 'MAD',
+                    name: 'Madrid'
               },
-              {
-                  abbr: 'MLA',
-                  name: 'Malta'
+                {
+                    abbr: 'MLA',
+                    name: 'Malta'
               },
-              {
-                  abbr: 'NRT',
-                  name: 'Tokyo'
+                {
+                    abbr: 'NRT',
+                    name: 'Tokyo'
               },
-              {
-                  abbr: 'PEK',
-                  name: 'Peking'
+                {
+                    abbr: 'PEK',
+                    name: 'Peking'
               },
-              {
-                  abbr: 'RHO',
-                  name: 'Rhode'
+                {
+                    abbr: 'RHO',
+                    name: 'Rhode'
               },
-              {
-                  abbr: 'RIX',
-                  name: 'Riga'
+                {
+                    abbr: 'RIX',
+                    name: 'Riga'
               },
-              {
-                  abbr: 'SIN',
-                  name: 'Singapore'
+                {
+                    abbr: 'SIN',
+                    name: 'Singapore'
               },
-              {
-                  abbr: 'SVO',
-                  name: 'Moscou'
+                {
+                    abbr: 'SVO',
+                    name: 'Moscou'
               },
-              {
-                  abbr: 'YYZ',
-                  name: 'Toronto'
+                {
+                    abbr: 'YYZ',
+                    name: 'Toronto'
               }
 
           ], function (d) {
-              return d.abbr;
-          });
-      }
+                return d.abbr;
+            });
+        }
 
-          function getDays() {
-              return d3.map([
-                  {
-                      name: 'Monday',
-                      abbr: 'Mo',
-                      abbrGerman: 'Mo',
-                      idx: 0
+        function getDays() {
+            return d3.map([
+                {
+                    name: 'Monday',
+                    abbr: 'Mo',
+                    abbrGerman: 'Mo',
+                    idx: 0
                   },
-                  {
-                      name: 'Tuesday',
-                      abbr: 'Tu',
-                      abbrGerman: 'Di',
-                      idx: 1
+                {
+                    name: 'Tuesday',
+                    abbr: 'Tu',
+                    abbrGerman: 'Di',
+                    idx: 1
                   },
-                  {
-                      name: 'Wednesday',
-                      abbr: 'We',
-                      abbrGerman: 'Mi',
-                      idx: 2
+                {
+                    name: 'Wednesday',
+                    abbr: 'We',
+                    abbrGerman: 'Mi',
+                    idx: 2
                   },
-                  {
-                      name: 'Thursday',
-                      abbr: 'Th',
-                      abbrGerman: 'Do',
-                      idx: 3
+                {
+                    name: 'Thursday',
+                    abbr: 'Th',
+                    abbrGerman: 'Do',
+                    idx: 3
                   },
-                  {
-                      name: 'Friday',
-                      abbr: 'Fr',
-                      abbrGerman: 'Fr',
-                      idx: 4
+                {
+                    name: 'Friday',
+                    abbr: 'Fr',
+                    abbrGerman: 'Fr',
+                    idx: 4
                   },
-                  {
-                      name: 'Saturday',
-                      abbr: 'Sa',
-                      abbrGerman: 'Sa',
-                      idx: 5
+                {
+                    name: 'Saturday',
+                    abbr: 'Sa',
+                    abbrGerman: 'Sa',
+                    idx: 5
                   },
-                  {
-                      name: 'Sunday',
-                      abbr: 'Su',
-                      abbrGerman: 'So',
-                      idx: 6
+                {
+                    name: 'Sunday',
+                    abbr: 'Su',
+                    abbrGerman: 'So',
+                    idx: 6
                   }
               ], function (d) {
-                  return d.abbrGerman;
-              });
-          }
+                return d.abbrGerman;
+            });
+        }
 
         return {
             getDestinationData: getDestinationData,

@@ -1,6 +1,6 @@
 // Fix map for IE
 if (!('map' in Array.prototype)) {
-    Array.prototype.map = function (mapper, that /*opt*/) {
+    Array.prototype.map = function (mapper, that /*opt*/ ) {
         var other = new Array(this.length);
         for (var i = 0, n = this.length; i < n; i++)
             if (i in this)
@@ -33,30 +33,21 @@ function doViz(destination, destinations, days, allData, ffvData, deltaTimes, ca
     createTilesSvg(carriers[0], 'all');
     addListeners();
 
-    function addListeners(){
+    function addListeners() {
 
         // carrier list event listener
-        $('input[name="carrier"]').change(function () {
-            var carrier = $(this).val();
-
-            d3.selectAll('fieldset#carrier label').classed('sel', false);
-            d3.select('label[for="carrier_' + carrier + '"]').classed('sel', true);
-            createTilesSvg(carrier, 'all');
+        $('#carrier').change(function (event) {
+            createTilesSvg(event.carrier, 'all');
         });
 
         // weekdays event listener
-        $('input[name="weekday"]').change(function () {
-            var weekday = $(this).val();
-            createTilesSvg(carriers[0], weekday);
-        });
-
-        // destination list event listener
-        $('input[name="destination"]').change(function () {
-            var destination = $(this).val();
-            d3.selectAll('fieldset#destination label').classed('sel', false);
-            d3.select('label[for="destination_' + destination + '"]').classed('sel', true);
-
-            console.log(destination);
+        $('#weekday').change(function (event) {
+            console.log(event.day);
+            if (event.day == 'all') {
+                createTilesSvg(carriers[0], 'all');
+            } else {
+                createTilesSvg(carriers[0], event.day.abbrGerman);
+            }
         });
     }
 

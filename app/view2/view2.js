@@ -26,10 +26,24 @@ angular.module('ffvApp.view2', ['ngRoute'])
 
     $scope.carriers = [];
 
-    $scope.changeDestination = function(newDestination){
-        $location.path('/view2/'+newDestination);
+    $scope.changeDestination = function (newDestination) {
+        console.log(newDestination);
+        $location.path('/view2/' + newDestination);
     }
-
+    $scope.changeCarrier = function (newCarrier) {
+        var event = jQuery.Event("change", {
+            carrier: newCarrier,
+            //            day: $scope.day
+        });
+        $("#carrier").trigger(event);
+    }
+    $scope.changeDay = function (newDay) {
+        var event = jQuery.Event("change", {
+            //            carrier: $scope.carrier,
+            day: newDay
+        });
+        $("#weekday").trigger(event);
+    }
 
     d3.csv("data/data-dest-" + $scope.destination + ".csv".toLowerCase(), function (d) {
         //    d3.csv("data/data-dest-mad-small.csv".toLowerCase(), function (d) {
@@ -83,7 +97,7 @@ angular.module('ffvApp.view2', ['ngRoute'])
         });
         console.log(ffvData);
 
-        function computeCarriers(data){
+        function computeCarriers(data) {
             // carriers
             return d3.map(data,
                 function (d) {
@@ -91,7 +105,7 @@ angular.module('ffvApp.view2', ['ngRoute'])
                 }).keys();
         }
 
-        function computeDeltaTimes(data){
+        function computeDeltaTimes(data) {
             // x-axis data -> delta times
             var deltaTimes = d3.map(data,
                 function (d) {
@@ -107,6 +121,7 @@ angular.module('ffvApp.view2', ['ngRoute'])
         }
 
         $scope.carriers = computeCarriers(data);
+        //        $scope.carrier = carriers[0]; // default carrier
         $scope.deltaTimes = computeDeltaTimes(data);
         $scope.$apply();
 

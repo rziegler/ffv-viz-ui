@@ -18,6 +18,7 @@
         "topojson": "^1.6.26",
         "colorbrewer": "1.0.0",
         "skeleton": "2.0.4",
-        "uikit": "2.26.4"
+        "angular-bootstrap": "2.0.1",
+        "bootstrap-css-only": "3.3.6"
     }
 }
