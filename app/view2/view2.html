@@ -1,123 +1,126 @@
-<div ng-controller="View2Ctrl">
-    <div class="row">
-        <article id="header" class="ten columns u-pull-right">
-            <p id="subtitle" class="col s12">Cheapest prices to {{destinationName}} ({{destination}}) are generally on Tuesdays.</p>
+<div class="row">
+    <article id="header" class="ten columns u-pull-right">
+        <p id="subtitle" class="col s12">Cheapest prices to {{destinationName}} ({{destination}}) are generally on Tuesdays.</p>
+    </article>
+</div>
+
+<div class="row">
+
+    <div id="filter-col" class="navigation two columns">
+        <article class="controls row">
+
+            <!-- destinations -->
+
+            <div id="destination" class="btn-group" uib-dropdown>
+                <button id="destination-button" type="button" class="btn btn-small" uib-dropdown-toggle ng-disabled="disabled">
+                    {{destinationName}}<span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="destination-button">
+                    <li class="dropdown-header">Dropdown header</li>
+                    <li role="menuitem" ng-repeat="d in destinations.values()"><a ng-click="changeDestination(d.abbr)">{{d.name}}</a></li>
+                    <li class="divider"></li>
+                </ul>
+            </div>
+
+
+            <!-- carriers -->
+
+            <div id="carrier" class="btn-group" uib-dropdown>
+                <button id="carrier-button" type="button" class="btn" uib-dropdown-toggle ng-disabled="disabled">
+                    Carrier<span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="carrier-button">
+                    <li role="menuitem" ng-repeat="c in carriers"><a ng-click="changeCarrier(c)">{{c}}</a></li>
+                </ul>
+            </div>
+
+
+            <!-- weekdays -->
+            <div id="weekday" class="btn-group" uib-dropdown>
+                <button id="weekday-button" type="button" class="btn" uib-dropdown-toggle ng-disabled="disabled">
+                    Weekday<span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="weekday-button">
+                    <li role="menuitem"><a ng-click="changeDay('all')">All weekdays</a></li>
+                    <li class="divider"></li>
+                    <li role="menuitem" ng-repeat="d in days.values()"><a ng-model="test" ng-click="changeDay(d)">{{d.name}}</a></li>
+                </ul>
+            </div>
+
+        </article>
+        <article class="row">
+
+            <section id="legend">
+                <ul>
+                    <li class="orrd q1-7"></li>
+                    <li class="orrd q2-7"></li>
+                    <li class="orrd q3-7"></li>
+                    <li class="orrd q4-7"></li>
+                    <li class="orrd q5-7"></li>
+                    <li class="orrd q6-7"></li>
+                    <li class="orrd q7-7"></li>
+
+                </ul>
+                <p class="more">higher price</p>
+                <p class="less">lower price</p>
+            </section>
+
+            <section id="disclaimer">
+                <small><br/>Based on flight fares collected via the <a href="http://en.business.skyscanner.net/en-gb/products/travel-apis/">Travel APIs from Skyscanner Business</a> between May and August 2016. Only complete time series are visualized, whereas a complete series is defined as a set of prices requested every day from 49 days prior to one day before departure.</small>
+            </section>
+            <section id="footer">
+                <small>&copy; Ruth Ziegler 2016, ffv v<span app-version></span></small>
+                <small><a href="https://www.hkb.bfh.ch/de/weiterbildung/design/cas-data-visualization">CAS Data Visualization, HKB Bern</a></small>
+            </section>
+
+        </article>
+
+    </div>
+
+    <div id="viz-col" class="col nine columns">
+
+        <article id="container" class="viz">
+
+            <div class="row">
+                <div id="tiles-chart" class="twelve columns"></div>
+            </div>
+            <div id="wtf" class="row">
+                <div id="hourly_values" class="seven columns">
+                    <p class="subtitle">Daily price development</p>
+                    <p class="price"></p>
+                    <div class="svg"></div>
+                </div>
+                <div id="minmax" class="five columns">
+                    <p class="subtitle">Percentual savings</p>
+                    <div id="viz1" class="radial_container">
+                        <div></div>
+                    </div>
+                    <!--<div id="viz2" class="radial_container">
+    <div></div>
+</div>-->
+                    <p class="subtitle min"></p>
+                    <p class="subtitle max"></p>
+                    <p class="subtitle cur"></p>
+                </div>
+
+                <!--<div id="buckets">
+    <p class="subtitle">Price niveaus for each category</p>
+</div>-->
+            </div>
+
         </article>
     </div>
 
-    <div class="row">
 
-        <div id="filter-col" class="navigation two columns">
-            <article class="controls row">
+    <div id="xx-col" class="col one column">
+        <i id="disclaimer-icon" class="material-icons">info_outline</i>
+        <!-- This is an anchor toggling the modal -->
+        <!--        <a href="view2#disclaimer" data-uk-modal><i id="disclaimer-icon" class="material-icons">info_outline</i></a>-->
 
-                <!-- destinations -->
-                <div id="destination" class="btn-group" uib-dropdown>
-                    <button id="destination-button" type="button" class="btn btn-small" uib-dropdown-toggle ng-disabled="disabled">
-                        {{destinationName}}<span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="destination-button">
-                        <li class="dropdown-header">Dropdown header</li>
-                        <li role="menuitem" ng-repeat="d in destinations.values()"><a ng-click="changeDestination(d.abbr)">{{d.name}}</a></li>
-                        <li class="divider"></li>
-                    </ul>
-                </div>
+        <!--        <button class="uk-button" data-uk-modal="{target:'#disclaimer2'}">...</button>-->
 
-                <!-- carriers -->
-                <div id="carrier" class="btn-group" uib-dropdown>
-                    <button id="carrier-button" type="button" class="btn" uib-dropdown-toggle ng-disabled="disabled">
-                        Carrier<span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="carrier-button">
-                        <li role="menuitem" ng-repeat="c in carriers"><a ng-click="changeCarrier(c)">{{c}}</a></li>
-                    </ul>
-                </div>
-
-                <!-- weekdays -->
-                <div id="weekday" class="btn-group" uib-dropdown>
-                    <button id="weekday-button" type="button" class="btn" uib-dropdown-toggle ng-disabled="disabled">
-                        Weekday<span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="weekday-button">
-                        <li role="menuitem"><a ng-click="changeDay('all')">All weekdays</a></li>
-                        <li class="divider"></li>
-                        <li role="menuitem" ng-repeat="d in days.values()"><a ng-model="test" ng-click="changeDay(d)">{{d.name}}</a></li>
-                    </ul>
-                </div>
-
-            </article>
-            <article class="row">
-
-                <section id="legend">
-                    <ul>
-                        <li class="orrd q1-7"></li>
-                        <li class="orrd q2-7"></li>
-                        <li class="orrd q3-7"></li>
-                        <li class="orrd q4-7"></li>
-                        <li class="orrd q5-7"></li>
-                        <li class="orrd q6-7"></li>
-                        <li class="orrd q7-7"></li>
-
-                    </ul>
-                    <p class="more">higher price</p>
-                    <p class="less">lower price</p>
-                </section>
-
-                <section id="disclaimer">
-                    <small><br/>Based on flight fares collected via the <a href="http://en.business.skyscanner.net/en-gb/products/travel-apis/">Travel APIs from Skyscanner Business</a> between May and August 2016. Only complete time series are visualized, whereas a complete series is defined as a set of prices requested every day from 49 days prior to one day before departure.</small>
-                </section>
-                <section id="footer">
-                    <small>&copy; Ruth Ziegler 2016, ffv v<span app-version></span></small>
-                    <small><a href="https://www.hkb.bfh.ch/de/weiterbildung/design/cas-data-visualization">CAS Data Visualization, HKB Bern</a></small>
-                </section>
-
-            </article>
-
-        </div>
-
-        <div id="viz-col" class="col nine columns">
-
-            <article id="container" class="viz">
-
-                <div class="row">
-                    <div id="tiles-chart" class="twelve columns"></div>
-                </div>
-                <div id="wtf" class="row">
-                    <div id="hourly_values" class="seven columns">
-                        <p class="subtitle">Daily price development</p>
-                        <p class="price"></p>
-                        <div class="svg"></div>
-                    </div>
-                    <div id="minmax" class="five columns">
-                        <p class="subtitle">Percentual savings</p>
-                        <div id="viz1" class="radial_container">
-                            <div></div>
-                        </div>
-                        <!--<div id="viz2" class="radial_container">
-    <div></div>
-</div>-->
-                        <p class="subtitle min"></p>
-                        <p class="subtitle max"></p>
-                        <p class="subtitle cur"></p>
-                    </div>
-
-                    <!--<div id="buckets">
-    <p class="subtitle">Price niveaus for each category</p>
-</div>-->
-                </div>
-
-            </article>
-        </div>
-
-
-        <div id="xx-col" class="col one column">
-            <i id="disclaimer-icon" class="material-icons">info_outline</i>
-            <!-- This is an anchor toggling the modal -->
-            <!--        <a href="view2#disclaimer" data-uk-modal><i id="disclaimer-icon" class="material-icons">info_outline</i></a>-->
-
-            <!--        <button class="uk-button" data-uk-modal="{target:'#disclaimer2'}">...</button>-->
-
-            <!-- This is the modal -->
-            <!--
+        <!-- This is the modal -->
+        <!--
        <div id="disclaimer2" class="uk-modal">
     <div class="uk-modal-dialog">
         <a class="uk-modal-close uk-close"></a>
@@ -128,7 +131,7 @@
 
 
 
-            <!--
+        <!--
 <div id="control-carriers" class="fixed-action-btn click-to-toggle">
     <a class="btn-floating btn-large red">
         <i class="large material-icons">mode_edit</i>
@@ -152,18 +155,17 @@
     </ul>
 </div>
 -->
-            <!-- This is a button toggling the modal -->
-            <button class="uk-button" data-uk-modal="{target:'#my-id'}"><i class="large material-icons">mode_edit</i></button>
+        <!-- This is a button toggling the modal -->
+        <button class="uk-button" data-uk-modal="{target:'#my-id'}"><i class="large material-icons">mode_edit</i></button>
 
-            <!-- This is the modal -->
-            <div id="my-id" class="uk-modal">
-                <div class="uk-modal-dialog">
-                    <a class="uk-modal-close uk-close"></a>
-                    ...
-                </div>
+        <!-- This is the modal -->
+        <div id="my-id" class="uk-modal">
+            <div class="uk-modal-dialog">
+                <a class="uk-modal-close uk-close"></a>
+                ...
             </div>
-
         </div>
 
     </div>
+
 </div>
