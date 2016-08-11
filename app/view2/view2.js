@@ -95,7 +95,7 @@ angular.module('ffvApp.view2', ['ngRoute'])
         nestedData.forEach(function (v) {
             ffvData[v.key] = v.values;
         });
-        console.log(ffvData);
+        //        console.log(ffvData);
 
         function computeCarriers(data) {
             // carriers
@@ -116,7 +116,6 @@ angular.module('ffvApp.view2', ['ngRoute'])
                 return [parseInt(value)];
             });
             deltaTimes.sort(d3.descending);
-            console.log(deltaTimes);
             return deltaTimes;
         }
 
