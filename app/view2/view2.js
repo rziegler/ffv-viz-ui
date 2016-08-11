@@ -22,7 +22,9 @@ angular.module('ffvApp.view2', ['ngRoute'])
 
     $scope.current = {
         destination: configService.getCurrentDestination(),
-        day: $scope.days.values()[0]
+        day: {
+            name: "All weekdays"
+        }
     };
 
     if (isNotEmpty($scope.current.destination)) {
@@ -43,6 +45,13 @@ angular.module('ffvApp.view2', ['ngRoute'])
         $("#carrier").trigger(event);
     }
     $scope.changeDay = function (newDay) {
+        if (newDay == "all") {
+            $scope.current.day = {
+                name: "All weekdays"
+            }
+        } else {
+            $scope.current.day = newDay;
+        }
         var event = jQuery.Event("change", {
             //            carrier: $scope.carrier,
             day: newDay
