@@ -1,6 +1,6 @@
 <div class="row">
     <article id="header" class="ten columns u-pull-right">
-        <p id="subtitle" class="col s12">Cheapest prices to {{destinationName}} ({{destination}}) are generally on Tuesdays.</p>
+        <p id="subtitle" class="col s12">Cheapest prices to {{current.destination.destinationName}} ({{current.destination.destination}}) are generally on Tuesdays.</p>
     </article>
 </div>
 
@@ -13,7 +13,7 @@
 
             <div id="destination" class="btn-group" uib-dropdown>
                 <button id="destination-button" type="button" class="btn btn-small" uib-dropdown-toggle ng-disabled="disabled">
-                    {{destinationName}}<span class="caret"></span>
+                    {{current.destination.destinationName}}<span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="destination-button">
                     <li class="dropdown-header">Dropdown header</li>
@@ -27,7 +27,7 @@
 
             <div id="carrier" class="btn-group" uib-dropdown>
                 <button id="carrier-button" type="button" class="btn" uib-dropdown-toggle ng-disabled="disabled">
-                    Carrier<span class="caret"></span>
+                    CARR<span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="carrier-button">
                     <li role="menuitem" ng-repeat="c in carriers"><a ng-click="changeCarrier(c)">{{c}}</a></li>
@@ -38,7 +38,7 @@
             <!-- weekdays -->
             <div id="weekday" class="btn-group" uib-dropdown>
                 <button id="weekday-button" type="button" class="btn" uib-dropdown-toggle ng-disabled="disabled">
-                    Weekday<span class="caret"></span>
+                    {{current.day.name}}<span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="weekday-button">
                     <li role="menuitem"><a ng-click="changeDay('all')">All weekdays</a></li>

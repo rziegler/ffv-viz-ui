@@ -12,16 +12,21 @@ angular.module('ffvApp.view2', ['ngRoute'])
 
 .controller('View2Ctrl', ['$scope', 'Config', '$routeParams', '$location', function ($scope, configService, $routeParams, $location) {
 
+    function isNotEmpty(obj) {
+        return Object.keys(obj).length === 0 && obj.constructor === Object;
+    }
+
     $scope.destinations = configService.getDestinations();
     $scope.days = configService.getDays();
     configService.setCurrentDestination($routeParams.dest);
-    var current = configService.getCurrentDestination();
-    $scope.destinationName = current.destinationName;
-    $scope.destination = current.destination;
 
-    if ($scope.destination == undefined) {
-        $scope.destinationName = 'Amsterdam';
-        $scope.destination = 'AMS';
+    $scope.current = {
+        destination: configService.getCurrentDestination(),
+        day: $scope.days.values()[0]
+    };
+
+    if (isNotEmpty($scope.current.destination)) {
+        $scope.current.destination = configService.getDestinationData().values()[0];
     }
 
     $scope.carriers = [];
@@ -45,7 +50,7 @@ angular.module('ffvApp.view2', ['ngRoute'])
         $("#weekday").trigger(event);
     }
 
-    d3.csv("data/data-dest-" + $scope.destination + ".csv".toLowerCase(), function (d) {
+    d3.csv("data/data-dest-" + $scope.current.destination.destination + ".csv".toLowerCase(), function (d) {
         //    d3.csv("data/data-dest-mad-small.csv".toLowerCase(), function (d) {
         return {
             destination: d.destination,
