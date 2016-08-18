@@ -10,7 +10,7 @@ angular.module('ffvApp.view2', ['ngRoute'])
     });
 }])
 
-.controller('View2Ctrl', ['$scope', 'Config', '$routeParams', '$location', function ($scope, configService, $routeParams, $location) {
+.controller('View2Ctrl', ['$scope', '$uibModal', 'Config', '$routeParams', '$location', function ($scope, $uibModal, configService, $routeParams, $location) {
 
     function isNotEmpty(obj) {
         return Object.keys(obj).length === 0 && obj.constructor === Object;
@@ -59,6 +59,18 @@ angular.module('ffvApp.view2', ['ngRoute'])
         $("#weekday").trigger(event);
     }
 
+    // modal stuff
+    $scope.open = function (size) {
+
+        var modalInstance = $uibModal.open({
+            animation: false,
+            templateUrl: 'sources.html',
+            controller: 'ModalInstanceCtrl',
+            size: size
+        });
+    };
+
+    // reading the csv
     d3.csv("data/data-dest-" + $scope.current.destination.destination + ".csv".toLowerCase(), function (d) {
         //    d3.csv("data/data-dest-mad-small.csv".toLowerCase(), function (d) {
         return {
@@ -140,8 +152,13 @@ angular.module('ffvApp.view2', ['ngRoute'])
 
 
         doViz($scope.destination, $scope.destinations, $scope.days, allData, ffvData, $scope.deltaTimes, $scope.carriers);
-
     });
 
 
 }]);
+
+angular.module('ffvApp.view2').controller('ModalInstanceCtrl', function ($scope, $uibModalInstance) {
+    $scope.ok = function () {
+        $uibModalInstance.close();
+    };
+});

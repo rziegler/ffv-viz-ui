@@ -1,53 +1,55 @@
+<article class="controls row pull-right">
+
+    <!-- destinations -->
+
+    <div id="destination" class="btn-group" uib-dropdown>
+        <button id="destination-button" type="button" class="btn btn-small" uib-dropdown-toggle ng-disabled="disabled">
+            {{current.destination.destinationName}}<span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="destination-button">
+            <li class="dropdown-header">Dropdown header</li>
+            <li role="menuitem" ng-repeat="d in destinations.values()"><a ng-click="changeDestination(d.abbr)">{{d.name}}</a></li>
+            <li class="divider"></li>
+        </ul>
+    </div>
+
+
+    <!-- carriers -->
+
+    <div id="carrier" class="btn-group" uib-dropdown>
+        <button id="carrier-button" type="button" class="btn" uib-dropdown-toggle ng-disabled="disabled">
+            CARR<span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="carrier-button">
+            <li role="menuitem" ng-repeat="c in carriers"><a ng-click="changeCarrier(c)">{{c}}</a></li>
+        </ul>
+    </div>
+
+
+    <!-- weekdays -->
+    <div id="weekday" class="btn-group" uib-dropdown>
+        <button id="weekday-button" type="button" class="btn" uib-dropdown-toggle ng-disabled="disabled">
+            {{current.day.name}}<span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="weekday-button">
+            <li role="menuitem"><a ng-click="changeDay('all')">All weekdays</a></li>
+            <li class="divider"></li>
+            <li role="menuitem" ng-repeat="d in days.values()"><a ng-model="test" ng-click="changeDay(d)">{{d.name}}</a></li>
+        </ul>
+    </div>
+
+</article>
+
 <div class="row">
-    <article id="header" class="ten columns u-pull-right">
-        <p id="subtitle" class="col s12">Cheapest prices to {{current.destination.destinationName}} ({{current.destination.destination}}) are generally on Tuesdays.</p>
+    <article id="header" class="col-md-10 col-md-offset-2">
+        <p id="subtitle" class="col-md-12">Cheapest prices to {{current.destination.destinationName}} ({{current.destination.destination}}) are generally on Tuesdays.</p>
     </article>
 </div>
 
 <div class="row">
 
-    <div id="filter-col" class="navigation two columns">
-        <article class="controls row">
+    <div id="filter-col" class="navigation col-md-2">
 
-            <!-- destinations -->
-
-            <div id="destination" class="btn-group" uib-dropdown>
-                <button id="destination-button" type="button" class="btn btn-small" uib-dropdown-toggle ng-disabled="disabled">
-                    {{current.destination.destinationName}}<span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="destination-button">
-                    <li class="dropdown-header">Dropdown header</li>
-                    <li role="menuitem" ng-repeat="d in destinations.values()"><a ng-click="changeDestination(d.abbr)">{{d.name}}</a></li>
-                    <li class="divider"></li>
-                </ul>
-            </div>
-
-
-            <!-- carriers -->
-
-            <div id="carrier" class="btn-group" uib-dropdown>
-                <button id="carrier-button" type="button" class="btn" uib-dropdown-toggle ng-disabled="disabled">
-                    CARR<span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="carrier-button">
-                    <li role="menuitem" ng-repeat="c in carriers"><a ng-click="changeCarrier(c)">{{c}}</a></li>
-                </ul>
-            </div>
-
-
-            <!-- weekdays -->
-            <div id="weekday" class="btn-group" uib-dropdown>
-                <button id="weekday-button" type="button" class="btn" uib-dropdown-toggle ng-disabled="disabled">
-                    {{current.day.name}}<span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="weekday-button">
-                    <li role="menuitem"><a ng-click="changeDay('all')">All weekdays</a></li>
-                    <li class="divider"></li>
-                    <li role="menuitem" ng-repeat="d in days.values()"><a ng-model="test" ng-click="changeDay(d)">{{d.name}}</a></li>
-                </ul>
-            </div>
-
-        </article>
         <article class="row">
 
             <section id="legend">
@@ -64,33 +66,24 @@
                 <p class="more">higher price</p>
                 <p class="less">lower price</p>
             </section>
-
-            <section id="disclaimer">
-                <small><br/>Based on flight fares collected via the <a href="http://en.business.skyscanner.net/en-gb/products/travel-apis/">Travel APIs from Skyscanner Business</a> between May and August 2016. Only complete time series are visualized, whereas a complete series is defined as a set of prices requested every day from 49 days prior to one day before departure.</small>
-            </section>
-            <section id="footer">
-                <small>&copy; Ruth Ziegler 2016, ffv v<span app-version></span></small>
-                <small><a href="https://www.hkb.bfh.ch/de/weiterbildung/design/cas-data-visualization">CAS Data Visualization, HKB Bern</a></small>
-            </section>
-
         </article>
 
     </div>
 
-    <div id="viz-col" class="col nine columns">
+    <div id="viz-col" class="col col-md-8">
 
         <article id="container" class="viz">
 
             <div class="row">
-                <div id="tiles-chart" class="twelve columns"></div>
+                <div id="tiles-chart" class="col-md-12"></div>
             </div>
             <div id="wtf" class="row">
-                <div id="hourly_values" class="seven columns">
+                <div id="hourly_values" class="col-md-7">
                     <p class="subtitle">Daily price development</p>
                     <p class="price"></p>
                     <div class="svg"></div>
                 </div>
-                <div id="minmax" class="five columns">
+                <div id="minmax" class="col-md-5">
                     <p class="subtitle">Percentual savings</p>
                     <div id="viz1" class="radial_container">
                         <div></div>
@@ -109,63 +102,36 @@
             </div>
 
         </article>
+
+        <article id="disclaimer">
+
+            <script type="text/ng-template" id="sources.html">
+                <div class="modal-header">
+                    <button type="button" class="close" aria-label="Close" ng-click="ok()"><span aria-hidden="true">&times;</span></button>
+                    <h5 class="modal-title">Sources and Methods</h5>
+                </div>
+                <div class="modal-body">
+                    <section id="disclaimer">
+                        Based on flight fares collected via the <a href="http://en.business.skyscanner.net/en-gb/products/travel-apis/">Travel APIs from Skyscanner Business</a> between May and August 2016. Only complete time series are visualized, whereas a complete series is defined as a set of prices requested every day from 49 days prior to one day before departure.
+                    </section>
+                    <section id="footer">
+                        &copy; Ruth Ziegler 2016, ffv v<span app-version></span>
+                        <a href="https://www.hkb.bfh.ch/de/weiterbildung/design/cas-data-visualization">CAS Data Visualization, HKB Bern</a>
+                    </section>
+                </div>
+            </script>
+
+            <p class="center-block">
+                <small>Visualization provided by Ruth Ziegler 2016&nbsp;&#124;&nbsp;
+            <a href="" class="active" role="button" ng-click="open()">Sources and Methods</a>&nbsp;&#124;&nbsp;
+            </small>
+                <i class="fa fa-facebook-square fa-lg" aria-hidden="true"></i>
+                <i class="fa fa-twitter-square fa-lg" aria-hidden="true"></i>
+            </p>
+        </article>
     </div>
 
-
-    <div id="xx-col" class="col one column">
-        <i id="disclaimer-icon" class="material-icons">info_outline</i>
-        <!-- This is an anchor toggling the modal -->
-        <!--        <a href="view2#disclaimer" data-uk-modal><i id="disclaimer-icon" class="material-icons">info_outline</i></a>-->
-
-        <!--        <button class="uk-button" data-uk-modal="{target:'#disclaimer2'}">...</button>-->
-
-        <!-- This is the modal -->
-        <!--
-       <div id="disclaimer2" class="uk-modal">
-    <div class="uk-modal-dialog">
-        <a class="uk-modal-close uk-close"></a>
-        <small><br/>Based on flight fares collected via the <a href="http://en.business.skyscanner.net/en-gb/products/travel-apis/">Travel APIs from Skyscanner Business</a> between May and August 2016. Only complete time series are visualized, whereas a complete series is defined as a set of prices requested every day from 49 days prior to one day before departure.</small>
-    </div>
-</div>
--->
-
-
-
-        <!--
-<div id="control-carriers" class="fixed-action-btn click-to-toggle">
-    <a class="btn-floating btn-large red">
-        <i class="large material-icons">mode_edit</i>
-    </a>
-    <ul>
-        <li><a class="btn-floating grey" onclick="carrierChange()">AB</a></li>
-        <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
-        <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
-        <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
-    </ul>
-</div>
-<div id="control-weekdays" class="fixed-action-btn click-to-toggle">
-    <a class="btn-floating btn-large red">
-        <i class="large material-icons">mode_edit</i>
-    </a>
-    <ul>
-        <li><a class="btn-floating grey">Mo</a></li>
-        <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
-        <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
-        <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
-    </ul>
-</div>
--->
-        <!-- This is a button toggling the modal -->
-        <button class="uk-button" data-uk-modal="{target:'#my-id'}"><i class="large material-icons">mode_edit</i></button>
-
-        <!-- This is the modal -->
-        <div id="my-id" class="uk-modal">
-            <div class="uk-modal-dialog">
-                <a class="uk-modal-close uk-close"></a>
-                ...
-            </div>
-        </div>
-
+    <div id="xx-col" class="col col-md-1">
     </div>
 
 </div>
