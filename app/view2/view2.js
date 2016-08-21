@@ -12,11 +12,36 @@ angular.module('ffvApp.view2', ['ngRoute'])
 
 .controller('View2Ctrl', ['$scope', '$uibModal', 'Config', '$routeParams', '$location', function ($scope, $uibModal, configService, $routeParams, $location) {
 
+    $scope.itemArray = [
+        {
+            id: 1,
+            name: 'first'
+        },
+        {
+            id: 2,
+            name: 'second'
+        },
+        {
+            id: 3,
+            name: 'third'
+        },
+        {
+            id: 4,
+            name: 'fourth'
+        },
+        {
+            id: 5,
+            name: 'fifth'
+        },
+    ];
+
+    $scope.selectedItem = $scope.itemArray[0];
+
     function isNotEmpty(obj) {
         return Object.keys(obj).length === 0 && obj.constructor === Object;
     }
 
-    $scope.destinations = configService.getDestinations();
+    $scope.destinations = configService.getDestinationData();
     $scope.days = configService.getDays();
     configService.setCurrentDestination($routeParams.dest);
 
@@ -24,7 +49,8 @@ angular.module('ffvApp.view2', ['ngRoute'])
         destination: configService.getCurrentDestination(),
         day: {
             name: "All weekdays"
-        }
+        },
+        carrier: "Carrier"
     };
 
     if (isNotEmpty($scope.current.destination)) {
@@ -33,31 +59,58 @@ angular.module('ffvApp.view2', ['ngRoute'])
 
     $scope.carriers = [];
 
-    $scope.changeDestination = function (newDestination) {
-        console.log(newDestination);
+    var changeDestination = function (newDestination) {
         $location.path('/view2/' + newDestination);
     }
-    $scope.changeCarrier = function (newCarrier) {
+
+    var changeCarrier = function (newCarrier) {
         var event = jQuery.Event("change", {
             carrier: newCarrier,
             //            day: $scope.day
         });
         $("#carrier").trigger(event);
     }
-    $scope.changeDay = function (newDay) {
-        if (newDay == "all") {
-            $scope.current.day = {
-                name: "All weekdays"
-            }
-        } else {
-            $scope.current.day = newDay;
-        }
+    var changeWeekday = function (newDay) {
+        //        if (newDay == "all") {
+        //            $scope.current.day = {
+        //                name: "All weekdays"
+        //            }
+        //        } else {
+        //            $scope.current.day = newDay;
+        //        }
         var event = jQuery.Event("change", {
             //            carrier: $scope.carrier,
             day: newDay
         });
         $("#weekday").trigger(event);
     }
+
+
+    $scope.$watch("current.destination", function (newValue, oldValue) {
+        console.log(oldValue.destination + " > " + newValue.destination);
+        if (oldValue !== newValue) {
+            console.log("updating destination to " + newValue.destination);
+            changeDestination(newValue.destination);
+        }
+    });
+
+    $scope.$watch("current.carrier", function (newValue, oldValue) {
+        console.log(oldValue + " > " + newValue);
+        if (oldValue !== newValue) {
+            console.log("updating carrier to " + newValue);
+            changeCarrier(newValue);
+            //            $location.path('/view2/' + newValue.destination);
+        }
+    });
+
+    $scope.$watch("current.day", function (newValue, oldValue) {
+        console.log(oldValue.abbr + " > " + newValue.abbr);
+        if (oldValue !== newValue) {
+            console.log("updating weeekday to " + newValue);
+            changeWeekday(newValue);
+            //            $location.path('/view2/' + newValue.destination);
+        }
+    });
 
     // modal stuff
     $scope.open = function (size) {
@@ -69,6 +122,7 @@ angular.module('ffvApp.view2', ['ngRoute'])
             size: size
         });
     };
+
 
     // reading the csv
     d3.csv("data/data-dest-" + $scope.current.destination.destination + ".csv".toLowerCase(), function (d) {

@@ -457,49 +457,9 @@ th.h48 {
     line-height: 12px;
 }
 
-.constrols fieldset {
-    margin: 0;
+.controls div {
+    width: 140px;
 }
-
-.controls input {
-    display: none;
-    width: 0;
-    height: 0;
-    margin: 0;
-    padding: 0;
-    opacity: 0;
-}
-
-.controls label {
-    width: 35%;
-    float: left;
-    display: block;
-    cursor: pointer;
-    padding: 4px 6px;
-    background: #ddd;
-    border: 1px solid #ccc;
-    -moz-border-radius: 2px;
-    border-radius: 2px;
-    margin: 0 3px 2px 0;
-    color: #888;
-    font-weight: 100;
-    font-size: 80%;
-    text-align: center;
-}
-
-.controls label:hover {
-    background: #999;
-    color: white;
-    border: 1px solid #888;
-}
-
-.controls label.sel {
-    background: #444;
-    color: white;
-    border: 1px solid #333;
-    cursor: default;
-}
-
 #filter-col {
     margin-left: 20px;
 }

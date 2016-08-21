@@ -4,6 +4,8 @@
 angular.module('ffvApp', [
   'ui.bootstrap',
   'ngRoute',
+  'ngSanitize',
+  'ui.select',
   'environment',
   'configService',
   'ffvApp.view1',

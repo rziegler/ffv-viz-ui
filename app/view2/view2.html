@@ -1,42 +1,38 @@
-<article class="controls row pull-right">
+<article class="controls row">
 
     <!-- destinations -->
 
-    <div id="destination" class="btn-group" uib-dropdown>
-        <button id="destination-button" type="button" class="btn btn-small" uib-dropdown-toggle ng-disabled="disabled">
-            {{current.destination.destinationName}}<span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="destination-button">
-            <li class="dropdown-header">Dropdown header</li>
-            <li role="menuitem" ng-repeat="d in destinations.values()"><a ng-click="changeDestination(d.abbr)">{{d.name}}</a></li>
-            <li class="divider"></li>
-        </ul>
-    </div>
-
+    <ui-select id="destination" ng-model="current.destination" append-to-body="true">
+        <ui-select-match>
+            <span ng-bind="$select.selected.destinationName"></span>
+        </ui-select-match>
+        <ui-select-choices group-by="'type'" repeat="item in (destinations.values() | filter: $select.search) track by item.destination">
+            <span ng-bind="item.destinationName"></span>
+            <small ng-bind-html="item.destination | highlight: $select.search"></small>
+        </ui-select-choices>
+    </ui-select>
 
     <!-- carriers -->
 
-    <div id="carrier" class="btn-group" uib-dropdown>
-        <button id="carrier-button" type="button" class="btn" uib-dropdown-toggle ng-disabled="disabled">
-            CARR<span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="carrier-button">
-            <li role="menuitem" ng-repeat="c in carriers"><a ng-click="changeCarrier(c)">{{c}}</a></li>
-        </ul>
-    </div>
-
+    <ui-select id="carrier" ng-model="current.carrier" append-to-body="true">
+        <ui-select-match>
+            <span ng-bind="$select.selected"></span>
+        </ui-select-match>
+        <ui-select-choices group-by="'type'" repeat="item in (carriers | filter: $select.search)">
+            <span ng-bind="item"></span>
+        </ui-select-choices>
+    </ui-select>
 
     <!-- weekdays -->
-    <div id="weekday" class="btn-group" uib-dropdown>
-        <button id="weekday-button" type="button" class="btn" uib-dropdown-toggle ng-disabled="disabled">
-            {{current.day.name}}<span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="weekday-button">
-            <li role="menuitem"><a ng-click="changeDay('all')">All weekdays</a></li>
-            <li class="divider"></li>
-            <li role="menuitem" ng-repeat="d in days.values()"><a ng-model="test" ng-click="changeDay(d)">{{d.name}}</a></li>
-        </ul>
-    </div>
+
+    <ui-select id="weekday" ng-model="current.day" append-to-body="true">
+        <ui-select-match>
+            <span ng-bind="$select.selected.name"></span>
+        </ui-select-match>
+        <ui-select-choices group-by="'type'" repeat="item in (days.values() | filter: $select.search) track by item.abbr">
+            <span ng-bind="item.name"></span>
+        </ui-select-choices>
+    </ui-select>
 
 </article>
 
@@ -44,6 +40,8 @@
     <article id="header" class="col-md-10 col-md-offset-2">
         <p id="subtitle" class="col-md-12">Cheapest prices to {{current.destination.destinationName}} ({{current.destination.destination}}) are generally on Tuesdays.</p>
     </article>
+
+
 </div>
 
 <div class="row">

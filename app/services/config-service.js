@@ -24,23 +24,8 @@ configService.factory('Config', ['$resource', 'envService',
         /* Shared data */
         var destinationData = d3.map([
             {
-                "countryCode": "USA",
-                "destination": "JFK",
-                "destinationName": "New York",
-                "latitude": "",
-                "longitude": "",
-                "fillKey": "destinationCountryFill"
-        },
-            {
-                "countryCode": "THA",
-                "destination": "BKK",
-                "destinationName": "Bangkok",
-                "latitude": "",
-                "longitude": "",
-                "fillKey": "destinationCountryFill"
-        },
-            {
                 "countryCode": "ISL",
+                "type": "Europe",
                 "destination": "KEF",
                 "destinationName": "Reykjavik",
                 "latitude": "",
@@ -49,6 +34,7 @@ configService.factory('Config', ['$resource', 'envService',
         },
             {
                 "countryCode": "RUS",
+                "type": "Europe",
                 "destination": "SVO",
                 "destinationName": "Moscou",
                 "latitude": "",
@@ -56,7 +42,26 @@ configService.factory('Config', ['$resource', 'envService',
                 "fillKey": "destinationCountryFill"
         },
             {
+                "countryCode": "USA",
+                "type": "Oversea",
+                "destination": "JFK",
+                "destinationName": "New York",
+                "latitude": "",
+                "longitude": "",
+                "fillKey": "destinationCountryFill"
+         },
+            {
+                "countryCode": "THA",
+                "type": "Oversea",
+                "destination": "BKK",
+                "destinationName": "Bangkok",
+                "latitude": "",
+                "longitude": "",
+                "fillKey": "destinationCountryFill"
+        },
+            {
                 "countryCode": "ESP",
+                "type": "Europe",
                 "destination": "MAD",
                 "destinationName": "Madrid",
                 "latitude": "",
@@ -65,6 +70,7 @@ configService.factory('Config', ['$resource', 'envService',
         },
             {
                 "countryCode": "GBR",
+                "type": "Europe",
                 "destination": "LHR",
                 "destinationName": "London",
                 "latitude": "",
@@ -73,6 +79,7 @@ configService.factory('Config', ['$resource', 'envService',
         },
             {
                 "countryCode": "JPN",
+                "type": "Oversea",
                 "destination": "NRT",
                 "destinationName": "Tokyo",
                 "latitude": "",
@@ -81,6 +88,7 @@ configService.factory('Config', ['$resource', 'envService',
         },
             {
                 "countryCode": "BRA",
+                "type": "Oversea",
                 "destination": "GRU",
                 "destinationName": "Sao Paulo",
                 "latitude": "",
@@ -89,6 +97,7 @@ configService.factory('Config', ['$resource', 'envService',
         },
             {
                 "countryCode": "IND",
+                "type": "Oversea",
                 "destination": "BOM",
                 "destinationName": "Mumbai",
                 "latitude": "",
@@ -97,6 +106,7 @@ configService.factory('Config', ['$resource', 'envService',
         },
             {
                 "countryCode": "CHN",
+                "type": "Oversea",
                 "destination": "PEK",
                 "destinationName": "Beijing",
                 "latitude": "",
@@ -105,6 +115,7 @@ configService.factory('Config', ['$resource', 'envService',
         },
             {
                 "countryCode": "NLD",
+                "type": "Europe",
                 "destination": "AMS",
                 "destinationName": "Amsterdam",
                 "latitude": "",
@@ -113,6 +124,7 @@ configService.factory('Config', ['$resource', 'envService',
         },
             {
                 "countryCode": "SRB",
+                "type": "Europe",
                 "destination": "BEG",
                 "destinationName": "Belgrade",
                 "latitude": "",
@@ -121,6 +133,7 @@ configService.factory('Config', ['$resource', 'envService',
         },
             {
                 "countryCode": "ARE",
+                "type": "Oversea",
                 "destination": "DXB",
                 "destinationName": "Dubai",
                 "latitude": "",
@@ -129,6 +142,7 @@ configService.factory('Config', ['$resource', 'envService',
         },
             {
                 "countryCode": "KOR",
+                "type": "Oversea",
                 "destination": "ICN",
                 "destinationName": "Seoul",
                 "latitude": "",
@@ -137,6 +151,7 @@ configService.factory('Config', ['$resource', 'envService',
         },
             {
                 "countryCode": "TUR",
+                "type": "Europe",
                 "destination": "IST",
                 "destinationName": "Istanbul",
                 "latitude": "",
@@ -145,6 +160,7 @@ configService.factory('Config', ['$resource', 'envService',
         },
             {
                 "countryCode": "MLT",
+                "type": "Europe",
                 "destination": "MLA",
                 "destinationName": "Malta",
                 "latitude": "",
@@ -153,6 +169,7 @@ configService.factory('Config', ['$resource', 'envService',
         },
             {
                 "countryCode": "GRC",
+                "type": "Europe",
                 "destination": "RHO",
                 "destinationName": "Rhodes",
                 "latitude": "",
@@ -161,6 +178,7 @@ configService.factory('Config', ['$resource', 'envService',
         },
             {
                 "countryCode": "LTU",
+                "type": "Europe",
                 "destination": "RIX",
                 "destinationName": "Riga",
                 "latitude": "",
@@ -169,6 +187,7 @@ configService.factory('Config', ['$resource', 'envService',
         },
             {
                 "countryCode": "SGP",
+                "type": "Oversea",
                 "destination": "SIN",
                 "destinationName": "Singapore",
                 "latitude": "",
@@ -177,6 +196,7 @@ configService.factory('Config', ['$resource', 'envService',
         },
             {
                 "countryCode": "CAN",
+                "type": "Oversea",
                 "destination": "YYZ",
                 "destinationName": "Toronto",
                 "latitude": "",
@@ -210,97 +230,14 @@ configService.factory('Config', ['$resource', 'envService',
             });
         }
 
-        function getDestinations() {
-            return d3.map([
-                {
-                    abbr: 'AMS',
-                    name: 'Amsterdam'
-              },
-                {
-                    abbr: 'BEG',
-                    name: 'Belgrade'
-              },
-                {
-                    abbr: 'BKK',
-                    name: 'Bangkok'
-              },
-                {
-                    abbr: 'BOM',
-                    name: 'Bombay'
-              },
-                {
-                    abbr: 'DXB',
-                    name: 'Dubai'
-              },
-                {
-                    abbr: 'GRU',
-                    name: 'Sao Paolo'
-              },
-                {
-                    abbr: 'ICN',
-                    name: 'Seoul'
-              },
-                {
-                    abbr: 'IST',
-                    name: 'Istanbul'
-              },
-                {
-                    abbr: 'JFK',
-                    name: 'New York'
-              },
-                {
-                    abbr: 'KEF',
-                    name: 'Reykjavik'
-              },
-                {
-                    abbr: 'LHR',
-                    name: 'London'
-              },
-                {
-                    abbr: 'MAD',
-                    name: 'Madrid'
-              },
-                {
-                    abbr: 'MLA',
-                    name: 'Malta'
-              },
-                {
-                    abbr: 'NRT',
-                    name: 'Tokyo'
-              },
-                {
-                    abbr: 'PEK',
-                    name: 'Peking'
-              },
-                {
-                    abbr: 'RHO',
-                    name: 'Rhode'
-              },
-                {
-                    abbr: 'RIX',
-                    name: 'Riga'
-              },
-                {
-                    abbr: 'SIN',
-                    name: 'Singapore'
-              },
-                {
-                    abbr: 'SVO',
-                    name: 'Moscou'
-              },
-                {
-                    abbr: 'YYZ',
-                    name: 'Toronto'
-              }
-
-          ], function (d) {
-                return d.abbr;
-            });
-        }
-
         function getDays() {
             return d3.map([
                 {
+                    name: 'All weekdays',
+                    abbr: 'all',
+                    abbrGerman: 'all',
+                    idx: -1
+                  }, {
                     name: 'Monday',
                     abbr: 'Mo',
                     abbrGerman: 'Mo',
@@ -352,7 +289,6 @@ configService.factory('Config', ['$resource', 'envService',
             getCurrentDestination: getCurrentDestination,
             setCurrentDestination: setCurrentDestination,
             setCurrentDestinationByCountry: setCurrentDestinationByCountry,
-            getDestinations: getDestinations,
             getDays: getDays
         }
 }]);
