@@ -227,8 +227,9 @@ function doViz(destination, destinations, days, allData, ffvData, deltaTimes, ca
         //        var width = 960 - margin.left - margin.right;
         //        var height = 960 - margin.top - margin.bottom;
 
-        var width = 960 + margin.left + margin.right;
-        var gridSize = Math.floor(width / deltaTimes.length);
+        var widthNoMargins = 960;
+        var width = widthNoMargins + margin.left + margin.right;
+        var gridSize = Math.floor(widthNoMargins / deltaTimes.length);
         var gridSizeDivider = 2;
         var gridSizeY = gridSize / gridSizeDivider;
         // dynamically calc height based on number of flights

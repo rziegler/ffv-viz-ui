@@ -276,7 +276,7 @@ th.h48 {
 }
 
 #legend {
-    width: 60%;
+    /*    width: 60%;*/
     color: #777;
     margin-top: 6px;
     /*    background: #f3f3f3;*/
@@ -286,6 +286,7 @@ th.h48 {
     -moz-border-radius: 3px;
     border-radius: 3px;
     margin-bottom: 6px;
+    margin-right: 32px;
 }
 
 #legend ul {
