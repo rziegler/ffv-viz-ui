@@ -448,22 +448,40 @@ th.h48 {
     position: absolute;
     top: 0px;
     right: 0px;
-    margin: 12px 12px 0px 0px;
+    margin: 34px 12px 0px 0px;
     font-size: 12px;
     line-height: 12px;
+    /*    width: 800px;*/
 }
 
-.controls div {
-    width: 140px;
+.controls > div {
+    width: 160px;
+    padding-left: 0px;
 }
 
-#filter-col {
-    margin-left: 20px;
+.controls.form-control {
+    width: 160px;
 }
 
-#footer,
+.ui-select-bootstrap > .ui-select-choices,
+.ui-select-bootstrap > .ui-select-no-choice {
+    min-width: 130px;
+}
+
 #disclaimer {
-    margin-top: 12px;
+    margin-top: 24px;
+    color: #777;
+}
+
+.modal-body > section:first-of-type {
+    margin-bottom: 16px;
+}
+
+#disclaimer-main {
+    text-align: center;
+}
+
+#disclaimer-main a {
     color: #777;
 }
 

@@ -16,10 +16,6 @@ h6 {
     font-family: 'Oswald', sans-serif;
 }
 
-nav {
-    margin-left: 20px;
-}
-
 .u-upper {
     text-transform: capitalize;
 }
@@ -33,6 +29,12 @@ nav {
 .panel-title,
 a {
     cursor: pointer;
+}
+
+#header > h4 {
+    padding-top: 24px;
+    padding-left: 36px;
+    padding-bottom: 48px;
 }
 
 

@@ -2,37 +2,42 @@
 
     <!-- destinations -->
 
-    <ui-select id="destination" ng-model="current.destination" append-to-body="true">
-        <ui-select-match>
-            <span ng-bind="$select.selected.destinationName"></span>
-        </ui-select-match>
-        <ui-select-choices group-by="'type'" repeat="item in (destinations.values() | filter: $select.search) track by item.destination">
-            <span ng-bind="item.destinationName"></span>
-            <small ng-bind-html="item.destination | highlight: $select.search"></small>
-        </ui-select-choices>
-    </ui-select>
+    <div class="col-md-4">
+        <ui-select id="destination" ng-model="current.destination" append-to-body="true">
+            <ui-select-match>
+                <span ng-bind="$select.selected.destinationName"></span>
+            </ui-select-match>
+            <ui-select-choices group-by="'type'" repeat="item in (destinations.values() | filter: $select.search) track by item.destination">
+                <span ng-bind="item.destinationName"></span>
+                <small ng-bind-html="item.destination | highlight: $select.search"></small>
+            </ui-select-choices>
+        </ui-select>
+    </div>
 
     <!-- carriers -->
 
-    <ui-select id="carrier" ng-model="current.carrier" append-to-body="true">
-        <ui-select-match>
-            <span ng-bind="$select.selected"></span>
-        </ui-select-match>
-        <ui-select-choices group-by="'type'" repeat="item in (carriers | filter: $select.search)">
-            <span ng-bind="item"></span>
-        </ui-select-choices>
-    </ui-select>
+    <div class="col-md-4">
+        <ui-select id="carrier" ng-model="current.carrier" append-to-body="true">
+            <ui-select-match>
+                <span ng-bind="$select.selected"></span>
+            </ui-select-match>
+            <ui-select-choices group-by="'type'" repeat="item in (carriers | filter: $select.search)">
+                <span ng-bind="item"></span>
+            </ui-select-choices>
+        </ui-select>
+    </div>
 
     <!-- weekdays -->
-
-    <ui-select id="weekday" ng-model="current.day" append-to-body="true">
-        <ui-select-match>
-            <span ng-bind="$select.selected.name"></span>
-        </ui-select-match>
-        <ui-select-choices group-by="'type'" repeat="item in (days.values() | filter: $select.search) track by item.abbr">
-            <span ng-bind="item.name"></span>
-        </ui-select-choices>
-    </ui-select>
+    <div class="col-md-4">
+        <ui-select id="weekday" ng-model="current.day" append-to-body="true">
+            <ui-select-match>
+                <span ng-bind="$select.selected.name"></span>
+            </ui-select-match>
+            <ui-select-choices group-by="'type'" repeat="item in (days.values() | filter: $select.search) track by item.abbr">
+                <span ng-bind="item.name"></span>
+            </ui-select-choices>
+        </ui-select>
+    </div>
 
 </article>
 
@@ -110,23 +115,25 @@
                     <h5 class="modal-title">Sources and Methods</h5>
                 </div>
                 <div class="modal-body">
-                    <section id="disclaimer">
+                    <section>
                         Based on flight fares collected via the <a href="http://en.business.skyscanner.net/en-gb/products/travel-apis/">Travel APIs from Skyscanner Business</a> between May and August 2016. Only complete time series are visualized, whereas a complete series is defined as a set of prices requested every day from 49 days prior to one day before departure.
                     </section>
-                    <section id="footer">
+                    <section>
                         &copy; Ruth Ziegler 2016, ffv v<span app-version></span>
                         <a href="https://www.hkb.bfh.ch/de/weiterbildung/design/cas-data-visualization">CAS Data Visualization, HKB Bern</a>
                     </section>
                 </div>
             </script>
 
-            <p class="center-block">
-                <small>Visualization provided by Ruth Ziegler 2016&nbsp;&#124;&nbsp;
-            <a href="" class="active" role="button" ng-click="open()">Sources and Methods</a>&nbsp;&#124;&nbsp;
-            </small>
-                <i class="fa fa-facebook-square fa-lg" aria-hidden="true"></i>
-                <i class="fa fa-twitter-square fa-lg" aria-hidden="true"></i>
-            </p>
+            <div id="disclaimer-main">
+                <p>
+                    <small>Visualization by Ruth Ziegler 2016&nbsp;&#124;&nbsp;
+                        <a href="" class="active" role="button" ng-click="open()">Sources and Methods</a>&nbsp;&#124;&nbsp;
+                    </small>
+                    <a href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fffv.kows.info"><i class="fa fa-facebook-square fa-lg" aria-hidden="true"></i></a>
+                    <a href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fffv.kows.info%2F&text=Flight Fare Visualization%20-%20Visualizing%20flight%20fare%20development%20to%20twenty%20destinations%20from%20Zurich&original_referer=http%3A%2F%2Fffv.kows.info%2F&via=ziegler.ruth&hashtags=dataviz,%20hkb,%20cas"><i class="fa fa-twitter-square fa-lg" aria-hidden="true"></i></a>
+                </p>
+            </div>
         </article>
     </div>
 </div>
