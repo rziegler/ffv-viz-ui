@@ -276,16 +276,16 @@ th.h48 {
 }
 
 #legend {
-    /*    width: 80%;*/
+    width: 60%;
     color: #777;
-    margin-top: 10px;
-    background: #f3f3f3;
+    margin-top: 6px;
+    /*    background: #f3f3f3;*/
     border: 1px solid #f0f0f0;
     overflow: hidden;
     padding: 5px 7px;
     -moz-border-radius: 3px;
     border-radius: 3px;
-    margin-bottom: 25px;
+    margin-bottom: 6px;
 }
 
 #legend ul {
@@ -295,6 +295,7 @@ th.h48 {
     list-style-type: none;
     overflow: hidden;
     clear: both;
+    padding: 0px;
 }
 
 #legend li {
@@ -310,6 +311,7 @@ th.h48 {
     margin-bottom: 0;
     font-size: 80%;
     line-height: 1.0;
+    text-align: center;
 }
 
 #legend p.more {
@@ -435,18 +437,11 @@ th.h48 {
 
 
 /*
-.controls label {
-    display: inline-block;
-    font-weight: 100;
-    width: 100%;
-    font-size: 80%;
-}
-*/
-
 #header {
     margin: 12px;
     margin-bottom: 24px;
 }
+*/
 
 .controls {
     position: absolute;
@@ -460,6 +455,7 @@ th.h48 {
 .controls div {
     width: 140px;
 }
+
 #filter-col {
     margin-left: 20px;
 }

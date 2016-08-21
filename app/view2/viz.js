@@ -255,7 +255,7 @@ function doViz(destination, destinations, days, allData, ffvData, deltaTimes, ca
 
         var svg = tilesChart.append("div")
             .classed("svg-container", true) //container class to make it responsive
-            .classed("col s12", true)
+            //            .classed("col s12", true)
             .append("svg")
             //responsive SVG needs these 2 attributes and no width and height attr
             .attr("preserveAspectRatio", "xMinYMin meet")
