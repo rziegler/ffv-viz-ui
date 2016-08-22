@@ -10,7 +10,9 @@ angular.module('ffvApp.view2', ['ngRoute'])
     });
 }])
 
-.controller('View2Ctrl', ['$scope', '$uibModal', 'Config', '$routeParams', '$location', function ($scope, $uibModal, configService, $routeParams, $location) {
+.controller('View2Ctrl', ['$scope', '$uibModal', 'Config', '$routeParams', '$location', '$http', function ($scope, $uibModal, configService, $routeParams, $location, $http) {
+
+    var loadType = "online"; //static
 
     $scope.itemArray = [
         {
@@ -124,24 +126,36 @@ angular.module('ffvApp.view2', ['ngRoute'])
     };
 
 
-    // reading the csv
-    d3.csv("data/data-dest-" + $scope.current.destination.destination + ".csv".toLowerCase(), function (d) {
-        //    d3.csv("data/data-dest-mad-small.csv".toLowerCase(), function (d) {
-        return {
-            destination: d.destination,
-            origin: d.origin,
-            carrier: d.carrier,
-            flightNumber: d.flightNumber,
-            departureDate: d.departureDate,
-            departureTime: d.departureTime,
-            departureWeekday: d.departureWeekday,
-            requestDate: d.requestDate,
-            deltaTime: +d.deltaTime,
-            price: +d.pmin,
-            bin: +d.binRanked
-        };
-    }, function (error, data) {
-        if (error) throw error;
+    if(loadType == "static") {
+        // reading the csv
+        d3.csv("data/data-dest-" + $scope.current.destination.destination + ".csv".toLowerCase(), function (d) {
+            //    d3.csv("data/data-dest-mad-small.csv".toLowerCase(), function (d) {
+            return {
+                destination: d.destination,
+                origin: d.origin,
+                carrier: d.carrier,
+                flightNumber: d.flightNumber,
+                departureDate: d.departureDate,
+                departureTime: d.departureTime,
+                departureWeekday: d.departureWeekday,
+                requestDate: d.requestDate,
+                deltaTime: +d.deltaTime,
+                price: +d.pmin,
+                bin: +d.binRanked
+            };
+        }, function (error, data) {
+            if (error) throw error;
+            loadFlights(data);
+            $scope.$apply();
+        });
+    }else{
+        $http.get("http://ffv.kows.info/api/flights/"+$scope.current.destination.destination).then(function(response) {
+           loadFlights(response.data);
+       });
+    }
+
+
+    function loadFlights(data){
 
         var descendingIntStrings = function (a, b) {
             a = parseInt(a);
@@ -202,12 +216,13 @@ angular.module('ffvApp.view2', ['ngRoute'])
         $scope.carriers = computeCarriers(data);
         //        $scope.carrier = carriers[0]; // default carrier
         $scope.deltaTimes = computeDeltaTimes(data);
-        $scope.$apply();
+
 
 
         doViz($scope.destination, $scope.destinations, $scope.days, allData, ffvData, $scope.deltaTimes, $scope.carriers);
-    });
 
+
+    }
 
 }]);
 

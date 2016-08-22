@@ -33,7 +33,7 @@
             <ui-select-match>
                 <span ng-bind="$select.selected.name"></span>
             </ui-select-match>
-            <ui-select-choices group-by="'type'" repeat="item in (days.values() | filter: $select.search) track by item.abbr">
+            <ui-select-choices repeat="item in (days.values() | filter: $select.search) track by item.abbr">
                 <span ng-bind="item.name"></span>
             </ui-select-choices>
         </ui-select>
