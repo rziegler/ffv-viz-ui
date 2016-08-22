@@ -14,31 +14,6 @@ angular.module('ffvApp.view2', ['ngRoute'])
 
     var loadType = "online"; //static
 
-    $scope.itemArray = [
-        {
-            id: 1,
-            name: 'first'
-        },
-        {
-            id: 2,
-            name: 'second'
-        },
-        {
-            id: 3,
-            name: 'third'
-        },
-        {
-            id: 4,
-            name: 'fourth'
-        },
-        {
-            id: 5,
-            name: 'fifth'
-        },
-    ];
-
-    $scope.selectedItem = $scope.itemArray[0];
-
     function isNotEmpty(obj) {
         return Object.keys(obj).length === 0 && obj.constructor === Object;
     }
@@ -126,7 +101,7 @@ angular.module('ffvApp.view2', ['ngRoute'])
     };
 
 
-    if(loadType == "static") {
+    if (loadType == "static") {
         // reading the csv
         d3.csv("data/data-dest-" + $scope.current.destination.destination + ".csv".toLowerCase(), function (d) {
             //    d3.csv("data/data-dest-mad-small.csv".toLowerCase(), function (d) {
@@ -148,14 +123,14 @@ angular.module('ffvApp.view2', ['ngRoute'])
             loadFlights(data);
             $scope.$apply();
         });
-    }else{
-        $http.get("http://ffv.kows.info/api/flights/"+$scope.current.destination.destination).then(function(response) {
-           loadFlights(response.data);
-       });
+    } else {
+        $http.get("http://ffv.kows.info/api/flights/" + $scope.current.destination.destination).then(function (response) {
+            loadFlights(response.data);
+        });
     }
 
 
-    function loadFlights(data){
+    function loadFlights(data) {
 
         var descendingIntStrings = function (a, b) {
             a = parseInt(a);

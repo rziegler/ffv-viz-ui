@@ -37,6 +37,14 @@ a {
     padding-bottom: 48px;
 }
 
+#header a {
+    color: inherit;
+}
+
+#header a:hover {
+    text-decoration: none;
+}
+
 
 /**/
 
