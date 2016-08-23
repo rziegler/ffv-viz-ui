@@ -10,6 +10,7 @@ angular.module('ffvApp', [
   'configService',
   'ffvApp.view1',
   'ffvApp.view2',
+  'ffvApp.view3',
   'ffvApp.version'
 ]).
 

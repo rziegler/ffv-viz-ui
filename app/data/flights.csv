@@ -1,0 +1,21 @@
+Booking Weekday,Destination,Departure Weekday
+7-Sun,AMS,7-Sun
+3-Wed,BEG,7-Sun
+6-Sat,BKK,4-Thu
+6-Sat,BOM,2-Tue
+5-Fri,DXB,2-Tue
+6-Sat,GRU,3-Wed
+3-Wed,ICN,4-Thu
+3-Wed,IST,4-Thu
+1-Mon,JFK,5-Fri
+3-Wed,KEF,2-Tue
+1-Mon,LHR,4-Thu
+1-Mon,MAD,2-Tue
+3-Wed,MLA,2-Tue
+1-Mon,NRT,2-Tue
+7-Sun,PEK,2-Tue
+6-Sat,RHO,3-Wed
+3-Wed,RIX,3-Wed
+1-Mon,SIN,4-Thu
+1-Mon,SVO,2-Tue
+1-Mon,YYZ,4-Thu
