@@ -95,7 +95,9 @@
         circles.selectAll(".circ")
             .data(data)
             .enter().append("circle")
-            .attr("class", "circ")
+            .attr("class", function (d) {
+                return "circ " + d.id.toLowerCase();
+            })
             .attr("cx", function (d, i) {
                 var distBetweenTwoTicks = Math.ceil(x(i) - x(i + 1))
                 var distBetweenTwoTicksDomain = Math.ceil(x.invert(distBetweenTwoTicks));

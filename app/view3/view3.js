@@ -24,11 +24,18 @@ angular.module('ffvApp.view3', ['ngRoute'])
 
     }
 
+    $scope.$on('hightlightDestinationOnParsetVis', function (event, destination) {
+        console.log("hightlightDestinationOnParsetVis > " + destination);
+
+        d3.selectAll(".circ.active").classed("active", false);
+        d3.selectAll(".circ." + destination.toLowerCase()).classed("active", true);
+    });
+
     function createParSetVisualizationStatic() {
         // reading the csv
         d3.csv("data/flights.csv", function (error, data) {
             console.log(data);
-            doParSetViz(data, ["Booking Weekday", "Destination", "Departure Weekday"]);
+            doParSetViz(data, ["Booking Weekday", "Destination", "Departure Weekday"], "Departure Weekday");
         });
     }
 
@@ -70,7 +77,7 @@ angular.module('ffvApp.view3', ['ngRoute'])
                     console.error(d);
                 }
             });
-            doParSetViz(map.values(), ["minWeekdayBookValue", "destination", "minWeekdayFlightValue"])
+            doParSetViz(map.values(), ["minWeekdayBookValue", "destination", "minWeekdayFlightValue"], "destination", $scope)
         });
     }
 

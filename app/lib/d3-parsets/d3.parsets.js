@@ -2,8 +2,9 @@
 // Functionality based on http://eagereyes.org/parallel-sets
 (function () {
     d3.parsets = function () {
-        var event = d3.dispatch("sortDimensions", "sortCategories"),
+        var event = d3.dispatch("sortDimensions", "sortCategories", "highlight"),
             dimensions_ = autoDimensions,
+            highlightDimension_ = autoHighlightDimension,
             dimensionFormat = String,
             tooltip_ = defaultTooltip,
             categoryTooltip = defaultCategoryTooltip,
@@ -305,8 +306,15 @@
                         for (var k in d.children) recurse(d.children[k]);
                     })(d);
                     highlight.shift();
-                    if (ancestors)
-                        while (d) highlight.push(d), d = d.parent;
+                    if (ancestors) {
+                        while (d) {
+                            var dimensionToHighlight = highlightDimension_.call(this, data);
+                            if (d.dimension === dimensionToHighlight) {
+                                event.highlight(d);
+                            }
+                            highlight.push(d), d = d.parent;
+                        }
+                    }
                     ribbon.filter(function (d) {
                         var active = highlight.indexOf(d.node) >= 0;
                         if (active) this.parentNode.appendChild(this);
@@ -439,6 +447,12 @@
         parsets.dimensions = function (_) {
             if (!arguments.length) return dimensions_;
             dimensions_ = d3.functor(_);
+            return parsets;
+        };
+
+        parsets.highlightDimension = function (_) {
+            if (!arguments.length) return hightlightDimension_;
+            highlightDimension_ = d3.functor(_);
             return parsets;
         };
 
@@ -654,6 +668,11 @@
 
     function autoDimensions(d) {
         return d.length ? d3.keys(d[0]).sort() : [];
+    }
+
+    function autoHighlightDimension(d) {
+        // first attribute of object
+        return d.length ? Object.keys(d[0])[0] : [];
     }
 
     function cancelEvent() {

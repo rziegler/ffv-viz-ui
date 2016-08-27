@@ -1,7 +1,8 @@
-function doParSetViz(data, dimensionLabels) {
+function doParSetViz(data, dimensionLabels, dimensionLabelHighlight, $scope) {
 
     var chart = d3.parsets()
         .dimensions(dimensionLabels)
+        .highlightDimension(dimensionLabelHighlight)
         .tension(0.5)
         .width(960); // 1 = no curves, 0.5 = curves
     //            .dimensions(["bookingDay", "departureDay"]);
@@ -21,6 +22,10 @@ function doParSetViz(data, dimensionLabels) {
         });
 
     var ice = false;
+
+    chart.on("highlight", function (d) {
+        $scope.$emit('hightlightDestinationOnParsetVis', d.name);
+    })
 
     //    d3.csv("data/flights.csv", function (error, csv) {
     vis.datum(data).call(chart);
