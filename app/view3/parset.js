@@ -2,7 +2,8 @@ function doParSetViz() {
 
     var chart = d3.parsets()
         .dimensions(["Booking Weekday", "Destination", "Departure Weekday"])
-        .tension(0.5); // 1 = no curves, 0.5 = curves
+        .tension(0.5)
+        .width(960); // 1 = no curves, 0.5 = curves
     //            .dimensions(["bookingDay", "departureDay"]);
 
     var vis = d3.select("#parset-vis").append("svg")

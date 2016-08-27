@@ -4,33 +4,9 @@
  */
 (function () {
 
-    var timeseriesFfv = function (spaced, data) {
+    var timeseries = function (spaced, data) {
         classd = spaced.replace(new RegExp(" "), ".");
         render(classd, spaced, data);
-    }
-
-    // ---------------------------------------------------------------------------------------------
-    // ---------------------------------- Time Manipulation ----------------------------------------
-    // ---------------------------------------------------------------------------------------------
-
-    function lessThanDay(d) {
-        return (d === "hours" || d === "minutes" || d === "seconds") ? true : false;
-    }
-
-    function getDate(d) {
-        var date = moment(d);
-        date.hour(1);
-        date.minute(0);
-        date.second(0);
-        return date.valueOf();
-    }
-
-    function getTime(d) {
-        var date = moment(d);
-        date.date(1);
-        date.month(0);
-        date.year(2012);
-        return date.valueOf();
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -38,8 +14,6 @@
     // ---------------------------------------------------------------------------------------------
 
     function render(classd, spaced, data) {
-
-        //        var padding = timeRangePad(_.pluck(data, 'value'));
 
         var margin = {
             top: 10,
@@ -71,14 +45,11 @@
         y.domain(d3.extent([0, 1]));
 
         var xAxis = d3.svg.axis().scale(x).orient("bottom")
-            //            .ticks(ticks * 2 - 1)
             .ticks(ticks)
             .tickSize(-height, 0);
 
         var yAxis = d3.svg.axis().scale(y).orient("left")
-            .ticks(1)
-            .tickSize(-width + margin.right, margin.left);
-        //            .tickFormat(d3.time.format(yFormat));
+            .tickValues([]) //http://stackoverflow.com/questions/19787925/create-a-d3-axis-without-tick-labels
 
         var svg = d3.select("." + classd).append("svg")
             .attr("width", width + margin.left + margin.right)
@@ -108,7 +79,7 @@
         circles.selectAll(".circ")
             .data(data)
             .enter().append("circle")
-            .attr("class", "circ-ffv")
+            .attr("class", "circ")
             .attr("cx", function (d) {
                 var xValue = d.value + 0.07 + (Math.random() * 86 / 100);
                 return (x(xValue));
@@ -120,10 +91,17 @@
             .attr("r", 9)
             .on("mouseover", function (d) {
                 console.log(d.id);
+                d3.select(this).classed("active", true);
+                redraw();
             })
-            .on("click", function (d) {
-                console.log(d);
-            })
+            .on("mouseout", function () {
+                d3.select(this).classed("active", false);
+                redraw();
+            });
+        //            .on("click", function (d) {
+        //                console.log(d);
+        //
+        //            })
     }
 
     /* Use this function, in conjunction to setting a time element to 'selected', to highlight the 
@@ -131,16 +109,18 @@
     function redraw() {
         d3.selectAll(".circ")
             .transition(10)
-            .style("opacity", function (d) {
-                return d.selected ? 1 : 0.6;
-            })
             .attr("r", function (d) {
-                return d.selected ? 15 : 7;
+                return 9;
+            });
+        d3.selectAll(".circ.active")
+            .transition(10)
+            .attr("r", function (d) {
+                return 15;
             });
     }
 
-    if (typeof define === "function" && define.amd) define(timeseriesFfv);
+    if (typeof define === "function" && define.amd) define(timeseries);
     else if (typeof module === "object" && module.exports) module.exports = timeseries;
-    this.timeseriesFfv = timeseriesFfv;
+    this.timeseries = timeseries;
 
 })();
