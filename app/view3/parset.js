@@ -1,7 +1,7 @@
-function doParSetViz() {
+function doParSetViz(data, dimensionLabels) {
 
     var chart = d3.parsets()
-        .dimensions(["Booking Weekday", "Destination", "Departure Weekday"])
+        .dimensions(dimensionLabels)
         .tension(0.5)
         .width(960); // 1 = no curves, 0.5 = curves
     //            .dimensions(["bookingDay", "departureDay"]);
@@ -22,118 +22,118 @@ function doParSetViz() {
 
     var ice = false;
 
-    d3.csv("data/flights.csv", function (error, csv) {
-        vis.datum(csv).call(chart);
+    //    d3.csv("data/flights.csv", function (error, csv) {
+    vis.datum(data).call(chart);
 
-        window.icicle = function () {
-            var newIce = this.checked,
-                tension = chart.tension();
-            if (newIce === ice) return;
-            if (ice = newIce) {
-                var dimensions = [];
-                vis.selectAll("g.dimension")
-                    .each(function (d) {
-                        dimensions.push(d);
-                    });
-                dimensions.sort(function (a, b) {
-                    return a.y - b.y;
+    window.icicle = function () {
+        var newIce = this.checked,
+            tension = chart.tension();
+        if (newIce === ice) return;
+        if (ice = newIce) {
+            var dimensions = [];
+            vis.selectAll("g.dimension")
+                .each(function (d) {
+                    dimensions.push(d);
                 });
-                var root = d3.parsets.tree({
-                        children: {}
-                    }, csv, dimensions.map(function (d) {
-                        return d.name;
-                    }), function () {
-                        return 1;
-                    }),
-                    nodes = partition(root),
-                    nodesByPath = {};
-                nodes.forEach(function (d) {
-                    var path = d.data.name,
-                        p = d;
-                    while ((p = p.parent) && p.data.name) {
-                        path = p.data.name + "\0" + path;
-                    }
-                    if (path) nodesByPath[path] = d;
+            dimensions.sort(function (a, b) {
+                return a.y - b.y;
+            });
+            var root = d3.parsets.tree({
+                    children: {}
+                }, csv, dimensions.map(function (d) {
+                    return d.name;
+                }), function () {
+                    return 1;
+                }),
+                nodes = partition(root),
+                nodesByPath = {};
+            nodes.forEach(function (d) {
+                var path = d.data.name,
+                    p = d;
+                while ((p = p.parent) && p.data.name) {
+                    path = p.data.name + "\0" + path;
+                }
+                if (path) nodesByPath[path] = d;
+            });
+            var data = [];
+            vis.on("mousedown.icicle", stopClick, true)
+                .select(".ribbon").selectAll("path")
+                .each(function (d) {
+                    var node = nodesByPath[d.path],
+                        s = d.source,
+                        t = d.target;
+                    s.node.x0 = t.node.x0 = 0;
+                    s.x0 = t.x0 = node.x;
+                    s.dx0 = s.dx;
+                    t.dx0 = t.dx;
+                    s.dx = t.dx = node.dx;
+                    data.push(d);
                 });
-                var data = [];
-                vis.on("mousedown.icicle", stopClick, true)
-                    .select(".ribbon").selectAll("path")
-                    .each(function (d) {
-                        var node = nodesByPath[d.path],
-                            s = d.source,
-                            t = d.target;
-                        s.node.x0 = t.node.x0 = 0;
-                        s.x0 = t.x0 = node.x;
-                        s.dx0 = s.dx;
-                        t.dx0 = t.dx;
-                        s.dx = t.dx = node.dx;
-                        data.push(d);
-                    });
-                iceTransition(vis.selectAll("path"))
-                    .attr("d", function (d) {
-                        var s = d.source,
-                            t = d.target;
-                        return ribbonPath(s, t, tension);
+            iceTransition(vis.selectAll("path"))
+                .attr("d", function (d) {
+                    var s = d.source,
+                        t = d.target;
+                    return ribbonPath(s, t, tension);
+                })
+                .style("stroke-opacity", 1);
+            iceTransition(vis.selectAll("text.icicle")
+                    .data(data)
+                    .enter().append("text")
+                    .attr("class", "icicle")
+                    .attr("text-anchor", "middle")
+                    .attr("dy", ".3em")
+                    .attr("transform", function (d) {
+                        return "translate(" + [d.source.x0 + d.source.dx / 2, d.source.dimension.y0 + d.target.dimension.y0 >> 1] + ")rotate(90)";
                     })
-                    .style("stroke-opacity", 1);
-                iceTransition(vis.selectAll("text.icicle")
-                        .data(data)
-                        .enter().append("text")
-                        .attr("class", "icicle")
-                        .attr("text-anchor", "middle")
-                        .attr("dy", ".3em")
-                        .attr("transform", function (d) {
-                            return "translate(" + [d.source.x0 + d.source.dx / 2, d.source.dimension.y0 + d.target.dimension.y0 >> 1] + ")rotate(90)";
-                        })
-                        .text(function (d) {
-                            return d.source.dx > 15 ? d.node.name : null;
-                        })
-                        .style("opacity", 1e-6))
-                    .style("opacity", 1);
-                iceTransition(vis.selectAll("g.dimension rect, g.category")
-                        .style("opacity", 1))
-                    .style("opacity", 1e-6)
-                    .each("end", function () {
-                        d3.select(this).attr("visibility", "hidden");
-                    });
-                iceTransition(vis.selectAll("text.dimension"))
-                    .attr("transform", "translate(0,-5)");
-                vis.selectAll("tspan.sort").style("visibility", "hidden");
-            } else {
-                vis.on("mousedown.icicle", null)
-                    .select(".ribbon").selectAll("path")
-                    .each(function (d) {
-                        var s = d.source,
-                            t = d.target;
-                        s.node.x0 = s.node.x;
-                        s.x0 = s.x;
-                        s.dx = s.dx0;
-                        t.node.x0 = t.node.x;
-                        t.x0 = t.x;
-                        t.dx = t.dx0;
-                    });
-                iceTransition(vis.selectAll("path"))
-                    .attr("d", function (d) {
-                        var s = d.source,
-                            t = d.target;
-                        return ribbonPath(s, t, tension);
+                    .text(function (d) {
+                        return d.source.dx > 15 ? d.node.name : null;
                     })
-                    .style("stroke-opacity", null);
-                iceTransition(vis.selectAll("text.icicle"))
-                    .style("opacity", 1e-6).remove();
-                iceTransition(vis.selectAll("g.dimension rect, g.category")
-                        .attr("visibility", null)
-                        .style("opacity", 1e-6))
-                    .style("opacity", 1);
-                iceTransition(vis.selectAll("text.dimension"))
-                    .attr("transform", "translate(0,-25)");
-                vis.selectAll("tspan.sort").style("visibility", null);
-            }
-        };
-        d3.select("#icicle")
-            .on("change", icicle)
-            .each(icicle);
-    });
+                    .style("opacity", 1e-6))
+                .style("opacity", 1);
+            iceTransition(vis.selectAll("g.dimension rect, g.category")
+                    .style("opacity", 1))
+                .style("opacity", 1e-6)
+                .each("end", function () {
+                    d3.select(this).attr("visibility", "hidden");
+                });
+            iceTransition(vis.selectAll("text.dimension"))
+                .attr("transform", "translate(0,-5)");
+            vis.selectAll("tspan.sort").style("visibility", "hidden");
+        } else {
+            vis.on("mousedown.icicle", null)
+                .select(".ribbon").selectAll("path")
+                .each(function (d) {
+                    var s = d.source,
+                        t = d.target;
+                    s.node.x0 = s.node.x;
+                    s.x0 = s.x;
+                    s.dx = s.dx0;
+                    t.node.x0 = t.node.x;
+                    t.x0 = t.x;
+                    t.dx = t.dx0;
+                });
+            iceTransition(vis.selectAll("path"))
+                .attr("d", function (d) {
+                    var s = d.source,
+                        t = d.target;
+                    return ribbonPath(s, t, tension);
+                })
+                .style("stroke-opacity", null);
+            iceTransition(vis.selectAll("text.icicle"))
+                .style("opacity", 1e-6).remove();
+            iceTransition(vis.selectAll("g.dimension rect, g.category")
+                    .attr("visibility", null)
+                    .style("opacity", 1e-6))
+                .style("opacity", 1);
+            iceTransition(vis.selectAll("text.dimension"))
+                .attr("transform", "translate(0,-25)");
+            vis.selectAll("tspan.sort").style("visibility", null);
+        }
+    };
+    d3.select("#icicle")
+        .on("change", icicle)
+        .each(icicle);
+    //    });
 
     function iceTransition(g) {
         return g.transition().duration(1000);
