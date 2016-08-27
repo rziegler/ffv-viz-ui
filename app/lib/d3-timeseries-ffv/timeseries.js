@@ -4,24 +4,25 @@
  */
 (function () {
 
-    var timeseries = function (spaced, data) {
+    var timeseries = function (spaced, data, title, width) {
         classd = spaced.replace(new RegExp(" "), ".");
-        render(classd, spaced, data);
+        render(classd, spaced, data, title, width);
     }
 
     // ---------------------------------------------------------------------------------------------
     // ------------------------------------- Rendering ---------------------------------------------
     // ---------------------------------------------------------------------------------------------
 
-    function render(classd, spaced, data) {
+    function render(classd, spaced, data, title, width) {
 
         var margin = {
-            top: 10,
-            right: 25,
+            top: 0,
+            right: 1,
             bottom: 15,
-            left: 35
+            left: 0
         }
-        var width = window.innerWidth - 150;
+
+        var width = width;
         var height = (200 - margin.top - margin.bottom);
 
         var dataMin = d3.min(data, function (d) {
@@ -31,7 +32,7 @@
             return d.value;
         });
 
-        var x = d3.scale.linear().range([0 + margin.right, width - margin.left]);
+        var x = d3.scale.linear().range([width - margin.left, 0 + margin.right]);
         var y = d3.scale.linear().range([margin.top, height - margin.bottom - margin.top]);
 
         // number of ticks is number of unique values
@@ -39,13 +40,12 @@
             return d.value;
         }).keys().length;
 
-        x.domain(d3.extent([dataMin, dataMax + 1]));
-
-
+        console.log("max " + dataMax);
+        x.domain(d3.extent([0, dataMax + 1]));
         y.domain(d3.extent([0, 1]));
 
         var xAxis = d3.svg.axis().scale(x).orient("bottom")
-            .ticks(ticks)
+            //            .ticks(dataMax + 1)
             .tickSize(-height, 0);
 
         var yAxis = d3.svg.axis().scale(y).orient("left")
@@ -64,7 +64,13 @@
             .attr("transform", "translate(" + margin.left + "," + (margin.top + (height - margin.bottom)) + ")")
             .call(xAxis)
             .selectAll("text")
-            .attr("dx", "8em");
+            .attr("dx", function (d) {
+                //                return "-3em";
+                //                console.log("XXX" + " " + d + " " + Math.floor(x(d) - x(d + 1)));
+                // move the text into the middle of two ticks (calculate the number of pixels and use the middle of it)
+                var distBetweenTwoTicks = Math.floor(x(d) - x(d + 1));
+                return -(distBetweenTwoTicks / 2);
+            });
 
         context.append("g")
             .attr("class", "y axis")
@@ -73,6 +79,17 @@
         //            .selectAll("text")
         //            .attr("dy", "8em");
 
+
+        var texts = context.append("g")
+
+        var textEnter = texts.append("text")
+            .attr("class", "dimension")
+            .attr("transform", "translate(0,25)");
+        textEnter.append("tspan")
+            .attr("class", "name")
+            .text(title);
+
+
         var circles = context.append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
 
@@ -80,17 +97,23 @@
             .data(data)
             .enter().append("circle")
             .attr("class", "circ")
-            .attr("cx", function (d) {
-                var xValue = d.value + 0.07 + (Math.random() * 86 / 100);
+            .attr("cx", function (d, i) {
+                var distBetweenTwoTicks = Math.ceil(x(i) - x(i + 1))
+                var distBetweenTwoTicksDomain = Math.ceil(x.invert(distBetweenTwoTicks));
+
+                var offset = distBetweenTwoTicksDomain / 100;
+                var randomPart = (Math.random() * (100 - distBetweenTwoTicksDomain * 2) / 100); // * 2 because the offset is on the left and right
+                //                var xValue = d.value + 0.07 + (Math.random() * 86 / 100); // 7% + 86% + 7% = 100%
+                var xValue = d.value + offset + randomPart; // 7% + 86% + 7% = 100%
                 return (x(xValue));
             })
             .attr("cy", function (d, i) {
-                var yValue = 0 + 0.07 + (Math.random() * 86 / 100);
+                var yValue = 0 + 0.27 + (Math.random() * 66 / 100); // 27% + 66% + 7% =100%
                 return (y(yValue));
             })
             .attr("r", 9)
             .on("mouseover", function (d) {
-                console.log(d.id);
+                console.log(d.id + " " + d.value);
                 d3.select(this).classed("active", true);
                 redraw();
             })
@@ -102,6 +125,8 @@
         //                console.log(d);
         //
         //            })
+
+
     }
 
     /* Use this function, in conjunction to setting a time element to 'selected', to highlight the 

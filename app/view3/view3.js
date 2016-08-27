@@ -27,6 +27,7 @@ angular.module('ffvApp.view3', ['ngRoute'])
 
     var ffvdata = getFfvData();
     console.log(ffvdata);
-    timeseries('timeseries-vis', ffvdata, true);
+    //    timeseries('timeseries', ffvdata, 'Weeks before flight to book', 960);
+    timeseries('timeseries', ffvdata, 'Booking week', 960);
 
 }]);
