@@ -40,7 +40,6 @@
             return d.value;
         }).keys().length;
 
-        console.log("max " + dataMax);
         x.domain(d3.extent([1, dataMax + 1]));
         y.domain(d3.extent([0, 1]));
 

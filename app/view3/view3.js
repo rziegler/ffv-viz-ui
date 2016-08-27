@@ -14,9 +14,6 @@ angular.module('ffvApp.view3', ['ngRoute'])
 
     var loadType = "online"; // online static
 
-    d3.csv("data/flights.csv", function (error, data) {
-        console.log(data);
-    });
     if (loadType == "static") {
         createParSetVisualizationStatic();
         createTimeseriesVisualizationStatic();

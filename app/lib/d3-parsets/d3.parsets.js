@@ -504,7 +504,7 @@
         function showTooltip(html) {
 
             var m = d3.mouse(body.node());
-            console.log("ruth" + html + ": " + m);
+            //            console.log("ruth" + html + ": " + m);
 
             tooltip
                 .style("display", "inline")
