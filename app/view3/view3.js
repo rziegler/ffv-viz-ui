@@ -25,8 +25,7 @@ angular.module('ffvApp.view3', ['ngRoute'])
     }
 
     $scope.$on('hightlightDestinationOnParsetVis', function (event, destination) {
-        console.log("hightlightDestinationOnParsetVis > " + destination);
-
+        //        console.log("hightlightDestinationOnParsetVis > " + destination);
         d3.selectAll(".circ.active").classed("active", false);
         if (destination !== '') {
             d3.selectAll(".circ." + destination.toLowerCase()).classed("active", true);
@@ -34,8 +33,7 @@ angular.module('ffvApp.view3', ['ngRoute'])
     });
 
     $scope.$on('hightlightDestinationOnTimeseriesVis', function (event, destination) {
-        console.log("hightlightDestinationOnTimeseriesVis > " + destination);
-
+        //        console.log("hightlightDestinationOnTimeseriesVis > " + destination);
         if (destination === '') {
             d3.selectAll(".ribbon path").classed("selected", false);
         } else {
