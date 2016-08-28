@@ -117,12 +117,10 @@
                 console.log(d.id + " " + d.value);
                 d3.select(this).classed("active", true);
                 $scope.$emit('hightlightDestinationOnTimeseriesVis', d.id);
-                //                redraw();
             })
             .on("mouseout", function () {
                 d3.select(this).classed("active", false);
                 $scope.$emit('hightlightDestinationOnTimeseriesVis', '');
-                //                redraw();
             });
         //            .on("click", function (d) {
         //                console.log(d);
@@ -130,21 +128,6 @@
         //            })
 
 
-    }
-
-    /* Use this function, in conjunction to setting a time element to 'selected', to highlight the 
-    data point on the timeseries. */
-    function redraw() {
-        d3.selectAll(".circ")
-            .transition(10)
-            .attr("r", function (d) {
-                return 9;
-            });
-        d3.selectAll(".circ.active")
-            .transition(10)
-            .attr("r", function (d) {
-                return 15;
-            });
     }
 
     if (typeof define === "function" && define.amd) define(timeseries);
