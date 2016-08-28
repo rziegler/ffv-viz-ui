@@ -24,8 +24,18 @@ function doParSetViz(data, dimensionLabels, dimensionLabelHighlight, $scope) {
     var ice = false;
 
     chart.on("highlight", function (d) {
-        $scope.$emit('hightlightDestinationOnParsetVis', d.name);
-    })
+        if (d === '') {
+            // only emit event when it is inside parset svg
+            //            var rpos = vis.createSVGRect();
+            //            var rpos = new SVGRect();
+            //            var intersections = vis.getIntersectionList(null, null);
+            //            console.log(rpos);
+            //            console.log(intersections);
+            //            $scope.$emit('hightlightDestinationOnParsetVis', '');
+        } else {
+            $scope.$emit('hightlightDestinationOnParsetVis', d.name);
+        }
+    });
 
     //    d3.csv("data/flights.csv", function (error, csv) {
     vis.datum(data).call(chart);

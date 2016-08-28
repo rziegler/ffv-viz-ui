@@ -4,16 +4,16 @@
  */
 (function () {
 
-    var timeseries = function (spaced, data, title, width) {
+    var timeseries = function (spaced, data, title, width, $scope) {
         classd = spaced.replace(new RegExp(" "), ".");
-        render(classd, spaced, data, title, width);
+        render(classd, spaced, data, title, width, $scope);
     }
 
     // ---------------------------------------------------------------------------------------------
     // ------------------------------------- Rendering ---------------------------------------------
     // ---------------------------------------------------------------------------------------------
 
-    function render(classd, spaced, data, title, width) {
+    function render(classd, spaced, data, title, width, $scope) {
 
         var margin = {
             top: 0,
@@ -116,11 +116,13 @@
             .on("mouseover", function (d) {
                 console.log(d.id + " " + d.value);
                 d3.select(this).classed("active", true);
-                redraw();
+                $scope.$emit('hightlightDestinationOnTimeseriesVis', d.id);
+                //                redraw();
             })
             .on("mouseout", function () {
                 d3.select(this).classed("active", false);
-                redraw();
+                $scope.$emit('hightlightDestinationOnTimeseriesVis', '');
+                //                redraw();
             });
         //            .on("click", function (d) {
         //                console.log(d);

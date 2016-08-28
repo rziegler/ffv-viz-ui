@@ -61,6 +61,10 @@
     fill-opacity: .5;
 }
 
+.ribbon path.selected {
+    fill-opacity: 0.9;
+}
+
 .ribbon path.active {
     fill-opacity: .9;
 }

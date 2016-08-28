@@ -4,6 +4,32 @@
     padding: 5px 0;
 }
 
+
+/* Chrome, Safari, Opera */
+
+@-webkit-keyframes highlight {
+    0% {
+        opacity: 0.6;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+/* Standard syntax */
+
+@keyframes highlight {
+    0% {
+        opacity: 0.6;
+        r: 1%;
+    }
+    100% {
+        opacity: 1;
+        r: 2%;
+    }
+}
+
 .circ {
     fill: #D35400;
     opacity: 0.6;
@@ -12,7 +38,10 @@
 }
 
 .circ.active {
-    opacity: 1;
+    /*    opacity: 1;*/
+    animation-name: highlight;
+    animation-duration: 100ms;
+    animation-fill-mode: forwards;
 }
 
 .domain {

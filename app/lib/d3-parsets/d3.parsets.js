@@ -241,7 +241,8 @@
                         .attr("class", function (d) {
                             return "category-" + d.major;
                         })
-                        .attr("d", ribbonPath);
+                        .attr("d", ribbonPath)
+                        .attr("id", evalDimensionId);
                     ribbon.sort(function (a, b) {
                         return b.count - a.count;
                     });
@@ -264,6 +265,20 @@
                         })
                         .attr("d", ribbonPathStatic);
                     mouse.exit().remove();
+                }
+
+                // evaluated the id for the dimension which is the name and value of the set hightlightDimension
+                function evalDimensionId(d) {
+                    var result = d.dimension + "-" + d.name;
+                    while (d.parent) {
+                        var dimensionToHighlight = highlightDimension_.call(this, data);
+                        if (d.dimension === dimensionToHighlight) {
+                            result = d.dimension + "-" + d.name;
+                            break;
+                        }
+                        d = d.parent;
+                    }
+                    return result;
                 }
 
                 // Animates the x-coordinates only of the relevant ribbon paths.
@@ -451,7 +466,7 @@
         };
 
         parsets.highlightDimension = function (_) {
-            if (!arguments.length) return hightlightDimension_;
+            if (!arguments.length) return highlightDimension_;
             highlightDimension_ = d3.functor(_);
             return parsets;
         };

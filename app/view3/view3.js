@@ -28,7 +28,19 @@ angular.module('ffvApp.view3', ['ngRoute'])
         console.log("hightlightDestinationOnParsetVis > " + destination);
 
         d3.selectAll(".circ.active").classed("active", false);
-        d3.selectAll(".circ." + destination.toLowerCase()).classed("active", true);
+        if (destination !== '') {
+            d3.selectAll(".circ." + destination.toLowerCase()).classed("active", true);
+        }
+    });
+
+    $scope.$on('hightlightDestinationOnTimeseriesVis', function (event, destination) {
+        console.log("hightlightDestinationOnTimeseriesVis > " + destination);
+
+        if (destination === '') {
+            d3.selectAll(".ribbon path").classed("selected", false);
+        } else {
+            d3.selectAll("path#destination-" + destination).classed("selected", true);
+        }
     });
 
     function createParSetVisualizationStatic() {
@@ -95,7 +107,7 @@ angular.module('ffvApp.view3', ['ngRoute'])
         }
 
         var ffvdata = getFfvData();
-        timeseries('timeseries', ffvdata, 'Booking week', 960);
+        timeseries('timeseries', ffvdata, 'Booking week', 960, $scope);
     }
 
     function createTimeseriesVisualizationOnline() {
@@ -125,7 +137,7 @@ angular.module('ffvApp.view3', ['ngRoute'])
                 }
             });
             //    timeseries('timeseries', map.values(), 'Weeks before flight to book', 960);
-            timeseries('timeseries', map.values(), 'Booking week', 960);
+            timeseries('timeseries', map.values(), 'Booking week', 960, $scope);
         });
 
         function calculateWeekWithMaxMinFlights(d) {
