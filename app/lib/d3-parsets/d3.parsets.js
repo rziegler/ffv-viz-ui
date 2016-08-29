@@ -267,7 +267,7 @@
                     mouse.exit().remove();
                 }
 
-                // evaluated the id for the dimension which is the name and value of the set hightlightDimension
+                // evaluate the id for the dimension which is the name and value of the set hightlightDimension
                 function evalDimensionId(d) {
                     var result = d.dimension + "-" + d.name;
                     while (d.parent) {
@@ -341,6 +341,7 @@
                 function unhighlight() {
                     if (dragging) return;
                     ribbon.classed("active", false);
+                    event.highlight('');
                     hideTooltip();
                 }
 

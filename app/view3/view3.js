@@ -87,7 +87,7 @@ angular.module('ffvApp.view3', ['ngRoute'])
                     console.error(d);
                 }
             });
-            doParSetViz(map.values(), ["minWeekdayBookValue", "destination", "minWeekdayFlightValue"], "destination", $scope)
+            doParSetViz(map.values(), ["minWeekdayBookValue", "destination", "minWeekdayFlightValue"], "destination", $scope, configService)
         });
     }
 

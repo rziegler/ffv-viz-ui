@@ -214,6 +214,16 @@ configService.factory('Config', ['$resource', 'envService',
             return destinationData;
         };
 
+        var getDestinationDataForDestination = function (destCode) {
+            var result = {};
+            destinationData.values().forEach(function (entry) {
+                if (entry.destination == destCode) {
+                    result = entry;
+                }
+            });
+            return result;
+        }
+
         var getCurrentDestination = function () {
             return currentDestination;
         }
@@ -286,6 +296,7 @@ configService.factory('Config', ['$resource', 'envService',
 
         return {
             getDestinationData: getDestinationData,
+            getDestinationDataForDestination: getDestinationDataForDestination,
             getCurrentDestination: getCurrentDestination,
             setCurrentDestination: setCurrentDestination,
             setCurrentDestinationByCountry: setCurrentDestinationByCountry,

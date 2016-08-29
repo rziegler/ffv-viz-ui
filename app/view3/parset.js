@@ -1,8 +1,24 @@
-function doParSetViz(data, dimensionLabels, dimensionLabelHighlight, $scope) {
+function doParSetViz(data, dimensionLabels, dimensionLabelHighlight, $scope, configService) {
 
     var chart = d3.parsets()
         .dimensions(dimensionLabels)
         .highlightDimension(dimensionLabelHighlight)
+        .tooltip(function (d) {
+            var percent = d3.format("%");
+
+            while (d.dimension !== "destination") {
+                d = d.parent;
+            }
+
+            var current = data.filter(function (item) {
+                return item.destination === d.name;
+            })[0];
+
+            var destData = configService.getDestinationDataForDestination(current.destination);
+            return "<p>" + destData.destinationName + " (" + destData.destination +
+                ")</p><p>Book on " + current.minWeekdayBookValue + " (" + percent(current.minWeekdayBookProbability) + " probablity)" +
+                "</p><p>Fly on " + current.minWeekdayFlightValue + " (" + percent(current.minWeekdayFlightProbability) + " probablity)</p>";
+        })
         .tension(0.5)
         .width(960); // 1 = no curves, 0.5 = curves
     //            .dimensions(["bookingDay", "departureDay"]);
@@ -23,15 +39,22 @@ function doParSetViz(data, dimensionLabels, dimensionLabelHighlight, $scope) {
 
     var ice = false;
 
+    // listener for the hightlight event
     chart.on("highlight", function (d) {
         if (d === '') {
-            // only emit event when it is inside parset svg
-            //            var rpos = vis.createSVGRect();
-            //            var rpos = new SVGRect();
-            //            var intersections = vis.getIntersectionList(null, null);
-            //            console.log(rpos);
-            //            console.log(intersections);
-            //            $scope.$emit('hightlightDestinationOnParsetVis', '');
+            var coordinates = [0, 0];
+            coordinates = d3.mouse(d3.select("#parset-vis svg   ").node());
+            var mouseX = coordinates[0];
+            var mouseY = coordinates[1];
+
+            var svgWidth = d3.select("#parset-vis svg").attr("width");
+            var svgHeight = d3.select("#parset-vis svg").attr("height");
+
+            if (mouseX > 0 && mouseX < svgWidth) {
+                if (mouseY > 0 && mouseY < svgHeight) {
+                    $scope.$emit('hightlightDestinationOnParsetVis', '');
+                }
+            }
         } else {
             $scope.$emit('hightlightDestinationOnParsetVis', d.name);
         }
@@ -195,23 +218,5 @@ function doParSetViz(data, dimensionLabels, dimensionLabelHighlight, $scope) {
             return lo > 1 ? t.substr(0, lo - 2) + "…" : "";
         };
     }
-
-    d3.select("#file").on("change", function () {
-        var file = this.files[0],
-            reader = new FileReader;
-        reader.onloadend = function () {
-            var csv = d3.csv.parse(reader.result);
-            vis.datum(csv).call(chart
-                .value(csv[0].hasOwnProperty("Number") ? function (d) {
-                    return +d.Number;
-                } : 1)
-                .dimensions(function (d) {
-                    return d3.keys(d[0]).filter(function (d) {
-                        return d !== "Number";
-                    }).sort();
-                }));
-        };
-        reader.readAsText(file);
-    });
 
 }

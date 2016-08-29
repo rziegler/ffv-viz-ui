@@ -128,3 +128,7 @@
     position: absolute;
     padding: 5px;
 }
+
+.parsets-tooltip > p:first-of-type {
+    font-weight: 600;
+}
