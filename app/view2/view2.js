@@ -20,7 +20,7 @@ angular.module('ffvApp.view2', ['ngRoute'])
 
     $scope.destinations = configService.getDestinationData();
     $scope.days = configService.getDays();
-    configService.setCurrentDestination($routeParams.dest);
+    configService.setCurrentDestination($routeParams.dest.toUpperCase());
 
     $scope.current = {
         destination: configService.getCurrentDestination(),
