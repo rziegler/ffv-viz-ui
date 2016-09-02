@@ -43,8 +43,8 @@ angular.module('ffvApp.view3', ['ngRoute'])
 
     function createParSetVisualizationStatic() {
         // reading the csv
-        d3.csv("data/flights.csv", function (error, data) {
-            console.log(data);
+        d3.csv("data/flights-2.csv", function (error, data) {
+            sortParSetData(data, "Booking Weekday");
             doParSetViz(data, ["Booking Weekday", "Destination", "Departure Weekday"], "Departure Weekday");
         });
     }
@@ -87,8 +87,52 @@ angular.module('ffvApp.view3', ['ngRoute'])
                     console.error(d);
                 }
             });
-            doParSetViz(map.values(), ["minWeekdayBookValue", "destination", "minWeekdayFlightValue"], "destination", $scope, configService)
+
+            var data = map.values();
+            console.log(data[0]);
+            //            sortParSetData(data, "minWeekdayFlightValue");
+            sortParSetData(data, "minWeekdayBookValue");
+            doParSetViz(data, ["minWeekdayBookValue", "destination", "minWeekdayFlightValue"], "destination", $scope, configService)
         });
+    }
+
+    function sortParSetData(data, sortBy) {
+        console.log(data);
+
+        // sort the data initially before starting to visualize
+        function weekdayIdx(name) {
+            switch (name) {
+            case 'Mon':
+                return 1;
+            case 'Tue':
+                return 2;
+            case 'Wed':
+                return 3;
+            case 'Thu':
+                return 4;
+            case 'Fri':
+                return 5;
+            case 'Sat':
+                return 6;
+            case 'Sun':
+                return 7;
+            default:
+                // if it is not a weekday, use the name itself
+                return name;
+            }
+        }
+
+        data.sort(function (a, b) {
+            return weekdayIdx(a[sortBy]) > weekdayIdx(b[sortBy]) ? 1 : -1;
+        });
+
+        //        data.sort(function (a, b) {
+        //            if ((weekdayIdx(a["Booking Weekday"]) > weekdayIdx(b["Booking Weekday"])) == 0) {
+        //                return a["Destination"] > b["Destionation"] ? 1 : -1;
+        //            } else {
+        //                return 0;
+        //            };
+        //        });
     }
 
     function createTimeseriesVisualizationStatic() {

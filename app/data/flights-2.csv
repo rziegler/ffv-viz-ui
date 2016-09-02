@@ -1,0 +1,21 @@
+Booking Weekday,Destination,Departure Weekday
+Sun,AMS,Sun
+Wed,BEG,Sun
+Sat,BKK,Thu
+Sat,BOM,Tue
+Fri,DXB,Tue
+Sat,GRU,Wed
+Wed,ICN,Thu
+Wed,IST,Thu
+Mon,JFK,Fri
+Wed,KEF,Tue
+Mon,LHR,Thu
+Mon,MAD,Tue
+Wed,MLA,Tue
+Mon,NRT,Tue
+Sun,PEK,Tue
+Sat,RHO,Wed
+Wed,RIX,Wed
+Mon,SIN,Thu
+Mon,SVO,Tue
+Mon,YYZ,Thu

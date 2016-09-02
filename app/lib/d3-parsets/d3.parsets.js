@@ -197,7 +197,7 @@
                             }));
                     dimension.select("text").select("tspan.sort.alpha")
                         .on("click.parsets", sortBy("alpha", function (a, b) {
-                            return a.name < b.name ? 1 : -1;
+                            return weekdayIdx(a.name) < weekdayIdx(b.name) ? 1 : -1;
                         }, dimension));
                     dimension.select("text").select("tspan.sort.size")
                         .on("click.parsets", sortBy("size", function (a, b) {
@@ -226,6 +226,28 @@
                         updateRibbons();
                         event.sortCategories();
                     };
+                }
+
+                function weekdayIdx(name) {
+                    switch (name) {
+                    case 'Mon':
+                        return 1;
+                    case 'Tue':
+                        return 2;
+                    case 'Wed':
+                        return 3;
+                    case 'Thu':
+                        return 4;
+                    case 'Fri':
+                        return 5;
+                    case 'Sat':
+                        return 6;
+                    case 'Sun':
+                        return 7;
+                    default:
+                        // if it is not a weekday, use the name itself
+                        return name;
+                    }
                 }
 
                 function updateRibbons() {
