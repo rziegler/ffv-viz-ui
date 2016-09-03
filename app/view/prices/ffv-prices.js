@@ -1,4 +1,4 @@
-function priceViz($scope, $uibModal, configService, $routeParams, $location, $http, loadType) {
+function priceViz($scope, $uibModal, configService, $routeParams, $location, $http, loadType, deltaTime) {
 
     function isNotEmpty(obj) {
         return Object.keys(obj).length === 0 && obj.constructor === Object;
@@ -110,7 +110,7 @@ function priceViz($scope, $uibModal, configService, $routeParams, $location, $ht
             $scope.$apply();
         });
     } else {
-        $http.get("http://ffv.kows.info/api/flights/" + $scope.current.destination.destination).then(function (response) {
+        $http.get("http://ffv.kows.info/api/flights/" + $scope.current.destination.destination + "?delta=" + deltaTime).then(function (response) {
             loadFlights(response.data);
         });
     }

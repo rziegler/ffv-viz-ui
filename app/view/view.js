@@ -12,10 +12,11 @@ angular.module('ffvApp.view', ['ngRoute'])
 
 .controller('ViewCtrl', ['$scope', '$uibModal', 'Config', '$routeParams', '$location', '$http', '$q', function ($scope, $uibModal, configService, $routeParams, $location, $http, $q) {
 
-    var loadType = "online"; //static
+    var loadType = "online"; //static online
+    var deltaTime = 49;
 
-    parsetViz($scope, configService, $location, $http, $q, loadType);
-    priceViz($scope, $uibModal, configService, $routeParams, $location, $http, loadType);
+    parsetViz($scope, configService, $location, $http, $q, loadType, deltaTime);
+    priceViz($scope, $uibModal, configService, $routeParams, $location, $http, loadType, deltaTime);
 
 
 

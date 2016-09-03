@@ -1,4 +1,4 @@
-function parsetViz($scope, configService, $location, $http, $q, loadType) {
+function parsetViz($scope, configService, $location, $http, $q, loadType, deltaTime) {
 
     if (loadType == "static") {
         createParSetVisualizationStatic();
@@ -39,8 +39,8 @@ function parsetViz($scope, configService, $location, $http, $q, loadType) {
         // create two requests (minWeekdayFlight and minWeekdayBook) for every destination
         var requests = [];
         configService.getDestinationData().forEach(function (key, value) {
-            requests.push($http.get("http://ffv.kows.info/api/minWeekdayFlight/" + value.destination));
-            requests.push($http.get("http://ffv.kows.info/api/minWeekdayBook/" + value.destination));
+            requests.push($http.get("http://ffv.kows.info/api/minWeekdayFlight/" + value.destination + "?delta=" + deltaTime));
+            requests.push($http.get("http://ffv.kows.info/api/minWeekdayBook/" + value.destination + "?delta=" + deltaTime));
         });
 
         // wait until all requests are done
@@ -51,7 +51,8 @@ function parsetViz($scope, configService, $location, $http, $q, loadType) {
 
             responses.forEach(function (d) {
                 if (d.statusText === "OK") {
-                    var urlSplitted = d.config.url.split("/");
+                    var separators = ['/', '\\\?'];
+                    var urlSplitted = d.config.url.split(new RegExp(separators.join('|'), 'g'));
                     //                    console.log(urlSplitted[4] + " " + urlSplitted[5]);
 
                     if (map.has(urlSplitted[5])) {
@@ -142,7 +143,7 @@ function parsetViz($scope, configService, $location, $http, $q, loadType) {
         // create a request (minhist) for every destination
         var requests = [];
         configService.getDestinationData().forEach(function (key, value) {
-            requests.push($http.get("http://ffv.kows.info/api/minhist/" + value.destination));
+            requests.push($http.get("http://ffv.kows.info/api/minhist/" + value.destination + "?delta=" + deltaTime));
         });
 
         // wait until all requests are done
@@ -154,7 +155,8 @@ function parsetViz($scope, configService, $location, $http, $q, loadType) {
             responses.forEach(function (d) {
                 if (d.statusText === "OK") {
                     // create new obj and add attributes
-                    var urlSplitted = d.config.url.split("/");
+                    var separators = ['/', '\\\?'];
+                    var urlSplitted = d.config.url.split(new RegExp(separators.join('|'), 'g'));
                     var obj = {
                         "id": urlSplitted[5],
                         "value": calculateWeekWithMaxMinFlights(d)

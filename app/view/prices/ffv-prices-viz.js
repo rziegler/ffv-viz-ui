@@ -17,6 +17,28 @@ function doViz(destination, destinations, days, allData, ffvData, deltaTimes, ca
     var dateParser = d3.time.format("%Y-%m-%d");
     var timeParser = d3.time.format("%H:%M:%S");
 
+    var margin = {
+        top: 16,
+        right: 0,
+        bottom: 0,
+        left: 50
+    };
+    //        var width = 960 - margin.left - margin.right;
+    //        var height = 960 - margin.top - margin.bottom;
+
+    var widthNoMargins = 960;
+    var width = widthNoMargins + margin.left + margin.right;
+
+    var gridSize = Math.floor(widthNoMargins / deltaTimes.length);
+    var gridSizeDivider = 2;
+    var gridSizeY = gridSize / gridSizeDivider;
+    console.log(gridSizeY);
+
+
+    // use 2 buckets more from colorbrewer but then drop the 2 lightest colors) */
+    var colorsOffset = 2;
+    var colors = colorbrewer.OrRd[buckets + colorsOffset];
+
     d3.select('#vis').classed(colorScheme, true);
 
 
@@ -54,11 +76,10 @@ function doViz(destination, destinations, days, allData, ffvData, deltaTimes, ca
     /* ************************** */
 
     function drawHourlyChart(carrier, row) {
-
         d3.selectAll('#hourly_values svg').remove();
-
-        var w = 750,
-            h = 150;
+        //        var w = 750;
+        var w = width;
+        var h = 150;
 
         var rowData = ffvData[carrier][row];
 
@@ -71,8 +92,13 @@ function doViz(destination, destinations, days, allData, ffvData, deltaTimes, ca
         var chart = d3.select('#hourly_values .svg')
             .append('svg:svg')
             .attr('class', 'chart')
-            .attr('width', 300)
-            .attr('height', h + 20); // + 20 for the scale below the chart
+            //responsive SVG needs these 2 attributes and no width and height attr
+            .attr("preserveAspectRatio", "xMinYMin meet")
+            .attr("viewBox", "0 0 " + width + " " + 200)
+            //class to make it responsive
+            .classed("svg-content-responsive", true)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
         var rect = chart.selectAll('rect'),
             text = chart.selectAll('text');
@@ -82,17 +108,22 @@ function doViz(destination, destinations, days, allData, ffvData, deltaTimes, ca
             .enter()
             .append('svg:rect')
             .attr('x', function (d, i) {
-                return i * 12;
+                return i * gridSize + 0.5;
             })
             .attr('y', function (d, i) {
                 return h - y(d.values[0].price);
             })
+            .attr("rx", 2)
+            .attr("ry", 2)
             .attr('height', function (d) {
                 return y(d.values[0].price);
             })
-            .attr('width', 10)
+            .attr('width', gridSize - 1)
+            .style("fill", function (d) {
+                return colors[colorsOffset + d.values[0].bin - 1];
+            })
             .attr('class', function (d, i) {
-                return 'hr' + i;
+                return 'hr' + i + ' bordered';
             });
 
         text.data(rowData.values)
@@ -102,7 +133,7 @@ function doViz(destination, destinations, days, allData, ffvData, deltaTimes, ca
                 return (i % 7) ? 'hidden hr' + i : 'visible hr' + i
             })
             .attr("x", function (d, i) {
-                return i * 12
+                return i * gridSize + 2
             })
             .attr("y", 166)
             .attr("text-anchor", 'left')
@@ -119,7 +150,12 @@ function doViz(destination, destinations, days, allData, ffvData, deltaTimes, ca
         var selDepartureDate = selFlight.values[deltaTime].values[0].departureDate;
         var selDepartureTime = selFlight.values[deltaTime].values[0].departureTime;
 
-        d3.select('#wtf .subtitle').html('Price development for ' + selFlightNumber + ' on ' + selDepartureDate + ' at ' + selDepartureTime);
+        var parser = d3.time.format("%Y-%m-%d %H:%M:%S");
+        var format = d3.time.format("%d.%m.%Y %H:%M");
+
+        var dateTime = parser.parse(selDepartureDate + " " + selDepartureTime)
+
+        d3.select('#wtf .subtitle').html('Price development for<br>' + selFlightNumber + ' on ' + format(dateTime));
 
         var selPrice = selFlight.values[deltaTime].values[0].price;
         d3.select('#wtf .price').html('CHF ' + selPrice);
@@ -128,7 +164,7 @@ function doViz(destination, destinations, days, allData, ffvData, deltaTimes, ca
     /* ************************** */
 
     function clearHourlyText() {
-        d3.select('#wtf .subtitle').html('Daily price development');
+        d3.select('#wtf .subtitle').html('Flight price development');
         d3.select('#wtf .price').html('&nbsp;');
     }
 
@@ -218,31 +254,12 @@ function doViz(destination, destinations, days, allData, ffvData, deltaTimes, ca
         }).values().sort(ascendingDateTimeStringsFromObj);
         //        console.log(filteredTilesData);
 
-        var margin = {
-            top: 16,
-            right: 0,
-            bottom: 0,
-            left: 60
-        };
-        //        var width = 960 - margin.left - margin.right;
-        //        var height = 960 - margin.top - margin.bottom;
-
-        var widthNoMargins = 960;
-        var width = widthNoMargins + margin.left + margin.right;
-        var gridSize = Math.floor(widthNoMargins / deltaTimes.length);
-        var gridSizeDivider = 2;
-        var gridSizeY = gridSize / gridSizeDivider;
         // dynamically calc height based on number of flights
         var height = filteredDepartureDateData.length * gridSizeY + margin.top + margin.bottom;
         //        console.log(width + ":" + height);
 
         var legendElementWidth = gridSize * 2;
         var maxDeltaTime = d3.max(deltaTimes);
-
-        // use 2 buckets more from colorbrewer but then drop the 2 lightest colors) */
-        var colorsOffset = 2;
-        var colors = colorbrewer.OrRd[buckets + colorsOffset];
-
 
         //        var svg = d3.select("#tiles-chart").append("svg")
         //            .attr("width", width + margin.left + margin.right)
@@ -271,7 +288,7 @@ function doViz(destination, destinations, days, allData, ffvData, deltaTimes, ca
             .data(deltaTimes)
             .enter().append("text")
             .text(function (d) {
-                return d;
+                return d % 2 == 0 ? "" : d;
             })
             .attr("x", function (d, i) {
                 return i * gridSize;
@@ -280,7 +297,7 @@ function doViz(destination, destinations, days, allData, ffvData, deltaTimes, ca
             .style("text-anchor", "middle")
             .attr("transform", "translate(" + gridSizeY + ", -6)")
             .attr("class", function (d, i) {
-                return ((i >= 7 && i <= 16) ? "deltaTimeLabel mono axis axis-worktime" : "deltaTimeLabel mono axis");
+                return "deltaTimeLabel mono axis";
             });
 
         // header text column (departure dates) on y-axis
@@ -292,22 +309,23 @@ function doViz(destination, destinations, days, allData, ffvData, deltaTimes, ca
                 if (i == 0 || (i > 0 && d.departureDate != filteredDepartureDateData[i - 1].departureDate)) {
                     var ddSplitted = d.departureDate.split("-");
                     var ddShort = ddSplitted[2] + "." + ddSplitted[1];
-                    return days.get(d.departureWeekday).abbr + " " + ddShort;
+                    return days.get(d.departureWeekday).abbr + ", " + ddShort + ".";
                 } else {
                     return "";
                 }
             })
-            .attr("x", 0)
+            .attr("x", -margin.left)
             .attr("y", function (d, i) {
                 return i * gridSizeY;
             })
-            .style("text-anchor", "end")
-            .attr("transform", "translate(-6," + gridSizeY / 1.2 + ")")
+            .style("text-anchor", "start")
+            .attr("transform", "translate(0," + gridSizeY / 1.2 + ")")
             .attr("class", function (d, i) {
                 return "departureDayLabel mono axis";
             });
 
         // draw the tiles
+        console.log(gridSizeY);
         var cards = svg.selectAll(".price")
             .data(filteredTilesData, function (d) {
                 return d.departureDate + ":" + d.departureTime + ":" + d.deltaTime;
@@ -372,7 +390,7 @@ function doViz(destination, destinations, days, allData, ffvData, deltaTimes, ca
 
     function selectHourlyChartBar(hour) {
         d3.selectAll('#hourly_values .chart rect').classed('sel', false);
-        d3.selectAll('#hourly_values .chart rect.hr' + hour).classed('sel', true);
+        d3.selectAll('#hourly_values .chart rect.hr' + hour + ".bordered").classed('sel', true);
 
         d3.selectAll('#hourly_values .chart text').classed('hidden', true);
         d3.selectAll('#hourly_values .chart text.hr' + hour).classed('hidden', false);

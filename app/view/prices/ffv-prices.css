@@ -16,7 +16,7 @@
 
 rect.bordered {
     stroke: #FFF;
-    stroke-width: 1px;
+    stroke-width: 0.5px;
 }
 
 #tiles-chart {
@@ -38,16 +38,7 @@ rect.bordered {
 
 text.mono {
     font-size: 8pt;
-    /*    font-family: Consolas, courier;*/
     fill: #aaa;
-}
-
-text.axis-workweek {
-    fill: #000;
-}
-
-text.axis-worktime {
-    fill: #000;
 }
 
 
@@ -380,8 +371,8 @@ th.h48 {
 }
 
 #hourly_values svg {
-    width: 750px;
-    height: 170px;
+    /*    width: 750px;*/
+    /*    height: 170px;*/
 }
 
 #hourly_values svg rect {
@@ -389,7 +380,8 @@ th.h48 {
 }
 
 #hourly_values svg rect.sel {
-    fill: #444;
+    /*    fill: #444;*/
+    opacity: 0.5;
 }
 
 #hourly_values svg text {
@@ -443,6 +435,7 @@ th.h48 {
     margin-bottom: 24px;
 }
 */
+
 
 /*
 .controls {
@@ -514,10 +507,16 @@ th.h48 {
 }
 */
 
+p.subtitle {
+    margin-left: 38px;
+    line-height: 1.1;
+}
+
 p.price {
     font-size: 20px;
     line-height: 20px;
     padding-top: 2px;
-    margin-bottom: 12px;
+    margin-left: 38px;
+    /*    margin-bottom: 12px;*/
     color: #444;
 }
