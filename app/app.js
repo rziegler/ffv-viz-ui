@@ -9,9 +9,6 @@ angular.module('ffvApp', [
   'environment',
   'configService',
   'ffvApp.view',
-//  'ffvApp.view1',
-  'ffvApp.view2',
-  'ffvApp.view3',
   'ffvApp.version'
 ]).
 
@@ -19,7 +16,7 @@ config(['$locationProvider', '$routeProvider', function ($locationProvider, $rou
     $locationProvider.hashPrefix('!');
 
     $routeProvider.otherwise({
-        redirectTo: '/view2/ams'
+        redirectTo: '/view/ams'
     });
 }])
 

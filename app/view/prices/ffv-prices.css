@@ -444,6 +444,7 @@ th.h48 {
 }
 */
 
+/*
 .controls {
     position: absolute;
     top: 0px;
@@ -451,8 +452,8 @@ th.h48 {
     margin: 34px 12px 0px 0px;
     font-size: 12px;
     line-height: 12px;
-    /*    width: 800px;*/
 }
+*/
 
 .controls > div {
     width: 160px;

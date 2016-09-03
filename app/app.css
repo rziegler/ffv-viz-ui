@@ -20,6 +20,14 @@ h6 {
     text-transform: capitalize;
 }
 
+.lead-text p:first-of-type {
+    padding-top: 40px;
+}
+
+.lead-text p:last-of-type {
+    padding-bottom: 60px;
+}
+
 
 /* fix for angular-bootstrap (https://angular-ui.github.io/bootstrap) */
 
