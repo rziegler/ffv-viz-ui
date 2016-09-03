@@ -14,11 +14,6 @@
     left: 0;
 }
 
-rect.bordered {
-    stroke: #FFF;
-    stroke-width: 0.5px;
-}
-
 #tiles-chart {
     margin-top: 12px;
     margin-bottom: 12px;
@@ -365,27 +360,13 @@ th.h48 {
 }
 */
 
-#hourly_values {
-    /*    float: right;*/
-    /*    width: 750px;*/
-}
-
-#hourly_values svg {
-    /*    width: 750px;*/
-    /*    height: 170px;*/
-}
-
-#hourly_values svg rect {
-    fill: #ddd;
-}
-
 #hourly_values svg rect.sel {
-    /*    fill: #444;*/
     opacity: 0.5;
 }
 
 #hourly_values svg text {
-    fill: #444;
+    font-size: 8pt;
+    fill: #aaa;
 }
 
 #hourly_values svg text.hidden {
@@ -508,7 +489,7 @@ th.h48 {
 */
 
 p.subtitle {
-    margin-left: 38px;
+    margin-left: 60px;
     line-height: 1.1;
 }
 
@@ -516,7 +497,7 @@ p.price {
     font-size: 20px;
     line-height: 20px;
     padding-top: 2px;
-    margin-left: 38px;
+    margin-left: 60px;
     /*    margin-bottom: 12px;*/
     color: #444;
 }

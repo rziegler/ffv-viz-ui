@@ -18,10 +18,10 @@ function doViz(destination, destinations, days, allData, ffvData, deltaTimes, ca
     var timeParser = d3.time.format("%H:%M:%S");
 
     var margin = {
-        top: 16,
+        top: 31,
         right: 0,
         bottom: 0,
-        left: 50
+        left: 66
     };
     //        var width = 960 - margin.left - margin.right;
     //        var height = 960 - margin.top - margin.bottom;
@@ -130,13 +130,14 @@ function doViz(destination, destinations, days, allData, ffvData, deltaTimes, ca
             .enter()
             .append('svg:text')
             .attr('class', function (d, i) {
-                return (i % 7) ? 'hidden hr' + i : 'visible hr' + i
+                return (i % 2) ? 'hidden hr' + i : 'visible hr' + i
             })
             .attr("x", function (d, i) {
-                return i * gridSize + 2
+                return i * gridSize
             })
             .attr("y", 166)
-            .attr("text-anchor", 'left')
+            .attr("transform", "translate(" + gridSizeY + ", -2)")
+            .attr("text-anchor", 'middle')
             .text(function (d, i) {
                 return d.values[0].deltaTime;
             });
@@ -155,17 +156,17 @@ function doViz(destination, destinations, days, allData, ffvData, deltaTimes, ca
 
         var dateTime = parser.parse(selDepartureDate + " " + selDepartureTime)
 
-        d3.select('#wtf .subtitle').html('Price development for<br>' + selFlightNumber + ' on ' + format(dateTime));
+        d3.select('#hourly .subtitle').html('Price development for<br>' + selFlightNumber + ' on ' + format(dateTime));
 
         var selPrice = selFlight.values[deltaTime].values[0].price;
-        d3.select('#wtf .price').html('CHF ' + selPrice);
+        d3.select('#hourly .price').html('CHF ' + selPrice);
     }
 
     /* ************************** */
 
     function clearHourlyText() {
-        d3.select('#wtf .subtitle').html('Flight price development');
-        d3.select('#wtf .price').html('&nbsp;');
+        d3.select('#hourly .subtitle').html('Flight price development');
+        d3.select('#hourly .price').html('&nbsp;');
     }
 
     /* ************************** */
@@ -284,6 +285,18 @@ function doViz(destination, destinations, days, allData, ffvData, deltaTimes, ca
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
         // header text row (with delta times) on x-axis
+        var deltaTimeAxis = svg.append("g").append("text")
+            .text("Number of days before departure")
+            //            .attr("x", widthNoMargins / 2)
+            .attr("x", 0)
+            .attr("y", 0)
+            .style("text-anchor", "middle")
+            //            .attr("transform", "translate("0, -21)")
+            .attr("transform", "translate(" + (margin.left + 6) + ", -21)")
+            .attr("class", function (d, i) {
+                return "deltaTimeAxis mono";
+            });
+
         var deltaTimeLabel = svg.selectAll(".deltaTimeLabel")
             .data(deltaTimes)
             .enter().append("text")
@@ -301,10 +314,17 @@ function doViz(destination, destinations, days, allData, ffvData, deltaTimes, ca
             });
 
         // header text column (departure dates) on y-axis
-        var departureDayLabel = svg.selectAll(".departureDayLabel")
-            .data(filteredDepartureDateData);
+        var departureDayAxis = svg.append("g").append("text")
+            .text("Departure date")
+            .style("text-anchor", "middle")
+            .attr("transform", "translate(" + -(margin.left - 10) + "," + (margin.top + 3) + ") rotate(-90)")
+            .attr("class", function (d, i) {
+                return "departureDateAxis mono";
+            });
 
-        departureDayLabel.enter().append("text")
+        var departureDayLabel = svg.selectAll(".departureDayLabel")
+            .data(filteredDepartureDateData)
+            .enter().append("text")
             .text(function (d, i) {
                 if (i == 0 || (i > 0 && d.departureDate != filteredDepartureDateData[i - 1].departureDate)) {
                     var ddSplitted = d.departureDate.split("-");
@@ -314,7 +334,7 @@ function doViz(destination, destinations, days, allData, ffvData, deltaTimes, ca
                     return "";
                 }
             })
-            .attr("x", -margin.left)
+            .attr("x", -margin.left + 20)
             .attr("y", function (d, i) {
                 return i * gridSizeY;
             })
