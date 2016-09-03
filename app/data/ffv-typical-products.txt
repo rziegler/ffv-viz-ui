@@ -1,0 +1,20 @@
+LHR, 
+AMS
+IST, Kebab, 1.5 EUR, 1.3 CHF
+MAD
+SVO
+RIX, Karbonade?
+KEF
+BEG, Slivovitz, xxx RSD (Serbian Dinar Rates), xxx CHF
+MLA
+RHO
+JFK, Slice of Pizza, 1 USD, 0.9 CHF			-> Hamburger, Cosmopolitan
+PEK
+DXB
+NRT, Ramensuppe, 1000 Yen, 8 CHF
+SIN, Singapore Sling, 20 SIN $, xx
+GRU
+BKK
+ICN, Korean Barbecue, 17'000 Won, 15 CHF
+YYZ
+BOM, Samosa, 7 INR (Indian Rupia), 0.1 CHF

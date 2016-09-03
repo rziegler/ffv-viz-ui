@@ -1,0 +1,147 @@
+<article id="parset-body" class="row">
+    <div class="col-md-12">
+        <div id="parset-vis" class="center-block" />
+    </div>
+    <div id="timeseries-vis" class="timeseries center-block"></div>
+</article>
+
+
+<article class="controls row">
+
+    <!-- destinations -->
+
+    <div class="col-md-4">
+        <ui-select id="destination" ng-model="current.destination" append-to-body="true">
+            <ui-select-match>
+                <span ng-bind="$select.selected.destinationName"></span>
+            </ui-select-match>
+            <ui-select-choices group-by="'type'" repeat="item in (destinations.values() | filter: $select.search) track by item.destination">
+                <span ng-bind="item.destinationName"></span>
+                <small ng-bind-html="item.destination | highlight: $select.search"></small>
+            </ui-select-choices>
+        </ui-select>
+    </div>
+
+    <!-- carriers -->
+
+    <div class="col-md-4">
+        <ui-select id="carrier" ng-model="current.carrier" append-to-body="true">
+            <ui-select-match>
+                <span ng-bind="$select.selected"></span>
+            </ui-select-match>
+            <ui-select-choices group-by="'type'" repeat="item in (carriers | filter: $select.search)">
+                <span ng-bind="item"></span>
+            </ui-select-choices>
+        </ui-select>
+    </div>
+
+    <!-- weekdays -->
+    <div class="col-md-4">
+        <ui-select id="weekday" ng-model="current.day" append-to-body="true">
+            <ui-select-match>
+                <span ng-bind="$select.selected.name"></span>
+            </ui-select-match>
+            <ui-select-choices repeat="item in (days.values() | filter: $select.search) track by item.abbr">
+                <span ng-bind="item.name"></span>
+            </ui-select-choices>
+        </ui-select>
+    </div>
+
+</article>
+
+<div class="row">
+    <article id="lead" class="col-md-8 col-md-offset-2">
+        <div class="row">
+            <p id="subtitle" class="col-md-12">Cheapest prices to {{current.destination.destinationName}} ({{current.destination.destination}}) are generally on Tuesdays.</p>
+            <article class="col-md-3 col-md-offset-9">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <section id="legend" class="pull-right">
+                            <ul>
+                                <li class="orrd q1-7"></li>
+                                <li class="orrd q2-7"></li>
+                                <li class="orrd q3-7"></li>
+                                <li class="orrd q4-7"></li>
+                                <li class="orrd q5-7"></li>
+                                <li class="orrd q6-7"></li>
+                                <li class="orrd q7-7"></li>
+
+                            </ul>
+                            <p class="more">higher price</p>
+                            <p class="less">lower</p>
+                        </section>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </article>
+
+
+</div>
+
+<div class="row">
+
+    <div id="viz-col" class="col-md-8 col-md-offset-2">
+
+        <article id="container" class="viz">
+
+            <div class="row">
+                <div id="tiles-chart" class="col-md-12"></div>
+            </div>
+            <div id="wtf" class="row">
+                <div id="hourly_values" class="col-md-7">
+                    <p class="subtitle">Daily price development</p>
+                    <p class="price"></p>
+                    <div class="svg"></div>
+                </div>
+                <div id="minmax" class="col-md-5">
+                    <p class="subtitle">Percentual savings</p>
+                    <div id="viz1" class="radial_container">
+                        <div></div>
+                    </div>
+                    <!--<div id="viz2" class="radial_container">
+    <div></div>
+</div>-->
+                    <p class="subtitle min"></p>
+                    <p class="subtitle max"></p>
+                    <p class="subtitle cur"></p>
+                </div>
+
+                <!--<div id="buckets">
+    <p class="subtitle">Price niveaus for each category</p>
+</div>-->
+            </div>
+
+        </article>
+
+        <article id="disclaimer">
+
+            <script type="text/ng-template" id="sources.html">
+                <div class="modal-header">
+                    <button type="button" class="close" aria-label="Close" ng-click="ok()"><span aria-hidden="true">&times;</span></button>
+                    <h5 class="modal-title">Sources and Methods</h5>
+                </div>
+                <div class="modal-body">
+                    <section>
+                        Based on flight fares collected via the <a href="http://en.business.skyscanner.net/en-gb/products/travel-apis/">Travel APIs from Skyscanner Business</a> between May and August 2016. Only complete time series are visualized, whereas a complete series is defined as a set of prices requested every day from 49 days prior to one day before departure.
+                    </section>
+                    <section>
+                        &copy; Ruth Ziegler 2016, ffv v<span app-version></span>
+                        <a href="https://www.hkb.bfh.ch/de/weiterbildung/design/cas-data-visualization">CAS Data Visualization, HKB Bern</a>
+                    </section>
+                </div>
+            </script>
+
+            <div id="disclaimer-main">
+                <p>
+                    <small>Visualization by Ruth Ziegler 2016&nbsp;&#124;&nbsp;
+                        <a href="" class="active" role="button" ng-click="open()">Sources and Methods</a>&nbsp;&#124;&nbsp;
+                    </small>
+                    <a href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fffv.kows.info"><i class="fa fa-facebook-square fa-lg" aria-hidden="true"></i></a>
+                    <a href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fffv.kows.info%2F&text=Flight Fare Visualization%20-%20Visualizing%20flight%20fare%20development%20to%20twenty%20destinations%20from%20Zurich&original_referer=http%3A%2F%2Fffv.kows.info%2F&via=ziegler.ruth&hashtags=dataviz,%20hkb,%20cas"><i class="fa fa-twitter-square fa-lg" aria-hidden="true"></i></a>
+                </p>
+            </div>
+        </article>
+    </div>
+</div>

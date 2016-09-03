@@ -1,18 +1,4 @@
-'use strict';
-
-
-angular.module('ffvApp.view2', ['ngRoute'])
-
-.config(['$routeProvider', function ($routeProvider) {
-    $routeProvider.when('/view2/:dest', {
-        templateUrl: 'view2/view2.html',
-        controller: 'View2Ctrl'
-    });
-}])
-
-.controller('View2Ctrl', ['$scope', '$uibModal', 'Config', '$routeParams', '$location', '$http', function ($scope, $uibModal, configService,    $routeParams, $location, $http) {
-
-    var loadType = "online"; //static
+function priceViz($scope, $uibModal, configService, $routeParams, $location, $http, loadType) {
 
     function isNotEmpty(obj) {
         return Object.keys(obj).length === 0 && obj.constructor === Object;
@@ -199,10 +185,4 @@ angular.module('ffvApp.view2', ['ngRoute'])
 
     }
 
-}]);
-
-angular.module('ffvApp.view2').controller('ModalInstanceCtrl', function ($scope, $uibModalInstance) {
-    $scope.ok = function () {
-        $uibModalInstance.close();
-    };
-});
+}
