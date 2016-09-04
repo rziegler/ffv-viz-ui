@@ -427,23 +427,6 @@ th.h48 {
     min-width: 130px;
 }
 
-#disclaimer {
-    margin-top: 24px;
-    color: #777;
-}
-
-.modal-body > section:first-of-type {
-    margin-bottom: 16px;
-}
-
-#disclaimer-main {
-    text-align: center;
-}
-
-#disclaimer-main a {
-    color: #777;
-}
-
 
 /*
 .controls button {
@@ -473,7 +456,7 @@ th.h48 {
 */
 
 p.subtitle {
-    margin-left: 60px;
+    margin-left: 6.4%;
     line-height: 1.1;
 }
 
@@ -481,7 +464,15 @@ p.price {
     font-size: 20px;
     line-height: 20px;
     padding-top: 2px;
-    margin-left: 60px;
+    margin-left: 6.4%;
     /*    margin-bottom: 12px;*/
     color: #444;
+}
+
+#hourly_values p.subtitle {
+    margin-top: -10px;
+}
+
+#hourly_values p.price {
+    margin-bottom: -20px;
 }

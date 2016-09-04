@@ -6,18 +6,18 @@ function doParSetViz(data, dimensionLabels, dimensionLabelHighlight, $scope, con
         .tooltip(function (d) {
             var percent = d3.format("%");
 
-            while (d.dimension !== "destination") {
+            while (d.dimension !== dimensionLabelHighlight) {
                 d = d.parent;
             }
 
             var current = data.filter(function (item) {
-                return item.destination === d.name;
+                return item[dimensionLabelHighlight] === d.name;
             })[0];
 
-            var destData = configService.getDestinationDataForDestination(current.destination);
+            var destData = configService.getDestinationDataForDestination(current['Destination']);
             return "<p>" + destData.destinationName + " (" + destData.destination +
-                ")</p><p>Book on " + current.minWeekdayBookValue + " (" + percent(current.minWeekdayBookProbability) + " probablity)" +
-                "</p><p>Fly on " + current.minWeekdayFlightValue + " (" + percent(current.minWeekdayFlightProbability) + " probablity)</p>";
+                ")</p><p>Book on " + current['Booking Weekday'] + " (" + percent(current['Booking WeekdayProbability']) + " probablity)" +
+                "</p><p>Fly on " + current['Departure Weekday'] + " (" + percent(current['Departure WeekdayProbability']) + " probablity)</p>";
         })
         .tension(0.5)
         .width(960); // 1 = no curves, 0.5 = curves

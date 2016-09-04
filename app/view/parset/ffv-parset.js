@@ -36,6 +36,22 @@ function parsetViz($scope, configService, $location, $http, $q, loadType, deltaT
     }
 
     function createParSetVisualizationOnline() {
+
+        var labels = d3.map([
+            {
+                id: 'minWeekdayBook',
+                label: 'Booking Weekday'
+                  }, {
+                id: 'minWeekdayFlight',
+                label: 'Departure Weekday'
+                  }, {
+                id: 'destination',
+                label: 'Destination'
+                  }
+              ], function (d) {
+            return d.id;
+        });
+
         // create two requests (minWeekdayFlight and minWeekdayBook) for every destination
         var requests = [];
         configService.getDestinationData().forEach(function (key, value) {
@@ -54,20 +70,23 @@ function parsetViz($scope, configService, $location, $http, $q, loadType, deltaT
                     var separators = ['/', '\\\?'];
                     var urlSplitted = d.config.url.split(new RegExp(separators.join('|'), 'g'));
                     //                    console.log(urlSplitted[4] + " " + urlSplitted[5]);
+                    var l = labels.get(urlSplitted[4]);
 
                     if (map.has(urlSplitted[5])) {
                         // get obj an add new attributes to existing obj
                         var obj = map.get(urlSplitted[5]);
-                        obj[urlSplitted[4] + "Value"] = d.data.value;
-                        obj[urlSplitted[4] + "Probability"] = d.data.propability;
+
+
+                        obj[l.label] = d.data.value;
+                        obj[l.label + "Probability"] = d.data.propability;
                         map.set(urlSplitted[5], obj);
                     } else {
                         // create new obj and add attributes
                         var obj = {
-                            "destination": urlSplitted[5]
+                            "Destination": urlSplitted[5]
                         };
-                        obj[urlSplitted[4] + "Value"] = d.data.value;
-                        obj[urlSplitted[4] + "Probability"] = d.data.propability;
+                        obj[l.label] = d.data.value;
+                        obj[l.label + "Probability"] = d.data.propability;
                         map.set(urlSplitted[5], obj);
                     }
                 } else {
@@ -76,10 +95,9 @@ function parsetViz($scope, configService, $location, $http, $q, loadType, deltaT
             });
 
             var data = map.values();
-            console.log(data[0]);
             //            sortParSetData(data, "minWeekdayFlightValue");
-            sortParSetData(data, "minWeekdayBookValue");
-            doParSetViz(data, ["minWeekdayBookValue", "destination", "minWeekdayFlightValue"], "destination", $scope, configService)
+            sortParSetData(data, "Booking Weekday");
+            doParSetViz(data, ["Booking Weekday", "Destination", "Departure Weekday"], "Destination", $scope, configService)
         });
     }
 

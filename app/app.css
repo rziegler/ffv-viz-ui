@@ -1,6 +1,6 @@
 body {
     font-family: 'Catamaran', sans-serif;
-    font-weight: 300;
+    font-weight: 400;
 }
 
 p {
@@ -16,6 +16,12 @@ h6 {
     font-family: 'Oswald', sans-serif;
 }
 
+.lead-text {
+    font-family: 'Merriweather', serif;
+    font-weight: 300;
+    font-size: 16px;
+}
+
 .u-upper {
     text-transform: capitalize;
 }
@@ -25,7 +31,7 @@ h6 {
 }
 
 .lead-text p:last-of-type {
-    padding-bottom: 60px;
+    padding-bottom: 40px;
 }
 
 
@@ -66,6 +72,27 @@ h6 {
     position: absolute;
     /*    top: 10px;*/
     left: 0;
+}
+
+
+/* disclaimer */
+
+#disclaimer {
+    margin-top: 24px;
+    margin-bottom: 36px;
+    color: #777;
+}
+
+.modal-body > section:first-of-type {
+    margin-bottom: 16px;
+}
+
+#disclaimer-main {
+    text-align: center;
+}
+
+#disclaimer-main a {
+    color: #777;
 }
 
 

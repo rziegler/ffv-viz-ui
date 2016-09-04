@@ -4,16 +4,19 @@
 
 .category {
     cursor: ew-resize;
+    fill: #333;
+    font-size: 0.8em;
 }
 
 .dimension tspan.name {
-    font-size: 1.5em;
+    font-size: 1.0em;
     fill: #333;
     font-weight: bold;
 }
 
 .dimension tspan.sort {
-    fill: #000;
+    fill: #666;
+    font-size: 0.8em;
     cursor: pointer;
     opacity: 0;
 }
@@ -31,7 +34,7 @@
 }
 
 .dimension line {
-    stroke: #000;
+    stroke: #666;
 }
 
 .dimension rect {

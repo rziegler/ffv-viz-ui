@@ -18,7 +18,7 @@
         var margin = {
             top: 0,
             right: 1,
-            bottom: 15,
+            bottom: 20,
             left: 0
         }
 
@@ -74,6 +74,21 @@
                 // move the text into the middle of two ticks (calculate the number of pixels and use the middle of it)
                 var distBetweenTwoTicks = Math.floor(x(d) - x(d + 1));
                 return -(distBetweenTwoTicks / 2);
+            })
+            .attr("class", function (d, i) {
+                return "deltaTimeAxis mono";
+            });
+
+        context.append("g")
+            .append("text")
+            .text("Weeks before departure")
+            .attr("x", width / 2)
+            .attr("y", heightWithMargins - 12)
+            .style("text-anchor", "middle")
+            //            .attr("transform", "translate("0, -21)")
+            //            .attr("transform", "translate(" + width / 2 + ", -21)")
+            .attr("class", function (d, i) {
+                return "deltaTimeAxis mono";
             });
 
         context.append("g")
@@ -127,12 +142,6 @@
                 d3.select(this).classed("active", false);
                 $scope.$emit('hightlightDestinationOnTimeseriesVis', '');
             });
-        //            .on("click", function (d) {
-        //                console.log(d);
-        //
-        //            })
-
-
     }
 
     if (typeof define === "function" && define.amd) define(timeseries);
