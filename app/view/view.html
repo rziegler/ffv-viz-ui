@@ -120,37 +120,44 @@
         <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
     </section>
 
+<!--
     <section class="col-md-8 col-md-offset-2">
+    <table class="table table-hover">
+        <thead>
+            <th>Destination</th>
+            <th colspan="2">Mean Savings</th>
+            <th>Could buy what...</th>
+        </thead>
 
-        <!--        <div class="row">-->
-
-        <table class="table table-hover">
-            <thead>
-                <th>Destination</th>
-                <th colspan="2">Mean Savings</th>
-                <th>Could buy what...</th>
-            </thead>
-
-            <tbody ng-repeat="(key, value) in savings | groupBy: 'destination.type'">
-                <!--  | orderBy:'destination.destination' -->
-                <tr>
-                    <th colspan="4">{{key}}</th>
-                </tr>
-                <tr ng-repeat="v in value | orderBy:'destination.destination'">
-                    <td>{{ v.destination.destinationName }} ({{v.destination.destination}})</td>
-                    <td>{{ v.savingRel }}</td>
-                    <td>CHF {{ v.savingAbs }} {{v.savings.category}}</td>
-                    <td>{{(v.savingAbs / v.savings.costCHF) | number:0}} {{v.savings.product}}</td>
-                </tr>
-            </tbody>
-        </table>
-        <!--
-            <div class="col-md-12">
-    <div id="parset-vis" class="center-block svg-container" />
-</div>
-<divid="timeseries-vis" class="timeseries center-block svg-container"></div>
+        <tbody ng-repeat="(key, value) in savings | groupBy: 'destination.type'">
+            <tr>
+                <th colspan="4">{{key}}</th>
+            </tr>
+            <tr ng-repeat="v in value | orderBy:'destination.destination'">
+                <td>{{ v.destination.destinationName }} ({{v.destination.destination}})</td>
+                <td>{{ v.savingRel }}</td>
+                <td>CHF {{ v.savingAbs }}</td>
+                <td>{{(v.savingAbs / v.savings.costCHF) | number:0}} {{v.savings.product}}</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
 -->
-        <!--        </div>-->
+
+    <section class="col-md-8 col-md-offset-2">
+        <div class="row">
+            <ng-repeat ng-repeat="v in savings | orderBy:'destination.destination'">
+                <div class="col-md-3 card">
+                    <p class="title">{{v.destination.destinationName}} ({{v.destination.destination}})</p>
+                    <p>{{v.savings.category}}</p>
+                    <p class="main">{{(v.savingAbs / v.savings.costCHF) | number:0}}</p>
+                    <p>{{v.savings.product}}</p>
+                    <p>{{ v.savingRel }}</p>
+                    <p>CHF {{ v.savingAbs }}</p>
+                </div>
+            </ng-repeat>
+
+        </div>
     </section>
 </article>
 

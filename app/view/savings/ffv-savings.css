@@ -1,0 +1,19 @@
+.card {
+    background: #EEE;
+    /*    border: 1px solid #ccc;*/
+    padding-top: 12px;
+    padding-bottom: 12px;
+    margin: 10px 20px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.card .title {
+    font-size: 1.2em;
+}
+
+.card .main {
+    font-size: 8em;
+    font-family: 'Oswald', sans-serif;
+}
