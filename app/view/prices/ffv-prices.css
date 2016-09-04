@@ -291,55 +291,36 @@ th.h48 {
 }
 
 
-/* 7 buckets YlOrRd (from colorbrewer 9-class YlOrRd without the 2 lightest colors) */
+/* Copy from colorbrewer 9-class OrRd without the 2 lightest colors)
+ * classes are needed since colorbrewer.css only sets the fill property, but we need the background here. */
 
-.orrd.q1-7 {
+.OrRd.q2-9 {
     background: #fdd49e;
 }
 
-.orrd.q2-7 {
+.OrRd.q3-9 {
     background: #fdbb84;
 }
 
-.orrd.q3-7 {
+.OrRd.q4-9 {
     background: #fc8d59;
 }
 
-.orrd.q4-7 {
+.OrRd.q5-9 {
     background: #ef6548;
 }
 
-.orrd.q5-7 {
+.OrRd.q6-9 {
     background: #d7301f;
 }
 
-.orrd.q6-7 {
+.OrRd.q7-9 {
     background: #b30000;
 }
 
-.orrd.q7-7 {
+.OrRd.q8-9 {
     background: #7f0000;
 }
-
-
-/*
-#navigation {
-    clear: left;
-    width: 1200px;
-    height: 80px;
-    float: left;
-    margin-left: 20px;
-    margin-bottom: 18px;
-}
-
-#navigation p {
-    margin-left: 4px;
-}
-
-#navigation fieldset {
-    margin-bottom: 8px;
-}
-*/
 
 #hourly_values svg rect.sel {
     opacity: 0.5;
@@ -390,26 +371,6 @@ th.h48 {
     fill: #444;
 }
 
-
-/*
-#header {
-    margin: 12px;
-    margin-bottom: 24px;
-}
-*/
-
-
-/*
-.controls {
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    margin: 34px 12px 0px 0px;
-    font-size: 12px;
-    line-height: 12px;
-}
-*/
-
 .controls > div {
     width: 160px;
     padding-left: 0px;
@@ -423,34 +384,6 @@ th.h48 {
 .ui-select-bootstrap > .ui-select-no-choice {
     min-width: 130px;
 }
-
-
-/*
-.controls button {
-    padding: 2px 6px 3px 6px;
-    background: #ddd;
-    border: 1px solid #ccc;
-    -moz-border-radius: 2px;
-    border-radius: 2px;
-    cursor: pointer;
-    color: #888;
-    font-size: 12px;
-    margin: 0;
-}
-
-.controls button:hover {
-    background: #999;
-    color: white;
-    border: 1px solid #888;
-}
-
-.controls button.sel {
-    background: #444;
-    color: white;
-    border: 1px solid #333;
-    cursor: default;
-}
-*/
 
 p.subtitle {
     margin-left: 8.6%;

@@ -388,6 +388,7 @@ function doViz(destination, destinations, days, allData, ffvData, deltaTimes, ca
 
         cards.transition().duration(1000)
             .style("fill", function (d) {
+                //                console.log(d.bin);
                 return colors[colorsOffset + d.bin - 1];
             });
 
