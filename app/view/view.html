@@ -139,7 +139,7 @@
                 <tr ng-repeat="v in value | orderBy:'destination.destination'">
                     <td>{{ v.destination.destinationName }} ({{v.destination.destination}})</td>
                     <td>{{ v.savingRel }}</td>
-                    <td>CHF {{ v.savingAbs }}</td>
+                    <td>CHF {{ v.savingAbs }} {{v.savings.category}}</td>
                     <td>{{(v.savingAbs / v.savings.costCHF) | number:0}} {{v.savings.product}}</td>
                 </tr>
             </tbody>

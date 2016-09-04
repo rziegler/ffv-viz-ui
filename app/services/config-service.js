@@ -299,10 +299,154 @@ configService.factory('Config', ['$resource', 'envService',
                 {
                     destination: 'KEF',
                     product: 'Entry into Blue Lagoon',
+                    category: 'Sight',
                     cost: 50,
                     costCurrency: 'EUR',
                     costCHF: 55
+                  }, {
+                    destination: 'NRT',
+                    product: 'Ramen soup',
+                    category: 'Food',
+                    cost: 1000,
+                    costCurrency: 'YEN',
+                    costCHF: 8
+                  }, {
+                    destination: 'ICN',
+                    product: 'Korean Barbecue',
+                    category: 'Food',
+                    cost: 17000,
+                    costCurrency: 'Won',
+                    costCHF: 15
+                  }, {
+                    destination: 'SIN',
+                    product: 'Singapore Sling',
+                    category: 'Drink',
+                    cost: 20,
+                    costCurrency: 'SGD',
+                    costCHF: 14.5
+                  }, {
+                    destination: 'IST',
+                    product: 'Kebab',
+                    category: 'Food',
+                    cost: 5,
+                    costCurrency: 'TRY',
+                    costCHF: 1.7
+                  }, {
+                    destination: 'MAD',
+                    product: 'Racion Tapas',
+                    category: 'Food',
+                    cost: 6,
+                    costCurrency: 'EUR',
+                    costCHF: 6.6
+                  }, {
+                    destination: 'BKK',
+                    product: 'Thai massage',
+                    category: 'Sight',
+                    cost: 500,
+                    costCurrency: 'THB',
+                    costCHF: 14
+                  }, {
+                    destination: 'PEK',
+                    product: 'Visit of the Forbidden City',
+                    category: 'Sight',
+                    cost: 60,
+                    costCurrency: 'CNY',
+                    costCHF: 9
+                  }, {
+                    destination: 'BOM',
+                    product: 'Entry to Taj Mahal', // 'Samosa from street vendor
+                    category: 'Sight',
+                    cost: 750, // 6
+                    costCurrency: 'INR',
+                    costCHF: 11.05 // 0.1
+                  }, {
+                    destination: 'RIX',
+                    product: 'Dinner at Rozengrāls',
+                    category: 'Food',
+                    cost: 50,
+                    costCurrency: 'EUR',
+                    costCHF: 55
+                  }, {
+                    destination: 'LHR',
+                    product: 'Pint of Beer',
+                    category: 'Drink',
+                    cost: 3.5,
+                    costCurrency: 'GBP',
+                    costCHF: 4.5
+                  }, {
+                    destination: 'DXB',
+                    product: 'Drive to Top of Burj Khalifa',
+                    category: 'Sight',
+                    cost: 300,
+                    costCurrency: 'AEB',
+                    costCHF: 80
+                  }, {
+                    destination: 'GRU',
+                    product: 'Moqueca',
+                    category: 'Food',
+                    cost: 45,
+                    costCurrency: 'BRL',
+                    costCHF: 13.55
+                  }, {
+                    destination: 'AMS',
+                    product: 'Stroopwafel',
+                    category: 'Food',
+                    cost: 2.25,
+                    costCurrency: 'EUR',
+                    costCHF: 2.5
+                  }, {
+                    destination: 'JFK',
+                    product: 'Burger with Fries',
+                    category: 'Drink',
+                    cost: 15,
+                    costCurrency: 'USD',
+                    costCHF: 14.7
+                  }, {
+                    destination: 'YYZ',
+                    product: 'Day-trip to Niagara Falls',
+                    category: 'Sight',
+                    cost: 93,
+                    costCurrency: 'CAD',
+                    costCHF: 70
+                  }, {
+                    destination: 'SVO',
+                    product: 'Bottle (0.5l) of Vodka',
+                    category: 'Drink',
+                    cost: 450,
+                    costCurrency: 'RUB',
+                    costCHF: 6.8
+                  }, {
+                    destination: 'RHO',
+                    product: 'Moussaka',
+                    category: 'Food',
+                    cost: 10,
+                    costCurrency: 'EUR',
+                    costCHF: 10.9
+                  }, {
+                    destination: 'MLA',
+                    product: 'Kinnie (0.5l)',
+                    category: 'Drink',
+                    cost: 1.1,
+                    costCurrency: 'EUR',
+                    costCHF: 1.2
+                  }, {
+                    destination: 'BEG',
+                    product: 'Ćevapčići',
+                    category: 'Food',
+                    cost: 250,
+                    costCurrency: 'RSD',
+                    costCHF: 2.2
                   }
+
+                /*
+                , {
+                    destination: '',
+                    product: '',
+                    cost: ,
+                    costCurrency: '',
+                    costCHF:
+                  }
+                */
               ], function (d) {
                 return d.destination;
             });

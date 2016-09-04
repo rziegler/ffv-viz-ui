@@ -23,7 +23,7 @@ function parsetViz($scope, configService, $location, $http, $q, loadType, deltaT
         if (destination === '') {
             d3.selectAll(".ribbon path").classed("selected", false);
         } else {
-            d3.selectAll("path#destination-" + destination).classed("selected", true);
+            d3.selectAll("path#Destination-" + destination).classed("selected", true);
         }
     });
 

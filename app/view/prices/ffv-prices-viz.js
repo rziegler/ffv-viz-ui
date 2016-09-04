@@ -32,8 +32,6 @@ function doViz(destination, destinations, days, allData, ffvData, deltaTimes, ca
     var gridSize = Math.floor(widthNoMargins / deltaTimes.length);
     var gridSizeDivider = 2;
     var gridSizeY = gridSize / gridSizeDivider;
-    console.log(gridSizeY);
-
 
     // use 2 buckets more from colorbrewer but then drop the 2 lightest colors) */
     var colorsOffset = 2;
@@ -345,7 +343,6 @@ function doViz(destination, destinations, days, allData, ffvData, deltaTimes, ca
             });
 
         // draw the tiles
-        console.log(gridSizeY);
         var cards = svg.selectAll(".price")
             .data(filteredTilesData, function (d) {
                 return d.departureDate + ":" + d.departureTime + ":" + d.deltaTime;

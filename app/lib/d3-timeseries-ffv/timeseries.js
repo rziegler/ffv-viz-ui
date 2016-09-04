@@ -134,7 +134,7 @@
             })
             .attr("r", 9)
             .on("mouseover", function (d) {
-                console.log(d.id + " " + d.value);
+                //                console.log(d.id + " " + d.value);
                 d3.select(this).classed("active", true);
                 $scope.$emit('hightlightDestinationOnTimeseriesVis', d.id);
             })
