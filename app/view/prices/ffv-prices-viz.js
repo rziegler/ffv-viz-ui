@@ -165,7 +165,7 @@ function doViz(destination, destinations, days, allData, ffvData, deltaTimes, ca
     /* ************************** */
 
     function clearHourlyText() {
-        d3.select('#hourly .subtitle').html('Flight price development');
+        d3.select('#hourly .subtitle').html('Flight price development<br>&nbsp;');
         d3.select('#hourly .price').html('&nbsp;');
     }
 
