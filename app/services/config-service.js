@@ -294,12 +294,32 @@ configService.factory('Config', ['$resource', 'envService',
             });
         }
 
+        function getSavings() {
+            return d3.map([
+                {
+                    destination: 'KEF',
+                    product: 'Entry into Blue Lagoon',
+                    cost: 50,
+                    costCurrency: 'EUR',
+                    costCHF: 55
+                  }
+              ], function (d) {
+                return d.destination;
+            });
+        }
+
+        var getSavingsForDestination = function (id) {
+            return getSavings().get(id);
+        }
+
         return {
             getDestinationData: getDestinationData,
             getDestinationDataForDestination: getDestinationDataForDestination,
             getCurrentDestination: getCurrentDestination,
             setCurrentDestination: setCurrentDestination,
             setCurrentDestinationByCountry: setCurrentDestinationByCountry,
-            getDays: getDays
+            getDays: getDays,
+            getSavings: getSavings,
+            getSavingsForDestination: getSavingsForDestination
         }
 }]);

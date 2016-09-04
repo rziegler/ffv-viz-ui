@@ -6,6 +6,7 @@ angular.module('ffvApp', [
   'ngRoute',
   'ngSanitize',
   'ui.select',
+  'angular.filter',
   'environment',
   'configService',
   'ffvApp.view',

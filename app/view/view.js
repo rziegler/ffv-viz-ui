@@ -18,8 +18,7 @@ angular.module('ffvApp.view', ['ngRoute'])
     parsetViz($scope, configService, $location, $http, $q, loadType, deltaTime);
     priceViz($scope, $uibModal, configService, $routeParams, $location, $http, loadType, deltaTime);
 
-
-
+    savingsViz($scope, configService, $location, $http, $q, loadType, deltaTime);
 }]);
 
 angular.module('ffvApp.view').controller('ModalInstanceCtrl', function ($scope, $uibModalInstance) {
