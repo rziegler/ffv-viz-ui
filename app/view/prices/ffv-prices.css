@@ -246,16 +246,13 @@ th.h48 {
 }
 
 #legend {
-    /*    width: 60%;*/
-    color: #777;
-    margin-top: 6px;
-    /*    background: #f3f3f3;*/
-    border: 1px solid #f0f0f0;
+    color: #444;
+    margin-top: -10px;
+    border: 1px solid #adadad;
     overflow: hidden;
-    padding: 5px 7px;
+    padding: 3px 5px;
     -moz-border-radius: 3px;
     border-radius: 3px;
-    margin-bottom: 6px;
     margin-right: 12%;
 }
 
@@ -456,7 +453,7 @@ th.h48 {
 */
 
 p.subtitle {
-    margin-left: 6.4%;
+    margin-left: 8.6%;
     line-height: 1.1;
 }
 
@@ -464,7 +461,7 @@ p.price {
     font-size: 20px;
     line-height: 20px;
     padding-top: 2px;
-    margin-left: 6.4%;
+    margin-left: 8.6%;
     /*    margin-bottom: 12px;*/
     color: #444;
 }
