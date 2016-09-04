@@ -16,7 +16,8 @@ h6 {
     font-family: 'Oswald', sans-serif;
 }
 
-.lead-text {
+.lead-text,
+.article-text {
     font-family: 'Merriweather', serif;
     font-weight: 300;
     font-size: 16px;
