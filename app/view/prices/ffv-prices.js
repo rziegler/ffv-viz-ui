@@ -23,7 +23,7 @@ function priceViz($scope, $uibModal, configService, $routeParams, $location, $ht
     $scope.carriers = [];
 
     var changeDestination = function (newDestination) {
-        $location.path('/view2/' + newDestination);
+        $location.path('/view/' + newDestination);
     }
 
     var changeCarrier = function (newCarrier) {
