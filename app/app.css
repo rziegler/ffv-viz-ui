@@ -29,6 +29,46 @@ h6 {
 }
 
 
+/* responsive svgs */
+
+.svg-container {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    aspect ratio vertical-align: top;
+}
+
+
+/* calculate the padding-bottom for every responding SVG individually 
+ * see http://tympanus.net/codrops/2014/08/19/making-svgs-responsive-with-css/
+ * i.e with the "formula" padding-bottom: (svg height / svg width) * width-value;
+ * for parset-vis = 600 / 960 = 0.625 = 63%
+ */
+
+#tiles-chart .svg-container {
+    padding-bottom: 16%;
+}
+
+#hourly_values .svg-container {
+    padding-bottom: 20%;
+}
+
+#parset-vis.svg-container {
+    padding-bottom: 63%;
+}
+
+#timeseries-vis.svg-container {
+    padding-bottom: 21%;
+}
+
+.svg-content-responsive {
+    display: inline-block;
+    position: absolute;
+    /*    top: 10px;*/
+    left: 0;
+}
+
+
 /* fix for angular-bootstrap (https://angular-ui.github.io/bootstrap) */
 
 .nav,

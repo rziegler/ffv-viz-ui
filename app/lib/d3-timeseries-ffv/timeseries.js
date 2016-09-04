@@ -50,9 +50,14 @@
         var yAxis = d3.svg.axis().scale(y).orient("left")
             .tickValues([]) //http://stackoverflow.com/questions/19787925/create-a-d3-axis-without-tick-labels
 
+        var widthWithMargins = width + margin.left + margin.right;
+        var heightWithMargins = height + margin.top + margin.bottom;
         var svg = d3.select("." + classd).append("svg")
-            .attr("width", width + margin.left + margin.right)
-            .attr("height", height + margin.top + margin.bottom);
+            //responsive SVG needs these 2 attributes and no width and height attr
+            .attr("preserveAspectRatio", "xMinYMin meet")
+            .attr("viewBox", "0 0 " + widthWithMargins + " " + heightWithMargins)
+            //class to make it responsive
+            .classed("svg-content-responsive", true);
 
         var context = svg.append("g")
             .attr("class", "context")

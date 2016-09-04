@@ -21,11 +21,13 @@ function doParSetViz(data, dimensionLabels, dimensionLabelHighlight, $scope, con
         })
         .tension(0.5)
         .width(960); // 1 = no curves, 0.5 = curves
-    //            .dimensions(["bookingDay", "departureDay"]);
 
     var vis = d3.select("#parset-vis").append("svg")
-        .attr("width", chart.width())
-        .attr("height", chart.height());
+        //responsive SVG needs these 2 attributes and no width and height attr
+        .attr("preserveAspectRatio", "xMinYMin meet")
+        .attr("viewBox", "0 0 " + chart.width() + " " + chart.height())
+        //class to make it responsive
+        .classed("svg-content-responsive", true);
 
     var partition = d3.layout.partition()
         .sort(null)
@@ -43,7 +45,7 @@ function doParSetViz(data, dimensionLabels, dimensionLabelHighlight, $scope, con
     chart.on("highlight", function (d) {
         if (d === '') {
             var coordinates = [0, 0];
-            coordinates = d3.mouse(d3.select("#parset-vis svg   ").node());
+            coordinates = d3.mouse(d3.select("#parset-vis svg").node());
             var mouseX = coordinates[0];
             var mouseY = coordinates[1];
 
