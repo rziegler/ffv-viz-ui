@@ -1,19 +1,67 @@
 .card {
     background: #EEE;
     /*    border: 1px solid #ccc;*/
-    padding-top: 12px;
-    padding-bottom: 12px;
-    margin: 10px 20px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
+    padding: 12px;
+    margin: 10px 0px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
+}
+
+.card.active {
+    background: #AAA;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
 }
 
 .card .title {
-    font-size: 1.2em;
+    font-size: 1.0vw;
+    /* http://stackoverflow.com/questions/15649244/responsive-font-size */
+}
+
+.card.active .title {
+    font-size: 1.25vw;
 }
 
 .card .main {
-    font-size: 8em;
+    font-size: 3vw;
     font-family: 'Oswald', sans-serif;
+    /*    float: left;*/
+    padding-right: 10px;
+    padding-bottom: 12px;
+}
+
+.card.active .main {
+    font-size: 6vw;
+    font-family: 'Oswald', sans-serif;
+    padding-right: 20px;
+}
+
+.card .category {
+    float: right;
+    clear: none;
+    font-size: 0.8vw;
+    padding-right: 4px;
+}
+
+.card.active .category {
+    float: right;
+    clear: none;
+    font-size: 1.1vw;
+    padding-right: 6px;
+}
+
+.card .product {
+    font-size: 1.2vw;
+    /*
+    display: table-cell;
+vertical-align: middle;
+padding: 10px;
+*/
+}
+
+.card.active .product {
+    font-size: 2.0vw;
+    padding-bottom: 80px;
 }

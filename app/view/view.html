@@ -117,10 +117,11 @@
 
 <article id="savings" class="row">
     <section class="col-md-8 col-md-offset-2 lead-text">
+        <h4>Geben Sie ihr Geld lieber anders aus</h4>
         <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
     </section>
 
-<!--
+    <!--
     <section class="col-md-8 col-md-offset-2">
     <table class="table table-hover">
         <thead>
@@ -146,14 +147,36 @@
 
     <section class="col-md-8 col-md-offset-2">
         <div class="row">
-            <ng-repeat ng-repeat="v in savings | orderBy:'destination.destination'">
-                <div class="col-md-3 card">
-                    <p class="title">{{v.destination.destinationName}} ({{v.destination.destination}})</p>
-                    <p>{{v.savings.category}}</p>
-                    <p class="main">{{(v.savingAbs / v.savings.costCHF) | number:0}}</p>
-                    <p>{{v.savings.product}}</p>
-                    <p>{{ v.savingRel }}</p>
-                    <p>CHF {{ v.savingAbs }}</p>
+            <div class="col-md-6 col-sm-8 col-xs-12">
+                <div class="card active">
+                    <div class="category" ng-switch="savingsActive.savings.category">
+                        <p ng-switch-when="Food"><i class="fa fa-cutlery" aria-hidden="true"></i></p>
+                        <p ng-switch-when="Drink"><i class="fa fa-glass" aria-hidden="true"></i></p>
+                        <p ng-switch-when="Sight"><i class="fa fa-star" aria-hidden="true"></i></p>
+                    </div>
+                    <p class="title">{{savingsActive.destination.destinationName}} ({{ savingsActive.destination.destination }})</p>
+                    <p class="main">{{ (savingsActive.savingAbs / savingsActive.savings.costCHF) | number:0 }}x</p>
+                    <p class="product">{{ savingsActive.savings.product }}</p>
+                    <!--                    <p>{{ savingsActive.savingRel }}</p>-->
+                    <!--                    <p>CHF {{ savingsActive.savingAbs }}</p>-->
+                </div>
+            </div>
+
+            <ng-repeat ng-repeat="v in savings | filter:savingsActiveFilter() | orderBy:'destination.destination'">
+                <div class="col-md-3 col-sm-4 col-xs-6">
+                    <!--                    <div class="card" ng-class="{active: v.destination.destination === current.destination.destination}">-->
+                    <div class="card">
+                        <div class="category" ng-switch="v.savings.category">
+                            <p ng-switch-when="Food"><i class="fa fa-cutlery" aria-hidden="true"></i></p>
+                            <p ng-switch-when="Drink"><i class="fa fa-glass" aria-hidden="true"></i></p>
+                            <p ng-switch-when="Sight"><i class="fa fa-star" aria-hidden="true"></i></p>
+                        </div>
+                        <p class="title">{{v.destination.destinationName}} ({{v.destination.destination}})</p>
+                        <p class="main">{{(v.savingAbs / v.savings.costCHF) | number:0}}x</p>
+                        <p class="product">{{v.savings.product}}</p>
+                        <!--                        <p class="clearfix">{{ v.savingRel }}</p>-->
+                        <!--                        <p>CHF {{ v.savingAbs }}</p>-->
+                    </div>
                 </div>
             </ng-repeat>
 

@@ -16,9 +16,9 @@ angular.module('ffvApp.view', ['ngRoute'])
     var deltaTime = 49;
 
     parsetViz($scope, configService, $location, $http, $q, loadType, deltaTime);
+    savingsViz($scope, configService, $location, $http, $q, loadType, deltaTime);
     priceViz($scope, $uibModal, configService, $routeParams, $location, $http, loadType, deltaTime);
 
-    savingsViz($scope, configService, $location, $http, $q, loadType, deltaTime);
 }]);
 
 angular.module('ffvApp.view').controller('ModalInstanceCtrl', function ($scope, $uibModalInstance) {

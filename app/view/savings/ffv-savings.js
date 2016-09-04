@@ -52,6 +52,14 @@ function savingsViz($scope, configService, $location, $http, $q, loadType, delta
             console.log(map.values());
 
             $scope.savings = data;
+            $scope.savingsActive = map.get($scope.current.destination.destination);
+
+            $scope.savingsActiveFilter = function () {
+                return function (item) {
+                    return item.destination.destination !== $scope.savingsActive.destination.destination;
+                }
+            };
+            console.log($scope.savingsActive);
             //            doParSetViz(data, ["Booking Weekday", "Destination", "Departure Weekday"], "Destination", $scope, configService)
         });
     }
