@@ -118,7 +118,7 @@ function doViz(destination, destinations, days, allData, ffvData, deltaTimes, ca
             })
             .attr('width', gridSize - 1)
             .style("fill", function (d) {
-                return colors[colorsOffset + d.values[0].bin - 1];
+                return colors[colorsOffset + d.values[0].bin];
             })
             .attr('class', function (d, i) {
                 return 'hr' + i + ' bordered';
@@ -385,8 +385,7 @@ function doViz(destination, destinations, days, allData, ffvData, deltaTimes, ca
 
         cards.transition().duration(1000)
             .style("fill", function (d) {
-                //                console.log(d.bin);
-                return colors[colorsOffset + d.bin - 1];
+                return colors[colorsOffset + d.bin];
             });
 
         cards.append("title");
