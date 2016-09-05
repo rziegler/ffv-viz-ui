@@ -150,7 +150,7 @@ function doViz(destination, destinations, days, allData, ffvData, deltaTimes, ca
         var selDepartureTime = selFlight.values[deltaTime].values[0].departureTime;
 
         var parser = d3.time.format("%Y-%m-%d %H:%M:%S");
-        var format = d3.time.format("%d.%m.%Y %H:%M");
+        var format = d3.time.format("%A %d.%m.%Y %H:%M");
 
         var dateTime = parser.parse(selDepartureDate + " " + selDepartureTime)
 
