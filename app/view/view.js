@@ -19,6 +19,26 @@ angular.module('ffvApp.view', ['ngRoute'])
     savingsViz($scope, configService, $location, $http, $q, loadType, deltaTime);
     priceViz($scope, $uibModal, configService, $routeParams, $location, $http, loadType, deltaTime);
 
+    $scope.expanded = false; // set expaned initially to false
+
+    $scope.expand = function () {
+        // set the expaned property used for ng-class
+        $scope.expanded = !$scope.expanded;
+
+        // calculated the expandedHeight for ng-style
+        var elem = $("#tiles-chart svg");
+        var svgHeight = elem.get()[0].height.baseVal.value;
+        //        console.log("expand height to " + svgHeight);
+        if ($scope.expanded) {
+            $scope.expandedHeight = {
+                'padding-bottom': svgHeight + "px"
+            };
+        } else {
+            // reset padding
+            $scope.expandedHeight = {};
+        }
+    };
+
 }]);
 
 angular.module('ffvApp.view').controller('ModalInstanceCtrl', function ($scope, $uibModalInstance) {

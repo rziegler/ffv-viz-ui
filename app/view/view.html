@@ -37,7 +37,7 @@
                 </ui-select>
             </div>
             <!-- carriers -->
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <ui-select id="carrier" ng-model="current.carrier" append-to-body="true">
                     <ui-select-match>
                         <span ng-bind="$select.selected"></span>
@@ -58,6 +58,10 @@
                     </ui-select-choices>
                 </ui-select>
             </div>
+            <!-- expand button -->
+            <div class="col-md-1">
+                <button class="btn btn-default" type="button" ng-class="{'active':expanded}" ng-click="expand()"><i class="fa fa-expand" aria-hidden="true"></i></button>
+            </div>
         </div>
     </section>
 
@@ -66,7 +70,7 @@
         <article id="container" class="viz">
 
             <div class="row">
-                <div id="tiles-chart" class="col-md-12"></div>
+                <div id="tiles-chart" class="col-md-12" ng-class="{'expanded':expanded}" ng-style="expandedHeight"></div>
             </div>
             <div id="hourly" class="row">
                 <div id="hourly_values" class="col-md-12">
@@ -107,9 +111,6 @@
                     <p class="max"></p>
                     <p class="cur"></p>
                 </div>
-                <!--<div id="buckets">
-    <p class="subtitle">Price niveaus for each category</p>
-</div>-->
             </div>
         </article>
     </section>

@@ -11,6 +11,11 @@
     overflow-y: scroll;
 }
 
+#tiles-chart.expanded > div {
+    height: 100%;
+    overflow-y: visible;
+}
+
 #tiles-chart rect:hover {
     opacity: 0.5;
 }

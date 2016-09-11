@@ -56,6 +56,13 @@ h6 {
     padding-bottom: 16%;
 }
 
+
+/* special padding when expanded button is pressed, the real padding is calculated in view.js (expandedHeight style) */
+
+#tiles-chart.expanded .svg-container {
+    padding-bottom: 0.5%;
+}
+
 #hourly_values .svg-container {
     padding-bottom: 20%;
 }
