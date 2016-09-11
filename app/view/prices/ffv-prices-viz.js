@@ -213,9 +213,9 @@ function doViz(destination, destinations, days, allData, ffvData, deltaTimes, ca
             })
             .update();
 
-        d3.select('#' + divId + ' .min').html('Minimum price CHF ' + minPrice);
-        d3.select('#' + divId + ' .max').html('Maximum price CHF ' + maxPrice);
-        d3.select('#' + divId + ' .cur').html('Current price CHF ' + currentPrice);
+        d3.select('#' + divId + '-text .min').html('Minimum price CHF ' + minPrice);
+        d3.select('#' + divId + '-text .max').html('Maximum price CHF ' + maxPrice);
+        d3.select('#' + divId + '-text .cur').html('Current price CHF ' + currentPrice);
     }
 
 

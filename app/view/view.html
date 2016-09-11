@@ -102,15 +102,29 @@
                 </div>
             </div>
             <div id="wtf" class="row">
-                <div id="minmax" class="col-md-12">
-                    <p class="subtitle">Percentual savings</p>
+                <div id="minmax-text" class="col-md-5">
+                    <p class="subtitle minmax">Percentual savings</p>
+                    <p class="subtitle minmax max"></p>
+                    <p class="price minmax cur"></p>
+                    <p class="subtitle minmax min"></p>
+                </div>
+                <div id="minmax" class="col-md-4">
                     <div id="viz1" class="radial_container">
                         <div></div>
                     </div>
-                    <p class="min"></p>
-                    <p class="max"></p>
-                    <p class="cur"></p>
                 </div>
+                <div class="col-md-3 ">
+                    <section id="legend-vertical" class="pull-right">
+                        <ul>
+                            <li>
+                                <div class="max-price"></div>Maximal price</li>
+                            <li>
+                                <div class="current-price"></div>Current price</li>
+                            <li>
+                                <div class="saved-price"></div>Savings</li>
+                    </section>
+                </div>
+            </div>
             </div>
         </article>
     </section>
