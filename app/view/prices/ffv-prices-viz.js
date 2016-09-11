@@ -396,6 +396,9 @@ function doViz(destination, destinations, days, allData, ffvData, deltaTimes, ca
         drawHourlyChart(carrier, 0);
         drawMinMaxPriceChart(carrier, 0, 0);
 
+        // trigger event when tiles-chart is created
+        var event = jQuery.Event("change");
+        $("#tiles-chart").trigger(event);
     }
 
     /* ************************** */

@@ -24,12 +24,22 @@ angular.module('ffvApp.view', ['ngRoute'])
     $scope.expand = function () {
         // set the expaned property used for ng-class
         $scope.expanded = !$scope.expanded;
+        calcExpandedHeight($scope.expanded);
+    };
 
+    // recalculate the height when filters change
+    $('#tiles-chart').change(function (event) {
+        jQuery(document).ready(function () { // wait until the svg is loaded
+            calcExpandedHeight($scope.expanded);
+        });
+    });
+
+    function calcExpandedHeight(isExpanded) {
         // calculated the expandedHeight for ng-style
-        var elem = $("#tiles-chart svg");
-        var svgHeight = elem.get()[0].height.baseVal.value;
-        //        console.log("expand height to " + svgHeight);
-        if ($scope.expanded) {
+        if (isExpanded) {
+            var elem = $("#tiles-chart svg");
+            var svgHeight = elem.get()[0].height.baseVal.value;
+            console.log("expand height to " + svgHeight);
             $scope.expandedHeight = {
                 'padding-bottom': svgHeight + "px"
             };
@@ -37,9 +47,11 @@ angular.module('ffvApp.view', ['ngRoute'])
             // reset padding
             $scope.expandedHeight = {};
         }
-    };
+    }
 
 }]);
+
+
 
 angular.module('ffvApp.view').controller('ModalInstanceCtrl', function ($scope, $uibModalInstance) {
     $scope.ok = function () {

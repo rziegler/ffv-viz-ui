@@ -34,20 +34,12 @@ function priceViz($scope, $uibModal, configService, $routeParams, $location, $ht
         $("#carrier").trigger(event);
     }
     var changeWeekday = function (newDay) {
-        //        if (newDay == "all") {
-        //            $scope.current.day = {
-        //                name: "All weekdays"
-        //            }
-        //        } else {
-        //            $scope.current.day = newDay;
-        //        }
         var event = jQuery.Event("change", {
             //            carrier: $scope.carrier,
             day: newDay
         });
         $("#weekday").trigger(event);
     }
-
 
     $scope.$watch("current.destination", function (newValue, oldValue) {
         console.log(oldValue.destination + " > " + newValue.destination);
