@@ -42,26 +42,26 @@ function priceViz($scope, $uibModal, configService, $routeParams, $location, $ht
     }
 
     $scope.$watch("current.destination", function (newValue, oldValue) {
-        console.log(oldValue.destination + " > " + newValue.destination);
+        //        console.log(oldValue.destination + " > " + newValue.destination);
         if (oldValue !== newValue) {
-            console.log("updating destination to " + newValue.destination);
+            //            console.log("updating destination to " + newValue.destination);
             changeDestination(newValue.destination);
         }
     });
 
     $scope.$watch("current.carrier", function (newValue, oldValue) {
-        console.log(oldValue + " > " + newValue);
+        //        console.log(oldValue + " > " + newValue);
         if (oldValue !== newValue) {
-            console.log("updating carrier to " + newValue);
+            //            console.log("updating carrier to " + newValue);
             changeCarrier(newValue);
             //            $location.path('/view2/' + newValue.destination);
         }
     });
 
     $scope.$watch("current.day", function (newValue, oldValue) {
-        console.log(oldValue.abbr + " > " + newValue.abbr);
+        //        console.log(oldValue.abbr + " > " + newValue.abbr);
         if (oldValue !== newValue) {
-            console.log("updating weeekday to " + newValue);
+            //            console.log("updating weeekday to " + newValue);
             changeWeekday(newValue);
             //            $location.path('/view2/' + newValue.destination);
         }

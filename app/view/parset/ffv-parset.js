@@ -102,8 +102,6 @@ function parsetViz($scope, configService, $location, $http, $q, loadType, deltaT
     }
 
     function sortParSetData(data, sortBy) {
-        console.log(data);
-
         // sort the data initially before starting to visualize
         function weekdayIdx(name) {
             switch (name) {

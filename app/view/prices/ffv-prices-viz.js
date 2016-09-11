@@ -57,7 +57,6 @@ function doViz(destination, destinations, days, allData, ffvData, deltaTimes, ca
 
         // weekdays event listener
         $('#weekday').change(function (event) {
-            console.log(event.day);
             if (event.day == 'all') {
                 createTilesSvg(carriers[0], 'all');
             } else {

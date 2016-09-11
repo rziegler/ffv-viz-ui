@@ -39,7 +39,7 @@ angular.module('ffvApp.view', ['ngRoute'])
         if (isExpanded) {
             var elem = $("#tiles-chart svg");
             var svgHeight = elem.get()[0].height.baseVal.value;
-            console.log("expand height to " + svgHeight);
+            //            console.log("expand height to " + svgHeight);
             $scope.expandedHeight = {
                 'padding-bottom': svgHeight + "px"
             };
