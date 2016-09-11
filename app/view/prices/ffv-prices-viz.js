@@ -106,8 +106,8 @@ function doViz(destination, destinations, days, allData, ffvData, deltaTimes, ca
             .attr('y', function (d, i) {
                 return h - y(d.values[0].price);
             })
-            .attr("rx", 2)
-            .attr("ry", 2)
+            .attr("rx", 0)
+            .attr("ry", 0)
             .attr('height', function (d) {
                 return y(d.values[0].price);
             })
@@ -350,8 +350,8 @@ function doViz(destination, destinations, days, allData, ffvData, deltaTimes, ca
             .attr("y", function (d, i) {
                 return Math.floor((i) / maxDeltaTime) * gridSizeY + 0.5;
             })
-            .attr("rx", 2)
-            .attr("ry", 2)
+            .attr("rx", 0)
+            .attr("ry", 0)
             .attr("class", "price bordered")
             .attr("width", gridSize - 1)
             .attr("height", gridSizeY - 1)

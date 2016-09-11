@@ -276,7 +276,7 @@ th.h48 {
     margin-right: 1px;
     width: 16px;
     height: 8px;
-    border-radius: 2px;
+    border-radius: 0px;
 }
 
 #legend p {
