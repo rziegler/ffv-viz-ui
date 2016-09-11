@@ -361,15 +361,15 @@ th.h48 {
 }
 
 .max-price {
-    background: rgb(68, 68, 68);
+    background: #444;
 }
 
 .current-price {
-    background: rgb(153, 153, 153);
+    background: #aaa;
 }
 
 .saved-price {
-    background: rgb(253, 202, 93);
+    background: #EDB13A;
 }
 
 #hourly_values svg rect.sel {

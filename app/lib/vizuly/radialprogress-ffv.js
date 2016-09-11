@@ -12,8 +12,8 @@ vizuly.theme.ffv = function (viz) {
         Alert: {
             name: "Alert", // Skin Name
             label_color: "#444", // Color of the center label
-            track_fill: "#FDCA5D", // Color of the background 'track' of the progress bar
-            progress_colors: ["#444", "#999"], // Colors used for progress bar
+            track_fill: "#EDB13A", // Color of the background 'track' of the progress bar
+            progress_colors: ["#444", "#aaa"], // Colors used for progress bar
             arc_fill: function (d, i) {
                 return this.progress_colors[i % 2]; // Dynamic function that returns a fill based on the index value
             },
@@ -31,7 +31,7 @@ vizuly.theme.ffv = function (viz) {
             name: "Alert", // Skin Name
             label_color: "#444", // Color of the center label
             track_fill: "#FFF", // Color of the background 'track' of the progress bar
-            progress_colors: ["#444", "#999"], // Colors used for progress bar
+            progress_colors: ["#444", "#aaa"], // Colors used for progress bar
             arc_fill: function (d, i) {
                 return this.progress_colors[i % 2];
             },
