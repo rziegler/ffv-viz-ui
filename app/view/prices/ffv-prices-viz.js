@@ -41,12 +41,7 @@ function doViz(destination, destinations, days, allData, ffvData, deltaTimes, ca
 
 
     var ascendingDateTimeStringsFromObj = function (a, b) {
-        var dateTimeParser = d3.time.format("%Y-%m-%d %H:%M:%S");
-        var aDateTimeStr = a.departureDate + " " + a.departureTime;
-        var bDateTimeStr = b.departureDate + " " + b.departureTime;
-        a = dateTimeParser.parse(aDateTimeStr);
-        b = dateTimeParser.parse(bDateTimeStr);
-        return d3.ascending(a, b);
+        return d3.ascending(a.dts, b.dts);
     };
 
     // start the action
