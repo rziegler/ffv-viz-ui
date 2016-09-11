@@ -186,15 +186,17 @@ function doViz(destination, destinations, days, allData, ffvData, deltaTimes, ca
         });
 
         var savedPricePercent = (1 - currentPrice / maxPrice) * 100;
-
-
         var chartVizComp = vizuly.component.radial_progress(document.getElementById(vizId));
 
         if (savedPricePercent === 0) {
             // use theme with track_fill WHITE
             var chartTheme = vizuly.theme.ffv(chartVizComp).skin(vizuly.skin.FFV_ALERT_ZERO);
+            //            var skinName = "bin" + rowData.values[deltaTime].values[0].bin + "zero";
+            //            vizuly.theme.ffv(chartVizComp).skin(skinName);
         } else {
             var chartTheme = vizuly.theme.ffv(chartVizComp).skin(vizuly.skin.FFV_ALERT);
+            //            var skinName = "bin" + rowData.values[deltaTime].values[0].bin;
+            //            vizuly.theme.ffv(chartVizComp).skin(skinName);
         }
 
         chartVizComp.data(maxPrice + currentPrice) // Current value
@@ -209,7 +211,7 @@ function doViz(destination, destinations, days, allData, ffvData, deltaTimes, ca
             .arcThickness(.16) // The thickness of the arc (ratio of radius)
             .duration(0)
             .label(function (d, i) {
-                return d3.format(".2f")(savedPricePercent) + '%';
+                return d3.format('.2f')(savedPricePercent) + '%';
             })
             .update();
 
