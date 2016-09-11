@@ -1,5 +1,6 @@
 .cards {
     padding-top: 40px;
+    padding-bottom: 40px;
 }
 
 .card {
@@ -22,16 +23,17 @@
 }
 
 .card .title {
-    font-size: 1.0vw;
+    /*    font-size: 1.0vw;*/
+    font-size: 22px;
     /* http://stackoverflow.com/questions/15649244/responsive-font-size */
 }
 
 .card.active .title {
-    font-size: 1.25vw;
+    font-size: 28px;
 }
 
 .card .main {
-    font-size: 3vw;
+    font-size: 65px;
     font-family: 'Oswald', sans-serif;
     /*    float: left;*/
     padding-right: 10px;
@@ -39,7 +41,7 @@
 }
 
 .card.active .main {
-    font-size: 6vw;
+    font-size: 125px;
     font-family: 'Oswald', sans-serif;
     padding-right: 20px;
 }
@@ -47,19 +49,20 @@
 .card .category {
     float: right;
     clear: none;
-    font-size: 0.8vw;
+    font-size: 18px;
     padding-right: 4px;
 }
 
 .card.active .category {
     float: right;
     clear: none;
-    font-size: 1.1vw;
+    font-size: 25px;
     padding-right: 6px;
 }
 
 .card .product {
-    font-size: 1.2vw;
+    font-size: 27px;
+    padding-bottom: 12px;
     /*
     display: table-cell;
 vertical-align: middle;
@@ -68,7 +71,8 @@ padding: 10px;
 }
 
 .card.active .product {
-    font-size: 2.0vw;
+    font-size: 45px;
+    padding-bottom: 24px;
 }
 
 .border {
@@ -94,3 +98,76 @@ padding: 10px;
     bottom: 4px;
     border-bottom: 8px solid #333;
 }
+
+
+/* Extra small devices (phones, less than 768px) */
+
+@media (max-width: 767px) {
+    .card .title {
+        font-size: 16px;
+    }
+    .card.active .title {
+        font-size: 20px;
+    }
+    .card .main {
+        font-size: 52px;
+    }
+    .card.active .main {
+        font-size: 84px;
+    }
+    .card .category {
+        font-size: 16px;
+    }
+    .card.active .category {
+        font-size: 22px;
+    }
+    .card .product {
+        font-size: 26px;
+    }
+    .card.active .product {
+        font-size: 38px;
+    }
+}
+
+
+/* No media query since this is the default in Bootstrap */
+
+
+/* Small devices (tablets, 768px and up) */
+
+@media (min-width: 768px) {
+    .card .title {
+        font-size: 16px;
+    }
+    .card.active .title {
+        font-size: 20px;
+    }
+    .card .main {
+        font-size: 52px;
+    }
+    .card.active .main {
+        font-size: 84px;
+    }
+    .card .category {
+        font-size: 16px;
+    }
+    .card.active .category {
+        font-size: 22px;
+    }
+    .card .product {
+        font-size: 26px;
+    }
+    .card.active .product {
+        font-size: 38px;
+    }
+}
+
+
+/* Medium devices (desktops, 992px and up) */
+
+@media (min-width: 992px) {}
+
+
+/* Large devices (large desktops, 1200px and up) */
+
+@media (min-width: 1200px) {}
