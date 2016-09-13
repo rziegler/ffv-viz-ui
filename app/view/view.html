@@ -1,15 +1,15 @@
 <article id="lead" class="row">
-    <section class="col-md-8 col-md-offset-2 lead-text">
+    <section class="col-lg-8 col-md-10 col-lg-offset-2 col-md-offset-1 lead-text">
         <h1>So entwickeln sich die Flugpreise wirklich</h1>
         <h4>Entdecken Sie den günstigsten Buchungszeitpunkt für zwanzig Destinationen ab Zürich</h4>
         <p>Mit einigen Faustregeln können Sie beim Buchen des Fluges für Ihren nächsten Städtetrip oder die Strandferien viel Geld sparen.</p>
         <p>Buchen Sie in der ersten Wochenhälfte und planen Sie ihren Abflug in der Wochenmitte. Und es ist tatsächlich so: Je früher der Flug gebucht wird, umso günstiger ist es.</p>
     </section>
 
-    <section class="col-md-8 col-md-offset-2">
+    <section class="col-lg-8 col-md-10 col-lg-offset-2 col-md-offset-1">
 
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-lg-12 col-md-12">
                 <div id="parset-vis" class="center-block svg-container" />
             </div>
             <div id="timeseries-vis" class="timeseries center-block svg-container"></div>
@@ -18,14 +18,14 @@
 </article>
 
 <article id="prices" class="row">
-    <section class="col-md-8 col-md-offset-2 lead-text">
+    <section class="col-lg-8 col-md-10 col-lg-offset-2 col-md-offset-1 lead-text">
         <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
     </section>
 
-    <section id="prices-header" class="col-md-8 col-md-offset-2">
+    <section id="prices-header" class="col-lg-8 col-md-10 col-lg-offset-2 col-md-offset-1">
         <div class="row">
             <!-- destinations -->
-            <div class="col-md-4">
+            <div class="col-lg-4 col-md-4">
                 <ui-select id="destination" ng-model="current.destination" append-to-body="true">
                     <ui-select-match>
                         <span ng-bind="$select.selected.destinationName"></span>
@@ -37,7 +37,7 @@
                 </ui-select>
             </div>
             <!-- carriers -->
-            <div class="col-md-3">
+            <div class="col-lg-3 col-md-3">
                 <ui-select id="carrier" ng-model="current.carrier" append-to-body="true">
                     <ui-select-match>
                         <span ng-bind="$select.selected"></span>
@@ -48,7 +48,7 @@
                 </ui-select>
             </div>
             <!-- weekdays -->
-            <div class="col-md-4">
+            <div class="col-lg-4 col-md-4">
                 <ui-select id="weekday" ng-model="current.day" append-to-body="true">
                     <ui-select-match>
                         <span ng-bind="$select.selected.name"></span>
@@ -59,28 +59,28 @@
                 </ui-select>
             </div>
             <!-- expand button -->
-            <div class="col-md-1">
+            <div class="col-lg-1 col-md-1">
                 <button class="btn btn-default" type="button" ng-class="{'active':expanded}" ng-click="expand()"><i class="fa fa-expand" aria-hidden="true"></i></button>
             </div>
         </div>
     </section>
 
-    <section id="viz-col" class="col-md-8 col-md-offset-2">
+    <section id="viz-col" class="col-lg-8 col-md-10 col-lg-offset-2 col-md-offset-1">
 
         <article id="container" class="viz">
 
             <div class="row">
-                <div id="tiles-chart" class="col-md-12" ng-class="{'expanded':expanded}" ng-style="expandedHeight"></div>
+                <div id="tiles-chart" class="col-lg-12 col-md-12" ng-class="{'expanded':expanded}" ng-style="expandedHeight"></div>
             </div>
             <div id="hourly" class="row">
-                <div id="hourly_values" class="col-md-12">
+                <div id="hourly_values" class="col-lg-12 col-md-12">
 
                     <div class="row">
-                        <div class="col-md-9">
+                        <div class="col-lg-9 col-md-9">
                             <p class="subtitle">Daily price development</p>
                             <p class="price"></p>
                         </div>
-                        <div class="col-md-3 ">
+                        <div class="col-lg-3 col-md-3">
                             <section id="legend" class="pull-right">
                                 <ul>
                                     <li class="OrRd q2-9"></li>
@@ -102,18 +102,18 @@
                 </div>
             </div>
             <div id="wtf" class="row">
-                <div id="minmax-text" class="col-md-5">
+                <div id="minmax-text" class="col-lg-5 col-md-5">
                     <p class="subtitle minmax">Percentual savings</p>
                     <p class="subtitle minmax max"></p>
                     <p class="price minmax cur"></p>
                     <p class="subtitle minmax min"></p>
                 </div>
-                <div id="minmax" class="col-md-4">
+                <div id="minmax" class="col-lg-4 col-md-4">
                     <div id="viz1" class="radial_container">
                         <div></div>
                     </div>
                 </div>
-                <div class="col-md-3 ">
+                <div class="col-lg-3 col-md-3">
                     <section id="legend-vertical" class="pull-right">
                         <ul>
                             <li>
@@ -131,13 +131,13 @@
 </article>
 
 <article id="savings" class="row">
-    <section class="col-md-8 col-md-offset-2 article-text">
+    <section class="col-lg-8 col-md-10 col-lg-offset-2 col-md-offset-1 article-text">
         <h4>Geben Sie ihr Geld lieber anders aus</h4>
         <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
     </section>
 
     <!--
-    <section class="col-md-8 col-md-offset-2">
+    <section class="col-lg-8 col-lg-offset-2">
     <table class="table table-hover">
         <thead>
             <th>Destination</th>
@@ -160,7 +160,7 @@
 </section>
 -->
 
-    <section class="col-sm-8 col-sm-offset-2 col-xs-12 cards">
+    <section class="col-lg-8 col-md-10 col-lg-offset-2 col-md-offset-1 col-xs-12 cards">
         <div class="row">
             <div class="col-sm-4 col-xs-6">
                 <div class="card active">
