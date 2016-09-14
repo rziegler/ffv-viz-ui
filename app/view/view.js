@@ -41,7 +41,7 @@ angular.module('ffvApp.view', ['ngRoute'])
             var svgHeight = elem.get()[0].height.baseVal.value;
             //            console.log("expand height to " + svgHeight);
             $scope.expandedHeight = {
-                'padding-bottom': svgHeight + "px"
+                'padding-bottom': svgHeight + 35 + "px" // 35px extra padding since subtitle have -10 margin
             };
         } else {
             // reset padding
