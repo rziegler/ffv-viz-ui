@@ -296,9 +296,7 @@ configService.factory('Config', ['$resource', 'envService',
 
         var getFullDayForAbbr = function (abbr) {
             var result = {};
-            console.log(abbr);
             var abbrShortened = abbr.substring(0, 2);
-            console.log(abbrShortened);
             getDays().values().forEach(function (entry) {
                 if (entry.abbr == abbrShortened) {
                     result = entry;
