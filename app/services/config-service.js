@@ -294,6 +294,19 @@ configService.factory('Config', ['$resource', 'envService',
             });
         }
 
+        var getFullDayForAbbr = function (abbr) {
+            var result = {};
+            console.log(abbr);
+            var abbrShortened = abbr.substring(0, 1);
+            console.log(abbrShortened);
+            getDays().values().forEach(function (entry) {
+                if (entry.abbr == abbrShortened) {
+                    result = entry;
+                }
+            });
+            return result;
+        }
+
         function getSavings() {
             return d3.map([
                 {
@@ -463,6 +476,7 @@ configService.factory('Config', ['$resource', 'envService',
             setCurrentDestination: setCurrentDestination,
             setCurrentDestinationByCountry: setCurrentDestinationByCountry,
             getDays: getDays,
+            getFullDayForAbbr: getFullDayForAbbr,
             getSavings: getSavings,
             getSavingsForDestination: getSavingsForDestination
         }
