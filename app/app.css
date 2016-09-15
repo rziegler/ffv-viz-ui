@@ -31,8 +31,13 @@ h6 {
     padding-top: 40px;
 }
 
-.lead-text p:last-of-type {
+.lead-text p:last-of-type,
+.article-text p:last-of-type {
     padding-bottom: 40px;
+}
+
+.article-text h4 {
+    margin-top: 20px;
 }
 
 

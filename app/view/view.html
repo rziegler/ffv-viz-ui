@@ -18,8 +18,9 @@
 </article>
 
 <article id="prices" class="row">
-    <section class="col-lg-8 col-md-10 col-lg-offset-2 col-md-offset-1 lead-text">
-        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+    <section class="col-lg-8 col-md-10 col-lg-offset-2 col-md-offset-1 article-text">
+        <h4>Am Dienstag von Zürich nach Dubai zum besten Preis</h4>
+        <p>Wann bucht man eine Flugreise zum besten Preis? 42 oder 25 Tage vor dem Abflug? Antworten auf diese Frage zeigt die interaktive Grafik. Sie stellt die Preisentwicklung der Flüge in der Auswahl von 20 Destinationen, mehreren Fluganbietern und sieben Wochentagen dar. Dies in einer Zeitspanne von 49 Tagen bis 1 Tag vor Abflug. Je heller die Farbfläche, desto tiefer der Preis.</p>
     </section>
 
     <section id="prices-header" class="col-lg-8 col-md-10 col-lg-offset-2 col-md-offset-1">
@@ -132,8 +133,8 @@
 
 <article id="savings" class="row">
     <section class="col-lg-8 col-md-10 col-lg-offset-2 col-md-offset-1 article-text">
-        <h4>Geben Sie ihr Geld lieber anders aus</h4>
-        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+        <h4>Beim Fliegen sparen, in den Ferien ausgeben</h4>
+        <p>Wer zum richtigen Zeitpunkt einen Flug bucht spart also Geld. Im besten Fall soviel, dass es beim nächsten Städtetrip nach New York für 104 Extra-Portionen Hamburger mit Pommes reicht.</p>
     </section>
 
     <!--
@@ -208,6 +209,17 @@
         <div class="modal-body">
             <section>
                 Based on flight fares collected via the <a href="http://en.business.skyscanner.net/en-gb/products/travel-apis/">Travel APIs from Skyscanner Business</a> between May and August 2016. Only complete time series are visualized, whereas a complete series is defined as a set of prices requested every day from 49 days prior to one day before departure.
+            </section>
+            <section>
+                The following fixed variables are used while colleting the data from Skyscanner API.
+                <ul>
+                    <li>Origin Zurich</li>
+                    <li>One-way journey</li>
+                    <li>Single person</li>
+                    <li>Economy class</li>
+                    <li>Single-segment flight</li>
+                </ul>
+                <br>
             </section>
             <section>
                 &copy; Ruth Ziegler 2016, ffv v<span app-version></span>
