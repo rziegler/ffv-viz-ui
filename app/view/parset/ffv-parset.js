@@ -40,13 +40,16 @@ function parsetViz($scope, configService, $location, $http, $q, loadType, deltaT
         var labels = d3.map([
             {
                 id: 'minWeekdayBook',
-                label: 'Booking Weekday'
+                label: 'Book on'
                   }, {
                 id: 'minWeekdayFlight',
-                label: 'Departure Weekday'
+                label: 'Depart on'
                   }, {
                 id: 'destination',
-                label: 'Destination'
+                label: 'Fly to'
+                    //                  }, {
+                    //                id: 'minhist',
+                    //                label: 'Book weeks in advance'
                   }
               ], function (d) {
             return d.id;
@@ -57,6 +60,7 @@ function parsetViz($scope, configService, $location, $http, $q, loadType, deltaT
         configService.getDestinationData().forEach(function (key, value) {
             requests.push($http.get("http://ffv.kows.info/api/minWeekdayFlight/" + value.destination + "?delta=" + deltaTime));
             requests.push($http.get("http://ffv.kows.info/api/minWeekdayBook/" + value.destination + "?delta=" + deltaTime));
+            //            requests.push($http.get("http://ffv.kows.info/api/minhist/" + value.destination + "?delta=" + deltaTime));
         });
 
         // wait until all requests are done
@@ -67,6 +71,29 @@ function parsetViz($scope, configService, $location, $http, $q, loadType, deltaT
 
             responses.forEach(function (d) {
                 if (d.statusText === "OK") {
+
+                    //                    if (d.config.url.indexOf("minhist") !== -1) {
+                    //                        var separators = ['/', '\\\?'];
+                    //                        var urlSplitted = d.config.url.split(new RegExp(separators.join('|'), 'g'));
+                    //                        var l = labels.get(urlSplitted[4]);
+                    //
+                    //                        var value = calculateWeekWithMaxMinFlights(d);
+                    //
+                    //                        if (map.has(urlSplitted[5])) {
+                    //                            // get obj an add new attributes to existing obj
+                    //                            var obj = map.get(urlSplitted[5]);
+                    //
+                    //                            obj[l.label] = calculateWeekWithMaxMinFlights(d);
+                    //                            map.set(urlSplitted[5], obj);
+                    //                        } else {
+                    //                            // create new obj and add attributes
+                    //                            var obj = {};
+                    //                            obj[labels.get('destination').label] = urlSplitted[5];
+                    //                            obj[l.label] = calculateWeekWithMaxMinFlights(d);
+                    //                            map.set(urlSplitted[5], obj);
+                    //                        }
+                    //
+                    //                    } else{
                     var separators = ['/', '\\\?'];
                     var urlSplitted = d.config.url.split(new RegExp(separators.join('|'), 'g'));
                     //                    console.log(urlSplitted[4] + " " + urlSplitted[5]);
@@ -76,19 +103,18 @@ function parsetViz($scope, configService, $location, $http, $q, loadType, deltaT
                         // get obj an add new attributes to existing obj
                         var obj = map.get(urlSplitted[5]);
 
-
-                        obj[l.label] = d.data.value;
+                        obj[l.label] = configService.getFullDayForAbbr(d.data.value).name;
                         obj[l.label + "Probability"] = d.data.propability;
                         map.set(urlSplitted[5], obj);
                     } else {
                         // create new obj and add attributes
-                        var obj = {
-                            "Destination": urlSplitted[5]
-                        };
-                        obj[l.label] = d.data.value;
+                        var obj = {};
+                        obj[labels.get('destination').label] = urlSplitted[5];
+                        obj[l.label] = configService.getFullDayForAbbr(d.data.value).name;
                         obj[l.label + "Probability"] = d.data.propability;
                         map.set(urlSplitted[5], obj);
                     }
+                    //                    }
                 } else {
                     console.error(d);
                 }
@@ -96,8 +122,19 @@ function parsetViz($scope, configService, $location, $http, $q, loadType, deltaT
 
             var data = map.values();
             //            sortParSetData(data, "minWeekdayFlightValue");
-            sortParSetData(data, "Booking Weekday");
-            doParSetViz(data, ["Booking Weekday", "Destination", "Departure Weekday"], "Destination", $scope, configService)
+            console.log(data);
+            //            sortParSetData(data, "Booking Weekday");
+            //            sortParSetData(data, "Departure Weekday");
+            sortParSetData(data, "Depart on")
+                //            doParSetViz(data, ["Booking Weekday", "Destination", "Departure Weekday", "Booking Week"], "Destination", $scope, configService)
+
+            //            doParSetViz(data, ["Destination", "Departure Weekday", "Booking Weekday", "Booking Week"], "Destination", $scope, configService)
+
+
+            //            doParSetViz(data, ["Fly to", "Depart on", "Book on", "Book weeks in advance"], "Fly to", $scope, configService)
+            doParSetViz(data, ["Depart on", "Fly to", "Book on"], "Fly to", $scope, configService)
+                //            doParSetViz(data, ["Fly to", "Book on", "Book weeks in advance", "Depart on"], "Fly to", $scope, configService)
+                //            doParSetViz(data, ["Depart on", "Fly to", "Book on", "Book weeks in advance"], "Fly to", $scope, configService)
         });
     }
 
@@ -105,19 +142,19 @@ function parsetViz($scope, configService, $location, $http, $q, loadType, deltaT
         // sort the data initially before starting to visualize
         function weekdayIdx(name) {
             switch (name) {
-            case 'Mon':
+            case 'Monday':
                 return 1;
-            case 'Tue':
+            case 'Tuesday':
                 return 2;
-            case 'Wed':
+            case 'Wednesday':
                 return 3;
-            case 'Thu':
+            case 'Thursday':
                 return 4;
-            case 'Fri':
+            case 'Friday':
                 return 5;
-            case 'Sat':
+            case 'Saturday':
                 return 6;
-            case 'Sun':
+            case 'Sunday':
                 return 7;
             default:
                 // if it is not a weekday, use the name itself
@@ -155,6 +192,31 @@ function parsetViz($scope, configService, $location, $http, $q, loadType, deltaT
         timeseries('timeseries', ffvdata, 'Booking week', 960, $scope);
     }
 
+    function calculateWeekWithMaxMinFlights(d) {
+        var cheapestFlightsPerWeek = [];
+        for (var i = 0; i < d.data.length; i = i + 7) {
+            var sumForWeek = 0;
+            for (var j = i; j < i + 7; j++) {
+                sumForWeek += d.data[j];
+            }
+            cheapestFlightsPerWeek.push(sumForWeek);
+        }
+        // reverse to be able to use the index as delta week before flight
+        cheapestFlightsPerWeek.reverse();
+
+        // get the index of the max value
+        var max = d3.max(cheapestFlightsPerWeek);
+        var maxIndex = -1;
+        for (var i = 0; i < cheapestFlightsPerWeek.length; i++) {
+            if (cheapestFlightsPerWeek[i] === max) {
+                maxIndex = i;
+                break;
+            }
+        }
+        //                    console.log(cheapestFlightsPerWeek + " > " + maxIndex);
+        return maxIndex + 1; // +1 since the array index is 0-based
+    }
+
     function createTimeseriesVisualizationOnline() {
         // create a request (minhist) for every destination
         var requests = [];
@@ -185,30 +247,5 @@ function parsetViz($scope, configService, $location, $http, $q, loadType, deltaT
             //    timeseries('timeseries', map.values(), 'Weeks before flight to book', 960);
             timeseries('timeseries', map.values(), 'Booking week', 960, $scope);
         });
-
-        function calculateWeekWithMaxMinFlights(d) {
-            var cheapestFlightsPerWeek = [];
-            for (var i = 0; i < d.data.length; i = i + 7) {
-                var sumForWeek = 0;
-                for (var j = i; j < i + 7; j++) {
-                    sumForWeek += d.data[j];
-                }
-                cheapestFlightsPerWeek.push(sumForWeek);
-            }
-            // reverse to be able to use the index as delta week before flight
-            cheapestFlightsPerWeek.reverse();
-
-            // get the index of the max value
-            var max = d3.max(cheapestFlightsPerWeek);
-            var maxIndex = -1;
-            for (var i = 0; i < cheapestFlightsPerWeek.length; i++) {
-                if (cheapestFlightsPerWeek[i] === max) {
-                    maxIndex = i;
-                    break;
-                }
-            }
-            //                    console.log(cheapestFlightsPerWeek + " > " + maxIndex);
-            return maxIndex + 1; // +1 since the array index is 0-based
-        }
     }
 }

@@ -14,14 +14,14 @@ function doParSetViz(data, dimensionLabels, dimensionLabelHighlight, $scope, con
                 return item[dimensionLabelHighlight] === d.name;
             })[0];
 
-            var bookingDayFull = configService.getFullDayForAbbr(current['Booking Weekday']).name;
-            var departureDayFull = configService.getFullDayForAbbr(current['Departure Weekday']).name;
+            var bookingDayFull = configService.getFullDayForAbbr(current['Book on']).name;
+            var departureDayFull = configService.getFullDayForAbbr(current['Depart on']).name;
 
             //            var destData = configService.getDestinationDataForDestination(current['Destination']);
             //            return "<p>" + destData.destinationName + " (" + destData.destination +
             //                ")</p><p>Book on " + bookingDayFull +" (" + percent(current['Booking WeekdayProbability']) + " probablity)" +
             //                "</p><p>Fly on " + departureDayFull + " (" + percent(current['Departure WeekdayProbability']) + " probablity)</p>";
-            var destData = configService.getDestinationDataForDestination(current['Destination']);
+            var destData = configService.getDestinationDataForDestination(current['Fly to']);
             return "<p>" + destData.destinationName + " (" + destData.destination +
                 ")</p><p>Book on " + bookingDayFull +
                 "</p><p>Fly on " + departureDayFull + "</p>";

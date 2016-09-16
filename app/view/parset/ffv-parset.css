@@ -7,3 +7,67 @@ text.icicle {
 svg {
     fill: #333;
 }
+
+
+/* redefine cateogories and other styles */
+
+.category {
+    cursor: ew-resize;
+    fill: #333;
+    font-size: 1.0em;
+    text-transform: uppercase;
+    /*    font-weight: bold;*/
+    /*    text-overflow: clip;*/
+}
+
+.dimension tspan.name {
+    font-size: 1.6em;
+    fill: #333;
+    font-weight: 400;
+}
+
+.category-0 {
+    fill: #045a8d;
+    stroke: #045a8d;
+}
+
+.category-1 {
+    fill: #0570b0;
+    stroke: #0570b0;
+}
+
+.category-2 {
+    fill: #3690c0;
+    stroke: #3690c0;
+}
+
+.category-3 {
+    fill: #74a9cf;
+    stroke: #74a9cf;
+}
+
+.category-4 {
+    fill: #a6bddb;
+    stroke: #a6bddb;
+}
+
+.category-5 {
+    fill: #d0d1e6;
+    stroke: #d0d1e6;
+}
+
+.category-6 {
+    fill: #ece7f2;
+    stroke: #ece7f2;
+}
+
+.parsets-tooltip {
+    background-color: rgba(242, 242, 242, .6);
+    position: absolute;
+    padding: 5px;
+}
+
+.parsets-tooltip > p:first-of-type {
+    font-weight: 400;
+    font-size: 1.6em;
+}
