@@ -12,7 +12,7 @@
         opacity: 0.6;
     }
     100% {
-        opacity: 1;
+        opacity: 0.8;
     }
 }
 
@@ -25,19 +25,21 @@
         r: 1%;
     }
     100% {
-        opacity: 1;
-        r: 2%;
+        opacity: 0.8;
+        r: 1.5%;
     }
 }
 
 .circ {
-    fill: #D35400;
-    opacity: 0.6;
-    stroke: rgba(211, 84, 0, 0.7);
+    fill: #045a8d;
+    opacity: 0.5;
+    stroke: rgba(4, 90, 141, 0.7);
     stroke-width: 5px;
 }
 
 .circ.active {
+    fill: #D35400;
+    stroke: rgba(211, 84, 0, 0.7);
     /*    opacity: 1;*/
     animation-name: highlight;
     animation-duration: 100ms;

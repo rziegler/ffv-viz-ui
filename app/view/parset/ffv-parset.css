@@ -61,6 +61,21 @@ svg {
     stroke: #ece7f2;
 }
 
+.ribbon path {
+    stroke-opacity: 0;
+    fill-opacity: .7;
+}
+
+.ribbon path.active {
+    fill: #D35400;
+    fill-opacity: .5;
+}
+
+.ribbon path.selected {
+    fill: #D35400;
+    fill-opacity: 0.5;
+}
+
 .parsets-tooltip {
     background-color: rgba(242, 242, 242, .6);
     position: absolute;
