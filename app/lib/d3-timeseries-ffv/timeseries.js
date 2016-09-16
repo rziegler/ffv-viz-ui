@@ -4,17 +4,16 @@
  */
 (function () {
 
-    var timeseries = function (spaced, data, title, width, $scope) {
+    var timeseries = function (spaced, data, title, width, $scope, tooltipFn) {
         classd = spaced.replace(new RegExp(" "), ".");
-        render(classd, spaced, data, title, width, $scope);
+        render(classd, spaced, data, title, width, $scope, tooltipFn);
     }
 
     // ---------------------------------------------------------------------------------------------
     // ------------------------------------- Rendering ---------------------------------------------
     // ---------------------------------------------------------------------------------------------
 
-    function render(classd, spaced, data, title, width, $scope) {
-
+    function render(classd, spaced, data, title, width, $scope, tooltipFn) {
         var margin = {
             top: 0,
             right: 1,
@@ -136,12 +135,35 @@
             .on("mouseover", function (d) {
                 //                console.log(d.id + " " + d.value);
                 d3.select(this).classed("active", true);
+                var html = tooltipFn.call(this, d);
+                showTooltip(html);
                 $scope.$emit('hightlightDestinationOnTimeseriesVis', d.id);
+
             })
             .on("mouseout", function () {
                 d3.select(this).classed("active", false);
                 $scope.$emit('hightlightDestinationOnTimeseriesVis', '');
+                hideTooltip();
             });
+
+        var body = d3.select("body");
+        var tooltip = body.append("div")
+            .style("display", "none")
+            .attr("class", "timeseries parsets-tooltip");
+
+
+        function showTooltip(html) {
+            var m = d3.mouse(body.node());
+            tooltip
+                .style("display", "inline")
+                .style("left", m[0] + 20 + "px")
+                .style("top", m[1] - 20 + "px")
+                .html(html);
+        }
+
+        function hideTooltip() {
+            tooltip.style("display", "none");
+        }
     }
 
     if (typeof define === "function" && define.amd) define(timeseries);

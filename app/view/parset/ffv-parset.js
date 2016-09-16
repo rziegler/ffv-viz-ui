@@ -6,7 +6,7 @@ function parsetViz($scope, configService, $location, $http, $q, loadType, deltaT
 
     } else {
         createParSetVisualizationOnline();
-        createTimeseriesVisualizationOnline();
+        //        createTimeseriesVisualizationOnline();
 
     }
 
@@ -23,9 +23,20 @@ function parsetViz($scope, configService, $location, $http, $q, loadType, deltaT
         if (destination === '') {
             d3.selectAll(".ribbon path").classed("selected", false);
         } else {
-            d3.selectAll("path#Destination-" + destination).classed("selected", true);
+            d3.selectAll("path#Flyto-" + destination).classed("selected", true);
         }
     });
+
+
+    var tooltip = function createTooltip(current) {
+        var bookingDayFull = configService.getFullDayForAbbr(current['Book on']).name;
+        var departureDayFull = configService.getFullDayForAbbr(current['Depart on']).name;
+
+        var destData = configService.getDestinationDataForDestination(current['Fly to']);
+        return "<p>" + destData.destinationName + " (" + destData.destination +
+            ")</p><p>Book on " + bookingDayFull +
+            "</p><p>Fly on " + departureDayFull + "</p>";
+    };
 
     function createParSetVisualizationStatic() {
         // reading the csv
@@ -47,9 +58,9 @@ function parsetViz($scope, configService, $location, $http, $q, loadType, deltaT
                   }, {
                 id: 'destination',
                 label: 'Fly to'
-                    //                  }, {
-                    //                id: 'minhist',
-                    //                label: 'Book weeks in advance'
+                  }, {
+                id: 'minhist',
+                label: 'value'
                   }
               ], function (d) {
             return d.id;
@@ -60,7 +71,7 @@ function parsetViz($scope, configService, $location, $http, $q, loadType, deltaT
         configService.getDestinationData().forEach(function (key, value) {
             requests.push($http.get("http://ffv.kows.info/api/minWeekdayFlight/" + value.destination + "?delta=" + deltaTime));
             requests.push($http.get("http://ffv.kows.info/api/minWeekdayBook/" + value.destination + "?delta=" + deltaTime));
-            //            requests.push($http.get("http://ffv.kows.info/api/minhist/" + value.destination + "?delta=" + deltaTime));
+            requests.push($http.get("http://ffv.kows.info/api/minhist/" + value.destination + "?delta=" + deltaTime));
         });
 
         // wait until all requests are done
@@ -72,69 +83,59 @@ function parsetViz($scope, configService, $location, $http, $q, loadType, deltaT
             responses.forEach(function (d) {
                 if (d.statusText === "OK") {
 
-                    //                    if (d.config.url.indexOf("minhist") !== -1) {
-                    //                        var separators = ['/', '\\\?'];
-                    //                        var urlSplitted = d.config.url.split(new RegExp(separators.join('|'), 'g'));
-                    //                        var l = labels.get(urlSplitted[4]);
-                    //
-                    //                        var value = calculateWeekWithMaxMinFlights(d);
-                    //
-                    //                        if (map.has(urlSplitted[5])) {
-                    //                            // get obj an add new attributes to existing obj
-                    //                            var obj = map.get(urlSplitted[5]);
-                    //
-                    //                            obj[l.label] = calculateWeekWithMaxMinFlights(d);
-                    //                            map.set(urlSplitted[5], obj);
-                    //                        } else {
-                    //                            // create new obj and add attributes
-                    //                            var obj = {};
-                    //                            obj[labels.get('destination').label] = urlSplitted[5];
-                    //                            obj[l.label] = calculateWeekWithMaxMinFlights(d);
-                    //                            map.set(urlSplitted[5], obj);
-                    //                        }
-                    //
-                    //                    } else{
-                    var separators = ['/', '\\\?'];
-                    var urlSplitted = d.config.url.split(new RegExp(separators.join('|'), 'g'));
-                    //                    console.log(urlSplitted[4] + " " + urlSplitted[5]);
-                    var l = labels.get(urlSplitted[4]);
+                    if (d.config.url.indexOf("minhist") !== -1) {
+                        var separators = ['/', '\\\?'];
+                        var urlSplitted = d.config.url.split(new RegExp(separators.join('|'), 'g'));
+                        var l = labels.get(urlSplitted[4]);
 
-                    if (map.has(urlSplitted[5])) {
-                        // get obj an add new attributes to existing obj
-                        var obj = map.get(urlSplitted[5]);
+                        var value = calculateWeekWithMaxMinFlights(d);
 
-                        obj[l.label] = configService.getFullDayForAbbr(d.data.value).name;
-                        obj[l.label + "Probability"] = d.data.propability;
-                        map.set(urlSplitted[5], obj);
+                        if (map.has(urlSplitted[5])) {
+                            // get obj an add new attributes to existing obj
+                            var obj = map.get(urlSplitted[5]);
+
+                            obj[l.label] = calculateWeekWithMaxMinFlights(d);
+                            map.set(urlSplitted[5], obj);
+                        } else {
+                            // create new obj and add attributes
+                            var obj = {};
+                            obj['id'] = urlSplitted[5];
+                            obj[labels.get('destination').label] = urlSplitted[5];
+                            obj[l.label] = calculateWeekWithMaxMinFlights(d);
+                            map.set(urlSplitted[5], obj);
+                        }
                     } else {
-                        // create new obj and add attributes
-                        var obj = {};
-                        obj[labels.get('destination').label] = urlSplitted[5];
-                        obj[l.label] = configService.getFullDayForAbbr(d.data.value).name;
-                        obj[l.label + "Probability"] = d.data.propability;
-                        map.set(urlSplitted[5], obj);
+                        var separators = ['/', '\\\?'];
+                        var urlSplitted = d.config.url.split(new RegExp(separators.join('|'), 'g'));
+                        //                    console.log(urlSplitted[4] + " " + urlSplitted[5]);
+                        var l = labels.get(urlSplitted[4]);
+
+                        if (map.has(urlSplitted[5])) {
+                            // get obj an add new attributes to existing obj
+                            var obj = map.get(urlSplitted[5]);
+
+                            obj[l.label] = configService.getFullDayForAbbr(d.data.value).name;
+                            obj[l.label + "Probability"] = d.data.propability;
+                            map.set(urlSplitted[5], obj);
+                        } else {
+                            // create new obj and add attributes
+                            var obj = {};
+                            obj['id'] = urlSplitted[5];
+                            obj[labels.get('destination').label] = urlSplitted[5];
+                            obj[l.label] = configService.getFullDayForAbbr(d.data.value).name;
+                            obj[l.label + "Probability"] = d.data.propability;
+                            map.set(urlSplitted[5], obj);
+                        }
                     }
-                    //                    }
                 } else {
                     console.error(d);
                 }
             });
 
             var data = map.values();
-            //            sortParSetData(data, "minWeekdayFlightValue");
-            console.log(data);
-            //            sortParSetData(data, "Booking Weekday");
-            //            sortParSetData(data, "Departure Weekday");
-            sortParSetData(data, "Depart on")
-                //            doParSetViz(data, ["Booking Weekday", "Destination", "Departure Weekday", "Booking Week"], "Destination", $scope, configService)
-
-            //            doParSetViz(data, ["Destination", "Departure Weekday", "Booking Weekday", "Booking Week"], "Destination", $scope, configService)
-
-
-            //            doParSetViz(data, ["Fly to", "Depart on", "Book on", "Book weeks in advance"], "Fly to", $scope, configService)
-            doParSetViz(data, ["Depart on", "Fly to", "Book on"], "Fly to", $scope, configService)
-                //            doParSetViz(data, ["Fly to", "Book on", "Book weeks in advance", "Depart on"], "Fly to", $scope, configService)
-                //            doParSetViz(data, ["Depart on", "Fly to", "Book on", "Book weeks in advance"], "Fly to", $scope, configService)
+            sortParSetData(data, "Depart on");
+            doParSetViz(data, ["Depart on", "Fly to", "Book on"], "Fly to", $scope, configService, tooltip);
+            timeseries('timeseries', map.values(), 'Booking week', 960, $scope, tooltip);
         });
     }
 

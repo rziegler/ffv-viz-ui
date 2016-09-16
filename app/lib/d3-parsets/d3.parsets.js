@@ -291,11 +291,11 @@
 
                 // evaluate the id for the dimension which is the name and value of the set hightlightDimension
                 function evalDimensionId(d) {
-                    var result = d.dimension + "-" + d.name;
+                    var result = d.dimension.replace(" ", "") + "-" + d.name;
                     while (d.parent) {
                         var dimensionToHighlight = highlightDimension_.call(this, data);
                         if (d.dimension === dimensionToHighlight) {
-                            result = d.dimension + "-" + d.name;
+                            result = d.dimension.replace(" ", "") + "-" + d.name;
                             break;
                         }
                         d = d.parent;
@@ -554,10 +554,7 @@
         }
 
         function showTooltip(html) {
-
             var m = d3.mouse(body.node());
-            //            console.log("ruth" + html + ": " + m);
-
             tooltip
                 .style("display", "inline")
                 .style("left", m[0] + 30 + "px")

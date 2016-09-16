@@ -1,11 +1,9 @@
-function doParSetViz(data, dimensionLabels, dimensionLabelHighlight, $scope, configService) {
+function doParSetViz(data, dimensionLabels, dimensionLabelHighlight, $scope, configService, tooltipFn) {
 
     var chart = d3.parsets()
         .dimensions(dimensionLabels)
         .highlightDimension(dimensionLabelHighlight)
         .tooltip(function (d) {
-            var percent = d3.format("%");
-
             while (d.dimension !== dimensionLabelHighlight) {
                 d = d.parent;
             }
@@ -13,18 +11,7 @@ function doParSetViz(data, dimensionLabels, dimensionLabelHighlight, $scope, con
             var current = data.filter(function (item) {
                 return item[dimensionLabelHighlight] === d.name;
             })[0];
-
-            var bookingDayFull = configService.getFullDayForAbbr(current['Book on']).name;
-            var departureDayFull = configService.getFullDayForAbbr(current['Depart on']).name;
-
-            //            var destData = configService.getDestinationDataForDestination(current['Destination']);
-            //            return "<p>" + destData.destinationName + " (" + destData.destination +
-            //                ")</p><p>Book on " + bookingDayFull +" (" + percent(current['Booking WeekdayProbability']) + " probablity)" +
-            //                "</p><p>Fly on " + departureDayFull + " (" + percent(current['Departure WeekdayProbability']) + " probablity)</p>";
-            var destData = configService.getDestinationDataForDestination(current['Fly to']);
-            return "<p>" + destData.destinationName + " (" + destData.destination +
-                ")</p><p>Book on " + bookingDayFull +
-                "</p><p>Fly on " + departureDayFull + "</p>";
+            return tooltipFn.call(this, current);
         })
         .tension(0.5)
         .width(960); // 1 = no curves, 0.5 = curves
