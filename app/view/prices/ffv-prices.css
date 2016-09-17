@@ -297,7 +297,7 @@ th.h48 {
 
 #legend-vertical {
     color: #444;
-    margin-top: 43px;
+    margin-top: 28px;
     border: 1px solid #adadad;
     /*    overflow: hidden;*/
     padding: 3px 5px;
@@ -416,6 +416,10 @@ th.h48 {
     display: none;
 }
 
+#minmax {
+    margin-bottom: -100px;
+}
+
 #minmax .vz-background {
     fill: #FFF;
 }
@@ -447,19 +451,23 @@ p.subtitle.minmax {
     margin-left: 16.4%;
 }
 
+.deltaDaysBig {
+    font-weight: 600;
+}
+
 p.price {
     font-size: 1.6em;
-    line-height: 1em;
+    line-height: 1.2em;
     font-weight: 400;
-    padding-top: 2px;
+    padding-top: 12px;
     margin-left: 8.6%;
     /*    margin-bottom: 12px;*/
     color: #444;
 }
 
 p.price.minmax {
-    font-size: 20px;
-    line-height: 20px;
+    font-size: 1.6em;
+    line-height: 1.2em;
     padding-top: 2px;
     margin-left: 16.4%;
     /*    margin-bottom: 12px;*/

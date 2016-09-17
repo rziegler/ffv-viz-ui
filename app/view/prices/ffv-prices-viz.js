@@ -157,13 +157,12 @@ function doViz(destination, destinations, days, allData, ffvData, deltaTimes, ca
         console.log(selFlight.values[deltaTime].values[0]);
         var departureDateTime = parser.parse(selDepartureDate + " " + selDepartureTime)
         var requestDate = parser.parse(selRequestDate + " 12:00:00");
-        d3.select('#hourly .subtitle').html(selFlightNumber + ' ZHR - ' + selDestination);
+        d3.select('#hourly .subtitle').html('Flight ' + selFlightNumber + ' from ZHR to ' + selDestination);
         //+ format(departureDateTime));
 
         var selPrice = selFlight.values[deltaTime].values[0].price;
         //        d3.select('#hourly .price').html('CHF ' + selPrice + '<br> requested on ' + formatDate(requestDate) + ' (' + selDeltaDays + ' days before departure)');
-        d3.select('#hourly .price').html(
-            formatDate(requestDate) + ' --- ' + selDeltaDays + ' days --- ' + format(departureDateTime) + '<br>' + 'CHF ' + selPrice);
+        d3.select('#hourly .price').html(formatDate(requestDate) + '&nbsp;&nbsp;&nbsp;<span class="deltaDaysBig">+ ' + selDeltaDays + ' days</span>&nbsp;&nbsp;&nbsp;' + format(departureDateTime) + '<br>' + '<span class="deltaDaysBig">CHF ' + selPrice + '</span>');
 
         //            'CHF ' + selPrice + '<br> requested on ' + formatDate(requestDate) + ' (' + selDeltaDays + ' days before departure)');
     }
@@ -171,8 +170,8 @@ function doViz(destination, destinations, days, allData, ffvData, deltaTimes, ca
     /* ************************** */
 
     function clearHourlyText() {
-        d3.select('#hourly .subtitle').html('Flight price development<br>&nbsp;');
-        d3.select('#hourly .price').html('&nbsp;');
+        d3.select('#hourly .subtitle').html('Flight price development');
+        d3.select('#hourly .price').html('&nbsp;<br>&nbsp;');
     }
 
     /* ************************** */
