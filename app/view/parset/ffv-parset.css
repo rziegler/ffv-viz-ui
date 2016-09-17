@@ -68,7 +68,7 @@ svg {
 
 .ribbon path.active {
     fill: #D35400;
-    fill-opacity: .5;
+    fill-opacity: .7;
 }
 
 .ribbon path.selected {

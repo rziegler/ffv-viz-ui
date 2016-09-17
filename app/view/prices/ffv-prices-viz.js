@@ -12,7 +12,7 @@ if (!('map' in Array.prototype)) {
 function doViz(destination, destinations, days, allData, ffvData, deltaTimes, carriers) {
 
     var buckets = 7; // was 11
-    var colorScheme = 'orrd'; // 'grn' 'ylrd'
+    var colorScheme = 'pubu'; // 'grn' 'ylrd'
 
     var dateParser = d3.time.format("%Y-%m-%d");
     var timeParser = d3.time.format("%H:%M:%S");
@@ -35,7 +35,7 @@ function doViz(destination, destinations, days, allData, ffvData, deltaTimes, ca
 
     // use 2 buckets more from colorbrewer but then drop the 2 lightest colors) */
     var colorsOffset = 2;
-    var colors = colorbrewer.OrRd[buckets + colorsOffset];
+    var colors = colorbrewer.PuBu[buckets + colorsOffset];
 
     d3.select('#vis').classed(colorScheme, true);
 
@@ -114,6 +114,7 @@ function doViz(destination, destinations, days, allData, ffvData, deltaTimes, ca
             .style("fill", function (d) {
                 return colors[colorsOffset + d.values[0].bin];
             })
+            //            .style("opacity", "0.9")
             .attr('class', function (d, i) {
                 return 'hr' + i + ' bordered';
             });
@@ -142,16 +143,29 @@ function doViz(destination, destinations, days, allData, ffvData, deltaTimes, ca
         var selFlightNumber = selFlight.values[deltaTime].values[0].flightNumber;
         var selDepartureDate = selFlight.values[deltaTime].values[0].departureDate;
         var selDepartureTime = selFlight.values[deltaTime].values[0].departureTime;
+        var selRequestDate = selFlight.values[deltaTime].values[0].requestDate;
+        var selDeltaDays = selFlight.values[deltaTime].values[0].deltaTime;
+        var selDestination = selFlight.values[deltaTime].values[0].destination;
+
+        console.log(selDestination);
 
         var parser = d3.time.format("%Y-%m-%d %H:%M:%S");
         var format = d3.time.format("%A %d.%m.%Y %H:%M");
+        var formatDate = d3.time.format("%A %d.%m.%Y");
 
-        var dateTime = parser.parse(selDepartureDate + " " + selDepartureTime)
 
-        d3.select('#hourly .subtitle').html('Price development for<br>' + selFlightNumber + ' on ' + format(dateTime));
+        console.log(selFlight.values[deltaTime].values[0]);
+        var departureDateTime = parser.parse(selDepartureDate + " " + selDepartureTime)
+        var requestDate = parser.parse(selRequestDate + " 12:00:00");
+        d3.select('#hourly .subtitle').html(selFlightNumber + ' ZHR - ' + selDestination);
+        //+ format(departureDateTime));
 
         var selPrice = selFlight.values[deltaTime].values[0].price;
-        d3.select('#hourly .price').html('CHF ' + selPrice);
+        //        d3.select('#hourly .price').html('CHF ' + selPrice + '<br> requested on ' + formatDate(requestDate) + ' (' + selDeltaDays + ' days before departure)');
+        d3.select('#hourly .price').html(
+            formatDate(requestDate) + ' --- ' + selDeltaDays + ' days --- ' + format(departureDateTime) + '<br>' + 'CHF ' + selPrice);
+
+        //            'CHF ' + selPrice + '<br> requested on ' + formatDate(requestDate) + ' (' + selDeltaDays + ' days before departure)');
     }
 
     /* ************************** */
@@ -382,7 +396,8 @@ function doViz(destination, destinations, days, allData, ffvData, deltaTimes, ca
         cards.transition().duration(1000)
             .style("fill", function (d) {
                 return colors[colorsOffset + d.bin];
-            });
+            })
+            //            .style("opacity", "0.9");
 
         cards.append("title");
         cards.select("title").text(function (d) {

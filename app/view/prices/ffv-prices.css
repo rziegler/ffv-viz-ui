@@ -360,16 +360,47 @@ th.h48 {
     background: #7f0000;
 }
 
+.PuBu.q2-9 {
+    background: rgb(208, 209, 230)
+}
+
+.PuBu.q3-9 {
+    background: rgb(166, 189, 219)
+}
+
+.PuBu.q4-9 {
+    background: rgb(116, 169, 207)
+}
+
+.PuBu.q5-9 {
+    background: rgb(54, 144, 192)
+}
+
+.PuBu.q6-9 {
+    background: rgb(5, 112, 176)
+}
+
+.PuBu.q7-9 {
+    background: rgb(4, 90, 141)
+}
+
+.PuBu.q8-9 {
+    background: rgb(2, 56, 88)
+}
+
 .max-price {
     background: #444;
+    opacity: 0.9;
 }
 
 .current-price {
     background: #aaa;
+    opacity: 0.9;
 }
 
 .saved-price {
-    background: #EDB13A;
+    background: #e0874d;
+    opacity: 0.9
 }
 
 #hourly_values svg rect.sel {
@@ -417,8 +448,9 @@ p.subtitle.minmax {
 }
 
 p.price {
-    font-size: 20px;
-    line-height: 20px;
+    font-size: 1.6em;
+    line-height: 1em;
+    font-weight: 400;
     padding-top: 2px;
     margin-left: 8.6%;
     /*    margin-bottom: 12px;*/
