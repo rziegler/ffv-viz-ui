@@ -162,7 +162,8 @@ function doViz(destination, destinations, days, allData, ffvData, deltaTimes, ca
 
         var selPrice = selFlight.values[deltaTime].values[0].price;
         //        d3.select('#hourly .price').html('CHF ' + selPrice + '<br> requested on ' + formatDate(requestDate) + ' (' + selDeltaDays + ' days before departure)');
-        d3.select('#hourly .price').html(formatDate(requestDate) + '&nbsp;&nbsp;&nbsp;<span class="deltaDaysBig">+ ' + selDeltaDays + ' days</span>&nbsp;&nbsp;&nbsp;' + format(departureDateTime) + '<br>' + '<span class="deltaDaysBig">CHF ' + selPrice + '</span>');
+        // &#10230;
+        d3.select('#hourly .price').html('<i class="fa fa-shopping-cart" aria-hidden="true"></i> ' + formatDate(requestDate) + ', <i class="fa fa-clock-o" aria-hidden="true"></i> ' + selDeltaDays + ' days</span><br><i class="fa fa-plane" aria-hidden="true"></i> ' + format(departureDateTime));
 
         //            'CHF ' + selPrice + '<br> requested on ' + formatDate(requestDate) + ' (' + selDeltaDays + ' days before departure)');
     }
@@ -201,6 +202,8 @@ function doViz(destination, destinations, days, allData, ffvData, deltaTimes, ca
         var savedPricePercent = (1 - currentPrice / maxPrice) * 100;
         var chartVizComp = vizuly.component.radial_progress(document.getElementById(vizId));
 
+        var numberFormat = d3.format(".2f");
+
         if (savedPricePercent === 0) {
             // use theme with track_fill WHITE
             var chartTheme = vizuly.theme.ffv(chartVizComp).skin(vizuly.skin.FFV_ALERT_ZERO);
@@ -228,9 +231,9 @@ function doViz(destination, destinations, days, allData, ffvData, deltaTimes, ca
             })
             .update();
 
-        d3.select('#' + divId + '-text .min').html('Minimum price CHF ' + minPrice);
-        d3.select('#' + divId + '-text .max').html('Maximum price CHF ' + maxPrice);
-        d3.select('#' + divId + '-text .cur').html('Current price CHF ' + currentPrice);
+        d3.select('#' + divId + '-text .min').html('Minimum price CHF ' + numberFormat(minPrice));
+        d3.select('#' + divId + '-text .max').html('Maximum price CHF ' + numberFormat(maxPrice));
+        d3.select('#' + divId + '-text .cur').html('Current price CHF ' + numberFormat(currentPrice));
     }
 
 

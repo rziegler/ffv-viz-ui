@@ -190,8 +190,7 @@
                     <p class="title">{{savingsActive.destination.destinationName}} ({{ savingsActive.destination.destination }})</p>
                     <p class="main"><span class="border">{{ (savingsActive.savingAbs / savingsActive.savings.costCHF) | number:0 }}x</span></p>
                     <p class="product">{{ savingsActive.savings.product }}</p>
-                    <p>{{ savingsActive.savingRel }}</p>
-                    <p>CHF {{ savingsActive.savingAbs }}</p>
+                    <p>CHF {{ savingsActive.savingAbs }} ({{ savingsActive.savingRel }})</p>
                 </div>
             </div>
 
@@ -208,7 +207,7 @@
                         <p class="title">{{v.destination.destinationName}} ({{v.destination.destination}})</p>
                         <p class="main"><span class="border">{{(v.savingAbs / v.savings.costCHF) | number:0}}x</span></p>
                         <p class="product">{{v.savings.product}}</p>
-                        <p>CHF {{ v.savingAbs }} / {{ v.savingRel }}</p>
+                        <p>CHF {{ v.savingAbs }} ({{ v.savingRel }})</p>
                     </div>
                 </div>
             </ng-repeat>
