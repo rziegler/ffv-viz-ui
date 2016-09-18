@@ -389,18 +389,18 @@ th.h48 {
 }
 
 .max-price {
-    background: #444;
-    opacity: 0.9;
+    background: #023858;
 }
 
+
+/* current price background is calculated dynamically, but this is the dummy value when loading the data */
+
 .current-price {
-    background: #aaa;
-    opacity: 0.9;
+    background: #a6bddb;
 }
 
 .saved-price {
     background: #e0874d;
-    opacity: 0.9
 }
 
 #hourly_values svg rect.sel {
@@ -465,6 +465,14 @@ p.price {
     color: #444;
 }
 
+p.price > tspan {
+    padding-right: 8px;
+}
+
+.fa-shopping-basket {
+    font-size: 1.0em;
+}
+
 p.price.minmax {
     font-size: 1.6em;
     line-height: 1.2em;
@@ -472,6 +480,10 @@ p.price.minmax {
     margin-left: 16.4%;
     /*    margin-bottom: 12px;*/
     color: #444;
+}
+
+p.minmax > tspan {
+    padding-right: 8px;
 }
 
 p.max {
@@ -482,6 +494,7 @@ p.max {
 p.min {
     margin-top: 4px;
     margin-bottom: 28px;
+    /*    padding-left: 22.4px;*/
 }
 
 #hourly_values p.subtitle {

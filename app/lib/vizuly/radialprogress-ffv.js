@@ -9,61 +9,28 @@ vizuly.theme.ffv = function (viz) {
     //is optimized for performance and doesn't use gradients and filters, which can slow down rendering.*
     // Here are our custom skins
     var skins = {
-        Alert: {
-            name: "Alert", // Skin Name
+        bin0: {
+            name: "bin0", // Skin Name
             label_color: "#444", // Color of the center label
             track_fill: "#e0874d", // Color of the background 'track' of the progress bar
-            progress_colors: ["#444", "#aaa"], // Colors used for progress bar
+            progress_colors: ["#023858", "#d0d1e6"], // Colors used for progress bar
             arc_fill: function (d, i) {
                 return this.progress_colors[i % 2]; // Dynamic function that returns a fill based on the index value
             },
             arc_fill_opacity: function (d, i) {
-                return 1; // Dynamic function that returns opacity (in this case it is 1, but the WHITE skin uses a dynamic opacity
+                return 1; // Dynamic function that returns opacity
             },
             arc_stroke: function (d, i) {
-                //                return this.progress_colors[i % 2]; // Dynamic function that returns stroke color based on index
                 return null;
             },
             // Each skin can also have a **CSS class** with styles that don't need to be changed dynamically by the theme directly.
             class: "vz-skin-alert" // CSS Class that it will apply to the viz object output.
         },
-        AlertZero: {
-            name: "Alert", // Skin Name
-            label_color: "#444", // Color of the center label
-            track_fill: "#FFF", // Color of the background 'track' of the progress bar
-            progress_colors: ["#444", "#aaa"], // Colors used for progress bar
-            arc_fill: function (d, i) {
-                return this.progress_colors[i % 2];
-            },
-            arc_fill_opacity: function (d, i) {
-                return 1;
-            },
-            arc_stroke: function (d, i) {
-                return null;
-            },
-            class: "vz-skin-alert"
-        },
-        bin0: {
-            name: "bin0",
-            label_color: "#444",
-            track_fill: "#AAA",
-            progress_colors: ["#7F0000", "#FDD49E"],
-            arc_fill: function (d, i) {
-                return this.progress_colors[i % 2];
-            },
-            arc_fill_opacity: function (d, i) {
-                return 1;
-            },
-            arc_stroke: function (d, i) {
-                return null;
-            },
-            class: "vz-skin-alert"
-        },
         bin0zero: {
             name: "bin0zero",
             label_color: "#444",
             track_fill: "#fff",
-            progress_colors: ["#7F0000", "#FDD49E"],
+            progress_colors: ["#023858", "#d0d1e6"],
             arc_fill: function (d, i) {
                 return this.progress_colors[i % 2];
             },
@@ -78,8 +45,8 @@ vizuly.theme.ffv = function (viz) {
         bin1: {
             name: "bin1",
             label_color: "#444",
-            track_fill: "#333",
-            progress_colors: ["#7F0000", "#fdbb84"],
+            track_fill: "#e0874d",
+            progress_colors: ["#023858", "#a6bddb"],
             arc_fill: function (d, i) {
                 return this.progress_colors[i % 2];
             },
@@ -95,7 +62,7 @@ vizuly.theme.ffv = function (viz) {
             name: "bin1zero",
             label_color: "#444",
             track_fill: "#fff",
-            progress_colors: ["#7F0000", "#fdbb84"],
+            progress_colors: ["#023858", "#a6bddb"],
             arc_fill: function (d, i) {
                 return this.progress_colors[i % 2];
             },
@@ -110,8 +77,8 @@ vizuly.theme.ffv = function (viz) {
         bin2: {
             name: "bin2",
             label_color: "#444",
-            track_fill: "#333",
-            progress_colors: ["#7F0000", "#fc8d59"],
+            track_fill: "#e0874d",
+            progress_colors: ["#023858", "#74a9cf"],
             arc_fill: function (d, i) {
                 return this.progress_colors[i % 2];
             },
@@ -127,7 +94,7 @@ vizuly.theme.ffv = function (viz) {
             name: "bin2zero",
             label_color: "#444",
             track_fill: "#fff",
-            progress_colors: ["#7F0000", "#fc8d59"],
+            progress_colors: ["#023858", "#74a9cf"],
             arc_fill: function (d, i) {
                 return this.progress_colors[i % 2];
             },
@@ -142,8 +109,8 @@ vizuly.theme.ffv = function (viz) {
         bin3: {
             name: "bin3",
             label_color: "#444",
-            track_fill: "#333",
-            progress_colors: ["#7F0000", "#ef6548"],
+            track_fill: "#e0874d",
+            progress_colors: ["#023858", "#3690c0"],
             arc_fill: function (d, i) {
                 return this.progress_colors[i % 2];
             },
@@ -159,7 +126,7 @@ vizuly.theme.ffv = function (viz) {
             name: "bin3zero",
             label_color: "#444",
             track_fill: "#fff",
-            progress_colors: ["#7F0000", "#ef6548"],
+            progress_colors: ["#023858", "#3690c0"],
             arc_fill: function (d, i) {
                 return this.progress_colors[i % 2];
             },
@@ -174,8 +141,8 @@ vizuly.theme.ffv = function (viz) {
         bin4: {
             name: "bin4",
             label_color: "#444",
-            track_fill: "#333",
-            progress_colors: ["#7F0000", "#d7301f"],
+            track_fill: "#e0874d",
+            progress_colors: ["#023858", "#0570b0"],
             arc_fill: function (d, i) {
                 return this.progress_colors[i % 2];
             },
@@ -191,7 +158,7 @@ vizuly.theme.ffv = function (viz) {
             name: "bin4zero",
             label_color: "#444",
             track_fill: "#fff",
-            progress_colors: ["#7F0000", "#d7301f"],
+            progress_colors: ["#023858", "#0570b0"],
             arc_fill: function (d, i) {
                 return this.progress_colors[i % 2];
             },
@@ -206,8 +173,8 @@ vizuly.theme.ffv = function (viz) {
         bin5: {
             name: "bin5",
             label_color: "#444",
-            track_fill: "#333",
-            progress_colors: ["#7F0000", "#b30000"],
+            track_fill: "#e0874d",
+            progress_colors: ["#023858", "#045a8d"],
             arc_fill: function (d, i) {
                 return this.progress_colors[i % 2];
             },
@@ -223,7 +190,7 @@ vizuly.theme.ffv = function (viz) {
             name: "bin5zero",
             label_color: "#444",
             track_fill: "#fff",
-            progress_colors: ["#7F0000", "#b30000"],
+            progress_colors: ["#023858", "#045a8d"],
             arc_fill: function (d, i) {
                 return this.progress_colors[i % 2];
             },
@@ -238,8 +205,8 @@ vizuly.theme.ffv = function (viz) {
         bin6: {
             name: "bin6",
             label_color: "#444",
-            track_fill: "#333",
-            progress_colors: ["#7F0000", "#7f0000"],
+            track_fill: "#e0874d",
+            progress_colors: ["#023858", "#023858"],
             arc_fill: function (d, i) {
                 return this.progress_colors[i % 2];
             },
@@ -255,7 +222,7 @@ vizuly.theme.ffv = function (viz) {
             name: "bin6zero",
             label_color: "#444",
             track_fill: "#fff",
-            progress_colors: ["#7F0000", "#7f0000"],
+            progress_colors: ["#023858", "#023858"],
             arc_fill: function (d, i) {
                 return this.progress_colors[i % 2];
             },

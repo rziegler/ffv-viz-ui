@@ -147,14 +147,10 @@ function doViz(destination, destinations, days, allData, ffvData, deltaTimes, ca
         var selDeltaDays = selFlight.values[deltaTime].values[0].deltaTime;
         var selDestination = selFlight.values[deltaTime].values[0].destination;
 
-        console.log(selDestination);
-
         var parser = d3.time.format("%Y-%m-%d %H:%M:%S");
         var format = d3.time.format("%A %d.%m.%Y %H:%M");
         var formatDate = d3.time.format("%A %d.%m.%Y");
 
-
-        console.log(selFlight.values[deltaTime].values[0]);
         var departureDateTime = parser.parse(selDepartureDate + " " + selDepartureTime)
         var requestDate = parser.parse(selRequestDate + " 12:00:00");
         d3.select('#hourly .subtitle').html('Flight ' + selFlightNumber + ' from ZHR to ' + selDestination);
@@ -163,9 +159,7 @@ function doViz(destination, destinations, days, allData, ffvData, deltaTimes, ca
         var selPrice = selFlight.values[deltaTime].values[0].price;
         //        d3.select('#hourly .price').html('CHF ' + selPrice + '<br> requested on ' + formatDate(requestDate) + ' (' + selDeltaDays + ' days before departure)');
         // &#10230;
-        d3.select('#hourly .price').html('<i class="fa fa-shopping-cart" aria-hidden="true"></i> ' + formatDate(requestDate) + ', <i class="fa fa-clock-o" aria-hidden="true"></i> ' + selDeltaDays + ' days</span><br><i class="fa fa-plane" aria-hidden="true"></i> ' + format(departureDateTime));
-
-        //            'CHF ' + selPrice + '<br> requested on ' + formatDate(requestDate) + ' (' + selDeltaDays + ' days before departure)');
+        d3.select('#hourly .price').html('<tspan><img src="images/flight_seat_filled.png" width="17.6px" height="22px"></tspan>' + formatDate(requestDate) + ', <i class="fa fa-clock-o"  style="font-size:0.8em;" aria-hidden="true"></i> ' + selDeltaDays + ' days<br><tspan><i class="fa fa-plane" aria-hidden="true"></i></tspan>' + format(departureDateTime));
     }
 
     /* ************************** */
@@ -206,13 +200,11 @@ function doViz(destination, destinations, days, allData, ffvData, deltaTimes, ca
 
         if (savedPricePercent === 0) {
             // use theme with track_fill WHITE
-            var chartTheme = vizuly.theme.ffv(chartVizComp).skin(vizuly.skin.FFV_ALERT_ZERO);
-            //            var skinName = "bin" + rowData.values[deltaTime].values[0].bin + "zero";
-            //            vizuly.theme.ffv(chartVizComp).skin(skinName);
+            var skinName = "bin" + rowData.values[deltaTime].values[0].bin + "zero";
+            vizuly.theme.ffv(chartVizComp).skin(skinName);
         } else {
-            var chartTheme = vizuly.theme.ffv(chartVizComp).skin(vizuly.skin.FFV_ALERT);
-            //            var skinName = "bin" + rowData.values[deltaTime].values[0].bin;
-            //            vizuly.theme.ffv(chartVizComp).skin(skinName);
+            var skinName = "bin" + rowData.values[deltaTime].values[0].bin;
+            vizuly.theme.ffv(chartVizComp).skin(skinName);
         }
 
         chartVizComp.data(maxPrice + currentPrice) // Current value
@@ -231,9 +223,20 @@ function doViz(destination, destinations, days, allData, ffvData, deltaTimes, ca
             })
             .update();
 
-        d3.select('#' + divId + '-text .min').html('Minimum price CHF ' + numberFormat(minPrice));
-        d3.select('#' + divId + '-text .max').html('Maximum price CHF ' + numberFormat(maxPrice));
-        d3.select('#' + divId + '-text .cur').html('Current price CHF ' + numberFormat(currentPrice));
+        d3.select('#' + divId + '-text .min').html('<tspan><img src="images/coins_filled.png" width="17.6px" height="22px"></tspan>Minimum price CHF ' + numberFormat(minPrice));
+        d3.select('#' + divId + '-text .max').html('<tspan><img src="images/coins_filled.png" width="17.6px" height="22px"></tspan>Maximum price CHF ' + numberFormat(maxPrice));
+        d3.select('#' + divId + '-text .cur').html('<tspan><img src="images/receive_cash_filled.png" width="17.6px" height="22px"></tspan>Current price CHF ' + numberFormat(currentPrice));
+
+
+        var currentPriceNode = d3.select('#legend-vertical .current-price');
+        currentPriceNode.classed('q2-9', false);
+        currentPriceNode.classed('q3-9', false);
+        currentPriceNode.classed('q4-9', false);
+        currentPriceNode.classed('q5-9', false);
+        currentPriceNode.classed('q6-9', false);
+        currentPriceNode.classed('q7-9', false);
+        currentPriceNode.classed('q8-9', false);
+        currentPriceNode.classed('q' + (rowData.values[deltaTime].values[0].bin + colorsOffset) + '-9', true);
     }
 
 
@@ -391,7 +394,8 @@ function doViz(destination, destinations, days, allData, ffvData, deltaTimes, ca
             })
             .on("mouseout", function (d) {
                 drawHourlyChart(d.carrier, 0);
-                clearHourlyText();
+                //                clearHourlyText();
+                drawHourlyText(d.carrier, 0, 0);
                 drawMinMaxPriceChart(d.carrier, 0, 0);
             });
 
@@ -412,6 +416,7 @@ function doViz(destination, destinations, days, allData, ffvData, deltaTimes, ca
 
         // initially draw charts
         drawHourlyChart(carrier, 0);
+        drawHourlyText(carrier, 0, 0);
         drawMinMaxPriceChart(carrier, 0, 0);
 
         // trigger event when tiles-chart is created
