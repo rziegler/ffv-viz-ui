@@ -15,6 +15,8 @@ angular.module('ffvApp.view', ['ngRoute'])
     var loadType = "online"; //static online
     var deltaTime = 49;
 
+    $scope.loaded = false;
+
     parsetViz($scope, configService, $location, $http, $q, loadType, deltaTime);
     savingsViz($scope, configService, $location, $http, $q, loadType, deltaTime);
     priceViz($scope, $uibModal, configService, $routeParams, $location, $http, loadType, deltaTime);

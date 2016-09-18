@@ -170,6 +170,7 @@ function priceViz($scope, $uibModal, configService, $routeParams, $location, $ht
         //        $scope.carrier = carriers[0]; // default carrier
         $scope.deltaTimes = computeDeltaTimes(data);
 
+        $scope.loaded = true;
         doViz($scope.destination, $scope.destinations, $scope.days, allData, ffvData, $scope.deltaTimes, $scope.carriers);
     }
 

@@ -85,18 +85,23 @@
         <article id="container" class="viz">
 
             <div class="row">
-                <div id="tiles-chart" class="col-lg-12 col-md-12" ng-class="{'expanded':expanded}" ng-style="expandedHeight"></div>
+                <div id="tiles-chart" class="col-lg-12 col-md-12" ng-class="{'expanded':expanded}" ng-style="expandedHeight">
+                    <div id="tiles-placeholder">
+                        <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
+                        <p>Loading flight price data...</p>
+                    </div>
+                </div>
             </div>
             <div id="hourly" class="row">
                 <div id="hourly_values" class="col-lg-12 col-md-12">
 
                     <div class="row">
                         <div class="col-lg-9 col-md-9">
-                            <p class="subtitle">Daily price development</p>
+                            <p class="subtitle" ng-show="loaded">Daily price development</p>
                             <p class="price"></p>
                         </div>
                         <div class="col-lg-3 col-md-3">
-                            <section id="legend" class="pull-right">
+                            <section id="legend" class="pull-right" ng-show="loaded">
                                 <ul>
                                     <li class="PuBu q2-9"></li>
                                     <li class="PuBu q3-9"></li>
@@ -128,7 +133,7 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3">
-                    <section id="legend-vertical" class="pull-right">
+                    <section id="legend-vertical" class="pull-right" ng-show="loaded">
                         <ul>
                             <li>
                                 <div class="max-price"></div>Maximum price</li>
