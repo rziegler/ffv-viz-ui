@@ -316,7 +316,6 @@ th.h48 {
 }
 
 #legend-vertical ul {
-    margin: 0;
     margin: 8px 20px;
     list-style-type: none;
     padding: 0px;
@@ -335,6 +334,18 @@ th.h48 {
     width: 16px;
     height: 8px;
     border-radius: 0px;
+}
+
+
+/* Extra small devices (phones, less than 768px) */
+
+@media (max-width: 767px) {
+    #legend-vertical ul {
+        margin: 8px 0px;
+    }
+    #legend-vertical div {
+        margin-right: 2px;
+    }
 }
 
 
