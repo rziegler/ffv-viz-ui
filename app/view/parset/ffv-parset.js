@@ -34,8 +34,8 @@ function parsetViz($scope, configService, $location, $http, $q, loadType, deltaT
 
         var destData = configService.getDestinationDataForDestination(current['Fly to']);
         return "<p>" + destData.destinationName + " (" + destData.destination +
-            ")</p><p>Book on " + bookingDayFull +
-            "</p><p>Fly on " + departureDayFull + "</p>";
+            ")</p><p>Depart on " + departureDayFull +
+            "</p><p>Book on " + bookingDayFull + "</p>";
     };
 
     function createParSetVisualizationStatic() {

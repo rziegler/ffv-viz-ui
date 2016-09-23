@@ -223,7 +223,7 @@ function doViz(destination, destinations, days, allData, ffvData, deltaTimes, ca
             })
             .update();
 
-        d3.select('#' + divId + '-text .min').html('<tspan><img src="images/coins_filled.png" width="17.6px" height="22px"></tspan>Minimum price CHF ' + numberFormat(minPrice));
+        d3.select('#' + divId + '-text .min').html('<tspan><img src="images/coins_filled_min.png" width="17.6px" height="22px"></tspan>Minimum price CHF ' + numberFormat(minPrice));
         d3.select('#' + divId + '-text .max').html('<tspan><img src="images/coins_filled.png" width="17.6px" height="22px"></tspan>Maximum price CHF ' + numberFormat(maxPrice));
         d3.select('#' + divId + '-text .cur').html('<tspan><img src="images/receive_cash_filled.png" width="17.6px" height="22px"></tspan>Current price CHF ' + numberFormat(currentPrice));
 
@@ -385,6 +385,10 @@ function doViz(destination, destinations, days, allData, ffvData, deltaTimes, ca
                         break;
                     }
                 }
+
+                // change the color
+                d3.select(this).style("fill", "#D35400");
+
                 // TODO: refactor drawHourlyChart so that the 2nd param is the object or the key (date + time) of the object...
                 var dtInverted = (maxDeltaTime - d.deltaTime);
                 drawHourlyChart(d.carrier, dataIdx);
@@ -393,6 +397,10 @@ function doViz(destination, destinations, days, allData, ffvData, deltaTimes, ca
                 drawMinMaxPriceChart(d.carrier, dataIdx, dtInverted);
             })
             .on("mouseout", function (d) {
+                // change the color
+                d3.select(this).style("fill", function (d) {
+                    return colors[colorsOffset + d.bin];
+                });
                 drawHourlyChart(d.carrier, 0);
                 //                clearHourlyText();
                 drawHourlyText(d.carrier, 0, 0);
@@ -400,16 +408,9 @@ function doViz(destination, destinations, days, allData, ffvData, deltaTimes, ca
             });
 
         cards.transition().duration(1000)
-            .style("fill", function (d) {
+            .style("fill", function (d, i) {
                 return colors[colorsOffset + d.bin];
-            })
-            //            .style("opacity", "0.9");
-
-        cards.append("title");
-        cards.select("title").text(function (d) {
-            //            return d.departureDate + " " + d.departureTime + " " + d.price;
-            return "";
-        });
+            });
 
         cards.exit().remove();
 
