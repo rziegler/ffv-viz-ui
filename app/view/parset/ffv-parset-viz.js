@@ -43,10 +43,14 @@ function doParSetViz(data, dimensionLabels, dimensionLabelHighlight, $scope, con
             var mouseX = coordinates[0];
             var mouseY = coordinates[1];
 
-            var svgWidth = d3.select("#parset-vis svg").attr("width");
-            var svgHeight = d3.select("#parset-vis svg").attr("height");
+            var svgWidth = d3.select("#parset-vis svg")[0][0].width.baseVal.value;
+            var svgHeight = d3.select("#parset-vis svg")[0][0].height.baseVal.value;
 
             if (mouseX > 0 && mouseX < svgWidth) {
+                if (mouseY > 0 && mouseY < svgHeight) {
+                    $scope.$emit('hightlightDestinationOnParsetVis', '');
+                }
+            } else {
                 if (mouseY > 0 && mouseY < svgHeight) {
                     $scope.$emit('hightlightDestinationOnParsetVis', '');
                 }
