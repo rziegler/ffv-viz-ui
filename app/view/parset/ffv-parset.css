@@ -31,34 +31,34 @@ svg {
     stroke: #045a8d;
 }
 
-.category-2 {
-    fill: #0570b0;
-    stroke: #0570b0;
-}
-
 .category-1 {
-    fill: #3690c0;
-    stroke: #3690c0;
+    fill: #045a8d;
+    stroke: #045a8d;
 }
 
-.category-4 {
-    fill: #74a9cf;
-    stroke: #74a9cf;
+.category-2 {
+    fill: #045a8d;
+    stroke: #045a8d;
 }
 
 .category-3 {
-    fill: #a6bddb;
-    stroke: #a6bddb;
+    fill: #045a8d;
+    stroke: #045a8d;
 }
 
-.category-6 {
-    fill: #d0d1e6;
-    stroke: #d0d1e6;
+.category-4 {
+    fill: #045a8d;
+    stroke: #045a8d;
 }
 
 .category-5 {
-    fill: #ece7f2;
-    stroke: #ece7f2;
+    fill: #045a8d;
+    stroke: #045a8d;
+}
+
+.category-6 {
+    fill: #045a8d;
+    stroke: #045a8d;
 }
 
 .ribbon path {
@@ -73,7 +73,7 @@ svg {
 
 .ribbon path.selected {
     fill: #D35400;
-    fill-opacity: 0.5;
+    fill-opacity: 0.7;
 }
 
 .parsets-tooltip {
