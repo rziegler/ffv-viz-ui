@@ -166,14 +166,6 @@ function parsetViz($scope, configService, $location, $http, $q, loadType, deltaT
         data.sort(function (a, b) {
             return weekdayIdx(a[sortBy]) > weekdayIdx(b[sortBy]) ? 1 : -1;
         });
-
-        //        data.sort(function (a, b) {
-        //            if ((weekdayIdx(a["Booking Weekday"]) > weekdayIdx(b["Booking Weekday"])) == 0) {
-        //                return a["Destination"] > b["Destionation"] ? 1 : -1;
-        //            } else {
-        //                return 0;
-        //            };
-        //        });
     }
 
     function createTimeseriesVisualizationStatic() {

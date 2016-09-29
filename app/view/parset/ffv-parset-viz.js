@@ -37,17 +37,20 @@ function doParSetViz(data, dimensionLabels, dimensionLabelHighlight, $scope, con
 
     // listener for the hightlight event
     chart.on("highlight", function (d) {
-        if (d === '') {
-            var coordinates = [0, 0];
-            coordinates = d3.mouse(d3.select("#parset-vis svg").node());
-            var mouseX = coordinates[0];
-            var mouseY = coordinates[1];
+        var coordinates = [0, 0];
+        coordinates = d3.mouse(d3.select("#parset-vis svg").node());
+        var mouseX = coordinates[0];
+        var mouseY = coordinates[1];
 
-            var svgWidth = d3.select("#parset-vis svg")[0][0].width.baseVal.value;
-            var svgHeight = d3.select("#parset-vis svg")[0][0].height.baseVal.value;
+        var svgWidth = d3.select("#parset-vis svg")[0][0].width.baseVal.value;
+        var svgHeight = d3.select("#parset-vis svg")[0][0].height.baseVal.value;
+        //        console.log(svgHeight + "  " + mouseY + " " + mouseY / 2);
+        console.log(d3.event.pageY);
+        if (d === '') {
 
             if (mouseX > 0 && mouseX < svgWidth) {
-                if (mouseY > 0 && mouseY < svgHeight) {
+                if (mouseY > 0 && mouseY < (svgHeight * 0.84)) {
+                    // TODO: faktor berechnen, aber wie... je nach skalierung ist offset unterschiedlich http://www.pshrmn.com/tutorials/d3/mouse/
                     $scope.$emit('hightlightDestinationOnParsetVis', '');
                 }
             } else {
@@ -56,7 +59,12 @@ function doParSetViz(data, dimensionLabels, dimensionLabelHighlight, $scope, con
                 }
             }
         } else {
-            $scope.$emit('hightlightDestinationOnParsetVis', d.name);
+            if (mouseY > (svgHeight * 0.84)) {
+                // TODO: faktor berechnen, aber wie...http://www.pshrmn.com/tutorials/d3/mouse/
+                $scope.$emit('hightlightDestinationOnParsetVis', '');
+            } else {
+                $scope.$emit('hightlightDestinationOnParsetVis', d.name);
+            }
         }
     });
 
